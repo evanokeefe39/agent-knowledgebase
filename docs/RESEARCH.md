@@ -252,4 +252,6 @@ and the exact docs to prepare before building) is in [`docs/expert-panel.md`](ex
 
 - `docs/research/kb-search-state-of-art.md` — 2026 search tech landscape
 - `docs/research/media-extraction.md` — media extract-vs-embed deep dive
+- `docs/research/media-embeddings.md` — 2026 image/video embedding models, costs,
+  model-selection & spike method
 - `docs/research/costs-and-solutions.md` — existing solutions + costs

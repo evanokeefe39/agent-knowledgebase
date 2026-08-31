@@ -16,6 +16,8 @@ plugin.
 - `docs/expert-panel.md` — recommendations from a panel of experts (PM,
   architect, staff engineer, ML engineer) on how to explore/validate the idea
   and what docs to prepare for the POC.
+- `docs/research/media-embeddings.md` — 2026 image/video embedding models, costs,
+  and the model-selection / spike method.
 
 ## Related source repos
 
