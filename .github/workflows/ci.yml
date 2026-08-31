@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdown-lint:
+    name: Markdown / docs checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate markdown link references
+        run: |
+          # Fail if any docs/ internal link target does not exist.
+          python - <<'EOF'
+          import re, pathlib
+          root = pathlib.Path(".")
+          bad = []
+          for md in root.rglob("*.md"):
+              if ".github" in md.parts:
+                  continue
+              text = md.read_text(encoding="utf-8")
+              for ref in re.findall(r"\]\(([^)#]+)", text):
+                  if ref.startswith(("http://", "https://", "mailto:", "#")):
+                      continue
+                  if not (md.parent / ref).exists():
+                      bad.append(f"{md}: broken link -> {ref}")
+          if bad:
+              print("\n".join(bad))
+              raise SystemExit(1)
+          print("All internal links OK")
+          EOF
+
+  python:
+    name: Python (uv)
+    runs-on: ubuntu-latest
+    # Python jobs run only once a pyproject.toml exists.
+    if: hashFiles('pyproject.toml') != ''
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Install
+        run: uv sync
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Test
+        run: uv run pytest

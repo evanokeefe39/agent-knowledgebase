@@ -1,0 +1,14 @@
+# Normalize line endings per file type
+* text=auto
+
+# Source
+*.py text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+
+# Docs / templates keep LF
+.gitattributes text eol=lf

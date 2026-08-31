@@ -1,10 +1,36 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
 .venv/
+venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# uv
+.uv/
 
 # Secrets
 .env
+.env.*
+!.env.example
 
 # Agent scratch
 .pi/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Node (if a CLI/web client is added)
+node_modules/

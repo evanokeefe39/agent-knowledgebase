@@ -246,6 +246,8 @@ The POC is "done" when it can demonstrate, end-to-end and cheaply:
 **Expert-panel refinement of the above (success criteria, kill criteria, scope,
 and the exact docs to prepare before building) is in [`docs/expert-panel.md`](expert-panel.md).**
 
+**The proposed POC architecture (build order + spike summary) is in [`docs/architecture.md`](architecture.md).**
+
 ---
 
 ## 8. Research memo index
