@@ -49,7 +49,9 @@ open questions. It is **not** an implementation spec.
   (vector + lexical), and media-derived metadata; the agent should be able to
   decide which store(s) to query and consolidate evidence.
 - **Agent-facing interface:** REST API + CLI/Web, packaged as a tool/skill/plugin
-  (e.g. MCP server + Agent Skill) usable by coding harnesses.
+  usable by coding harnesses — **skill-first** (Agent Skill / SKILL.md + CLI that
+  calls the same REST service), with an MCP adapter optional for live data or a
+  second consumer.
 - **Clarity workflow:** support agent decomposition of broad questions into
   sub-queries and investigations, surfacing uncertainty to the user.
 
@@ -178,11 +180,19 @@ Findings (see `docs/research/costs-and-solutions.md`):
 **Thread: how do we expose the KB to coding agents?**
 
 Findings (see `docs/research/kb-search-state-of-art.md` §4):
-- **MCP** is the de-facto standard (Linux-Foundation-governed; adopted across
-  Anthropic/OpenAI/Google/Microsoft). This is the REST/CLI-to-agent bridge.
-- **Anthropic Agent Skills (SKILL.md)** is the progressive-disclosure
-  instruction format; rides on top of an MCP server.
+- **MCP** is the de-facto *protocol* standard (Linux-Foundation-governed; adopted
+  across Anthropic/OpenAI/Google/Microsoft) for exposing a running service's
+  tools to an agent. Its strength is live/dynamic data and multi-client discovery.
+- **Anthropic Agent Skills (SKILL.md)** is the progressive-disclosure *filesystem*
+  instruction format (SKILL.md + scripts), loadable on demand, no server required.
 - Multi-agent orchestration: prefer sub-agent-per-store with an orchestrator.
+
+**Confirmed POC decision (skill-first):** for this KB — *snapshot* data consumed
+by a *coding* agent — packaging is **skill-first**: an Agent Skill (SKILL.md) +
+a CLI that calls the same REST service. No live server is required for the agent;
+progressive disclosure keeps startup cost ~100 tokens. **MCP is an optional
+adapter**, added only if a second consumer or live/dynamic data appears. This is
+the direction recorded in `docs/architecture.md` and `AGENTS.md`.
 
 ---
 
@@ -197,16 +207,16 @@ Findings (see `docs/research/kb-search-state-of-art.md` §4):
 | Agentic RAG / query routing | | 🟡 | |
 | Federated heterogeneous-store routing | | | 🔴 (OmniRetrieval/SQuARE) |
 | GraphRAG (selective) | | 🟡 | |
-| MCP server packaging | 🟢 | | |
-| Agent Skills (SKILL.md) | 🟢 | | |
+| MCP server packaging (adapter, optional) | 🟢 | | |
+| Agent Skills (SKILL.md) — **primary** | 🟢 | | |
 | Multimodal media extraction (VLMs) | 🟢 | | |
 | Multimodal embeddings | 🟢 | | |
 
 **Synthesis:** hybrid retrieval over media-derived text (🟢), a curated-view
-text-to-SQL tier over the lake (🟢), and MCP + Agent Skills packaging (🟢) form a
-low-risk core. The federated router (🔴/🟡) is where the interesting open problem
-lives; start with OmniRetrieval-style long-context source selection over a small
-registered catalog.
+text-to-SQL tier over the lake (🟢), and **skill-first packaging** (Agent Skill /
+SKILL.md primary; MCP optional adapter) form a low-risk core. The federated
+router (🔴/🟡) is where the interesting open problem lives; start with
+OmniRetrieval-style long-context source selection over a small registered catalog.
 
 ---
 
@@ -239,8 +249,9 @@ The POC is "done" when it can demonstrate, end-to-end and cheaply:
   evidence-linked answers (hybrid retrieval working on real data).
 - A text-to-SQL path answers a structured question against the lake with
   guardrails, on the POC's own schema.
-- The whole thing is packaged as an MCP server + Agent Skill consumable by at
-  least one harness (oh-my-pi or Claude Code).
+- The whole thing is packaged **skill-first** (Agent Skill / SKILL.md + CLI)
+  consumable by at least one harness (oh-my-pi or Claude Code); an MCP adapter
+  is optional.
 - Cost is measured and under budget.
 
 **Expert-panel refinement of the above (success criteria, kill criteria, scope,
