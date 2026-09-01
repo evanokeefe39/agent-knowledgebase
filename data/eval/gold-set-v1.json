@@ -1,0 +1,234 @@
+[
+  {
+    "question_id": "q001",
+    "question": "Find the post with professional font pairings for creative projects.",
+    "expected_post_ids": ["Dblrpj-E_Lf"],
+    "mode": "search",
+    "domain_hint": "typography",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q002",
+    "question": "Which posts cover typography resources or type inspiration?",
+    "expected_post_ids": ["Dblrpj-E_Lf", "DaZ-xbaEuph", "DaM26LMulZF"],
+    "mode": "search",
+    "domain_hint": "typography",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q003",
+    "question": "Which post talks about Nano Banana AI image editing?",
+    "expected_post_ids": ["DYNprnKDdFr"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q004",
+    "question": "Find posts with structured lists of skills for AI-assisted design.",
+    "expected_post_ids": ["DaNYCILlDgO"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q005",
+    "question": "Which posts describe Claude design skills or Claude Code design workflows?",
+    "expected_post_ids": ["DaNYCILlDgO", "DblU1r_HA5p", "DcEFABnvBuH", "DcNMBB0FgD8"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "q006",
+    "question": "Find websites for landing page and layout design references.",
+    "expected_post_ids": ["DbO1JEoSBE7", "DY04AwpleW6", "DcMlAi4v1fb"],
+    "mode": "search",
+    "domain_hint": "webdesign",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q007",
+    "question": "Which post lists high-converting landing page formats for e-commerce?",
+    "expected_post_ids": ["DaV1qGHRyHZ"],
+    "mode": "search",
+    "domain_hint": "webdesign",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q008",
+    "question": "Which posts recommend plugins for Claude Code front-end design?",
+    "expected_post_ids": ["DcEFABnvBuH", "DbcSTKNthGN"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q009",
+    "question": "I need a Claude Code plugin that prevents generic AI-looking design. Which post is that?",
+    "expected_post_ids": ["DbcSTKNthGN"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "q010",
+    "question": "Which post lists common overused UI patterns to avoid?",
+    "expected_post_ids": ["DcEJDHBTyPY"],
+    "mode": "search",
+    "domain_hint": "ui-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q011",
+    "question": "Find posts with color palettes and hex codes.",
+    "expected_post_ids": ["DZIFpkJleov", "DZj9G-hEiZW"],
+    "mode": "search",
+    "domain_hint": "color-theory",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q012",
+    "question": "Which post explains why pure black text on dark backgrounds causes eye strain?",
+    "expected_post_ids": ["DaqrQbYjuMa"],
+    "mode": "search",
+    "domain_hint": "accessibility",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q013",
+    "question": "Find posts about AI-generated product photography workflows.",
+    "expected_post_ids": ["DZxnLlkDaHx", "DYNprnKDdFr"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q014",
+    "question": "Which post teaches better prompting for AI image generation instead of generic prompts?",
+    "expected_post_ids": ["DaQQ79mjeo3"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q015",
+    "question": "Find posts about building a personal brand on social media.",
+    "expected_post_ids": ["DZXe4KxRSDl", "DZaUAv_jODe"],
+    "mode": "search",
+    "domain_hint": "branding",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q016",
+    "question": "Which posts come from the creator craftwork.design?",
+    "expected_post_ids": ["DaK9bi0jVmN", "DaNmxb2jYUh"],
+    "mode": "search",
+    "domain_hint": "design-tools",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q017",
+    "question": "What posts did mobileeditingclub publish?",
+    "expected_post_ids": ["DYNprnKDdFr", "DZxnLlkDaHx", "DaQQ79mjeo3"],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "q018",
+    "question": "Which posts are good sources for general web design inspiration websites?",
+    "expected_post_ids": ["DbO1JEoSBE7", "DY04AwpleW6", "DZIljzfOQo4", "DcerVsOPsfx"],
+    "mode": "search",
+    "domain_hint": "inspiration",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q019",
+    "question": "Which post compares design research platforms and recommends Mobbin?",
+    "expected_post_ids": ["DZZ2-8AOy5_"],
+    "mode": "search",
+    "domain_hint": "ux-research",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q020",
+    "question": "Find the post about the golden ratio for text scaling and spacing rules.",
+    "expected_post_ids": ["DUELjjBDsKc"],
+    "mode": "search",
+    "domain_hint": "typography",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q021",
+    "question": "Which posts cover poster design techniques?",
+    "expected_post_ids": ["DYIYIccNfBV", "DcoxWY4lbn-"],
+    "mode": "search",
+    "domain_hint": "graphic-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q022",
+    "question": "How can a designer with no coding background build a portfolio website?",
+    "expected_post_ids": ["DbYbGxekWK5"],
+    "mode": "answer",
+    "domain_hint": "webdesign",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q023",
+    "question": "What are the foundational elements of building a robust design system?",
+    "expected_post_ids": ["DaiaqXrnxu2"],
+    "mode": "answer",
+    "domain_hint": "design-systems",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q024",
+    "question": "What did David Ogilvy say about advertising, per this corpus?",
+    "expected_post_ids": ["DacJeF0IIq7"],
+    "mode": "answer",
+    "domain_hint": "branding",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q025",
+    "question": "What is the conversion rate of a post-lead-magnet funnel?",
+    "expected_post_ids": [],
+    "mode": "abstain",
+    "domain_hint": "marketing",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q026",
+    "question": "Which designer in the corpus charges the most for their services?",
+    "expected_post_ids": [],
+    "mode": "abstain",
+    "domain_hint": "business",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q027",
+    "question": "How many Instagram followers does james.vlvt have?",
+    "expected_post_ids": [],
+    "mode": "abstain",
+    "domain_hint": "metadata",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q028",
+    "question": "Which saved post received the most likes?",
+    "expected_post_ids": [],
+    "mode": "abstain",
+    "domain_hint": "metadata",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q029",
+    "question": "What does the corpus say about Figma's enterprise pricing tiers?",
+    "expected_post_ids": [],
+    "mode": "abstain",
+    "domain_hint": "design-tools",
+    "difficulty": "easy"
+  }
+]

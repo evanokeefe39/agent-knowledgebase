@@ -1,0 +1,30 @@
+[
+  {
+    "view_name": "posts",
+    "version": "1",
+    "materialized_at": "2026-09-01T14:32:27.535099+00:00",
+    "source_snapshot_id": "har-2026-09-01",
+    "row_count": 86
+  },
+  {
+    "view_name": "creators",
+    "version": "1",
+    "materialized_at": "2026-09-01T14:32:27.535099+00:00",
+    "source_snapshot_id": "har-2026-09-01",
+    "row_count": 71
+  },
+  {
+    "view_name": "tools",
+    "version": "1",
+    "materialized_at": "2026-09-01T14:32:27.535099+00:00",
+    "source_snapshot_id": "har-2026-09-01",
+    "row_count": 136
+  },
+  {
+    "view_name": "domains",
+    "version": "1",
+    "materialized_at": "2026-09-01T14:32:27.535099+00:00",
+    "source_snapshot_id": "har-2026-09-01",
+    "row_count": 11
+  }
+]
