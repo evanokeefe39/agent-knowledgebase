@@ -31,8 +31,11 @@ from google import genai
 from kb.consolidate import load_merged
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-# GEMINI_API_KEY lives in a sibling repo's .env; loaded via python-dotenv, never hardcoded.
-load_dotenv("C:/Users/evano/repos/scrape-ig-saved-list/.env")
+# GEMINI_API_KEY is read from THIS repo's .env (see .env.example). For
+# backward-compat during the transition, fall back to the sibling scrape repo's
+# .env only if the key is not already set here. Never hardcoded.
+load_dotenv(REPO_ROOT / ".env")
+load_dotenv("C:/Users/evano/repos/scrape-ig-saved-list/.env", override=False)
 
 DB_PATH = REPO_ROOT / "data" / "kb" / "dense.db"
 EMBED_MODEL = "gemini-embedding-001"
@@ -52,7 +55,7 @@ def _client() -> genai.Client:
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key:
         raise DenseRetrievalError(
-            "GEMINI_API_KEY not set (expected in C:/Users/evano/repos/scrape-ig-saved-list/.env)"
+            "GEMINI_API_KEY not set (expected in this repo's .env — see .env.example)"
         )
     return genai.Client(api_key=key)
 
