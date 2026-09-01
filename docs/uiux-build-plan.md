@@ -162,12 +162,14 @@ first; sdlc-worker builds code against that pinned contract. No shared-file race
 - **Division-of-labor:** dense (semantic) serves the paraphrase/conceptual gold
   questions that lexical BM25 misses; BM25 serves exact-identifier queries. On
   this small well-named corpus the two overlap heavily, so fusion gains nothing.
-- **Dense embed status:** 160/185 vectors embedded; the remainder blocked by the
-  Gemini free-tier daily embed quota (`embed_content_free_tier_requests`), an
-  external rate limit. `kb/dense.py` is idempotent — re-run resumes the remaining
-  posts. `docs/research/grep-vs-rag.md` documents that lexical + agentic search
-  is often sufficient (Cherny / Amazon "Keyword Search Is All You Need"), which
-  supports deferring Postgres/pgvector until corpus scale demands it.
+- **Re-evaluation triggers (overlap-anchored, see `docs/architecture.md`):** the
+  trigger for re-running the ablation is *channel overlap, not corpus size*.
+  Re-run `uv run python -m kb.hybrid --ablation` on each material corpus
+  expansion and re-evaluate fusion/Postgres when: (a) hybrid's win-rate vs dense
+  crosses the ≥60% bar (currently 0.0%); (b) the lexical-miss rate (dense-correct
+  but BM25-misses) rises; or (c) per-domain results diverge (uiux vs
+  creator-growth). pgvector/Postgres stays premature until fusion demonstrably
+  wins that value test — the gap is overlap, not scale.
 
 ---
 
