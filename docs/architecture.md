@@ -128,3 +128,39 @@ GraphRAG / multi-hop graph indexing · learned federated router · self-hosted o
 embeddings · full-scale video transcript derivation · incremental ingestion ·
 Web UI · multi-user · Postgres migration (SQLite/DuckDB + local vector store is
 enough for 809 docs).
+
+## Re-evaluation triggers — when to revisit hybrid fusion / Postgres
+
+The M4 ablation (2026-09-01, `docs/uiux-build-plan.md`) established the baseline:
+on the 24-question gold set, **dense** is the strongest single channel
+(R@5=0.972, R@10=1.0), **hybrid (RRF)** matches dense at R@10/MRR but is slightly
+*lower* at R@5 (0.917), and **BM25** is weakest (R@5=0.781). Hybrid's win-rate vs
+dense is **0.0%** — dense beats or ties hybrid on every gold question.
+
+**The architecture is driven by channel overlap, not corpus size.** "185 vs
+100k vectors" is not itself the trigger for Postgres/pgvector — the gap is about
+whether lexical and semantic retrieval still overlap, not about raw scale. Fusion
+earns its complexity only when the two channels serve *distinct, non-overlapping*
+slices of the corpus.
+
+**Re-run the gold ablation on each material corpus expansion** (cheap —
+`kb/dense.py` is idempotent/incremental, so new posts embed without a full
+re-embed; `uv run python -m kb.hybrid --ablation`). Re-evaluate fusion and the
+file-backed-vs-Postgres decision when any of these fire:
+
+1. **Hybrid's win-rate vs dense crosses the ≥60% bar** (currently 0.0%). Until
+   hybrid wins a slice dense alone misses, RRF adds complexity, not value.
+2. **Lexical-miss rate rises** — the count of gold questions where *dense is
+   correct but BM25 misses*. This is the failure mode fusion exists to rescue;
+   when it is non-trivial and dense's hits are not already in hybrid's top-10,
+   fusion has a reason to exist.
+3. **Per-domain results diverge** — run the gate split by domain (uiux vs
+   creator-growth). Divergence (one domain turning paraphrase-heavy, the other
+   lexical) is the real architecture pressure point and the honest way to catch
+   trigger 1 emerging.
+
+Until a trigger fires, the file-backed stack (SQLite FTS5 + sqlite-vec) stands;
+pgvector/Postgres stays the documented production migration path, not a build
+target. Every gate is version-keyed
+`(schema_version, index_version, eval_set_version)`, so a re-run is attributable
+to exactly what changed in the corpus.

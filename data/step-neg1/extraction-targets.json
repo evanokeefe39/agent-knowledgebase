@@ -1,0 +1,714 @@
+{
+  "set": "creator-growth-extraction",
+  "total": 101,
+  "need_extraction": 60,
+  "posts": [
+    {
+      "post_id": "3777377637506010416",
+      "shortcode": "DRr8PKqDM0w",
+      "owner": "adamdelduca",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3970891988325696978",
+      "shortcode": "DcbcTmFmQXS",
+      "owner": "advicewithjean",
+      "media_count": 6,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3904439717520678269",
+      "shortcode": "DYvWzyJvx19",
+      "owner": "angelenees.ugc",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3838281772950469769",
+      "shortcode": "DVEUO-4kbyJ",
+      "owner": "angus.sewell",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3844743046630549156",
+      "shortcode": "DVbRW47ESak",
+      "owner": "angus.sewell",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3825421795638546734",
+      "shortcode": "DUWoNrtEpEu",
+      "owner": "angus.sewell",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3925860522062686752",
+      "shortcode": "DZ7dVg_Rqog",
+      "owner": "angus.sewell",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3792599643038233603",
+      "shortcode": "DSiBUgCkTQD",
+      "owner": "angus.sewell",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3849070193297976052",
+      "shortcode": "DVqpPKTEer0",
+      "owner": "angus.sewell",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3854895296371841382",
+      "shortcode": "DV_VtkSkVlm",
+      "owner": "angus.sewell",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3948357940829368474",
+      "shortcode": "DbLYqC9OjCa",
+      "owner": "anthonydelucv",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3910711936828300550",
+      "shortcode": "DZFo8llh90G",
+      "owner": "anuj.abroad",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3906377924247972876",
+      "shortcode": "DY2PgZ1OmwM",
+      "owner": "ashharrisprod",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3905713533623671086",
+      "shortcode": "DYz4cP2Exku",
+      "owner": "askgpts",
+      "media_count": 3,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3776128729852431314",
+      "shortcode": "DRngRKxAEvS",
+      "owner": "beau_norton",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3886759219881907164",
+      "shortcode": "DXwiurkiRPc",
+      "owner": "bensufiani",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3704903391376510643",
+      "shortcode": "DNqdgFKIw6z",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3701477699994695714",
+      "shortcode": "DNeSltcNrgi",
+      "owner": "ceozac",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3910982515703952806",
+      "shortcode": "DZGmeBzTDWm",
+      "owner": "coachkunaalnaik",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3785921495823282599",
+      "shortcode": "DSKS4qyD_Gn",
+      "owner": "creatorgabe",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3866716244305088172",
+      "shortcode": "DWpVe_9CY6s",
+      "owner": "edhonour",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3929749824226868466",
+      "shortcode": "DaJRqT5Mjzy",
+      "owner": "edward.builds",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3794688084022151492",
+      "shortcode": "DSpcLURjElE",
+      "owner": "edward.builds",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3910448340864306868",
+      "shortcode": "DZEtAwtu460",
+      "owner": "ethanleblanc___",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3913084363694088770",
+      "shortcode": "DZOEX8SHyJC",
+      "owner": "foundedceo",
+      "media_count": 20,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3912950770641776859",
+      "shortcode": "DZNl_6DsbDb",
+      "owner": "gwendolyneem",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3951280154601136247",
+      "shortcode": "DbVxF2nDSB3",
+      "owner": "itsaiguide",
+      "media_count": 9,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3694601270270858696",
+      "shortcode": "DNF3EfNM5XI",
+      "owner": "jason.yslai",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3952049061066210805",
+      "shortcode": "DbYf66jxH31",
+      "owner": "juliabroome",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3786750960425891870",
+      "shortcode": "DSNPe95Dfge",
+      "owner": "kienobifilms",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3889124160664422136",
+      "shortcode": "DX48dGTysb4",
+      "owner": "logangood",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3861820795098682213",
+      "shortcode": "DWX8Y1mEtNl",
+      "owner": "lunchbqx",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3795058972130560540",
+      "shortcode": "DSqwgcvgEoc",
+      "owner": "martinwang.mp4",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3844967242606499721",
+      "shortcode": "DVcEVXskteJ",
+      "owner": "milamarksonofficial",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3802693491215026896",
+      "shortcode": "DTF4ZUtj8rQ",
+      "owner": "nick_saraev",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3932481697273480980",
+      "shortcode": "DaS-0S7tgcU",
+      "owner": "nielshg_",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3961408330113965611",
+      "shortcode": "Db5v-NGt14r",
+      "owner": "nielshg_",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3970985812249467307",
+      "shortcode": "Dcbxo6bPtmr",
+      "owner": "official_stevek",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3764338066522424388",
+      "shortcode": "DQ9nYb1jMRE",
+      "owner": "onlyzita",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3884465100908861351",
+      "shortcode": "DXoZG2yExen",
+      "owner": "realaaronchen",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3846131160439727144",
+      "shortcode": "DVgM-mpkiQo",
+      "owner": "sabrina_ramonov",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3833809991446891032",
+      "shortcode": "DU0bd_0iQoY",
+      "owner": "sabrina_ramonov",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3970892460486131164",
+      "shortcode": "Dcbcad0jX3c",
+      "owner": "samson.ai",
+      "media_count": 7,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3782690033598890516",
+      "shortcode": "DR-0ItEEoIU",
+      "owner": "saulved",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3906513082742613180",
+      "shortcode": "DY2uPN_SiS8",
+      "owner": "seanwerbowskii",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3932391379496804059",
+      "shortcode": "DaSqR_8tx7b",
+      "owner": "simran.khokha",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3850628174782696728",
+      "shortcode": "DVwLexoCI0Y",
+      "owner": "sociyell",
+      "media_count": 9,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3815796421589543326",
+      "shortcode": "DT0bqDkDSme",
+      "owner": "softgirlnocode",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3973146661991949303",
+      "shortcode": "Dcjc9akjyP3",
+      "owner": "starter_story",
+      "media_count": 11,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3919452532759004373",
+      "shortcode": "DZksU_5GwTV",
+      "owner": "starter_story",
+      "media_count": 4,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3851317898850347560",
+      "shortcode": "DVyoTlOFCoo",
+      "owner": "starter_story",
+      "media_count": 4,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3915734778876552329",
+      "shortcode": "DZXfAjxlGSJ",
+      "owner": "stephaniechungxh",
+      "media_count": 8,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3834631291065345475",
+      "shortcode": "DU3WNesjCXD",
+      "owner": "techguyver",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3931078697133108332",
+      "shortcode": "DaN_z9OuWxs",
+      "owner": "thehayleyjennings",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3973143633847299755",
+      "shortcode": "DcjcRWZEq6r",
+      "owner": "therealcaseykeith",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3931067593021279305",
+      "shortcode": "DaN9SXuFUxJ",
+      "owner": "tom__youngs",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3922389943722672685",
+      "shortcode": "DZvIN9CJ4It",
+      "owner": "tommyloutzenheiser",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3878356917588397318",
+      "shortcode": "DXSsRFxCQ0G",
+      "owner": "wellcopymax",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3920882615745572320",
+      "shortcode": "DZpxfcdhO3g",
+      "owner": "zchangd",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3950583146671833484",
+      "shortcode": "DbTSnDZBQGM",
+      "owner": "zchangd",
+      "media_count": 1,
+      "already_analyzed": false
+    },
+    {
+      "post_id": "3657816792545401312",
+      "shortcode": "DLDLP4tIJng",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3760546516084250164",
+      "shortcode": "DQwJSHUiNY0",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3753529132152521128",
+      "shortcode": "DQXNtvQCAGo",
+      "owner": "bywaviboy",
+      "media_count": 6,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3714371046355767047",
+      "shortcode": "DOMGMl-CA8H",
+      "owner": "bywaviboy",
+      "media_count": 6,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3761531440056531245",
+      "shortcode": "DQzpOpQCHkt",
+      "owner": "bywaviboy",
+      "media_count": 7,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3860818100555930838",
+      "shortcode": "DWUYZtiCNzW",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3815775503991213497",
+      "shortcode": "DT0W5qiCI25",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3859206684996567340",
+      "shortcode": "DWOqAh2CIEs",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3668559517997603647",
+      "shortcode": "DLpV3HboBs_",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3668605474936435507",
+      "shortcode": "DLpgT4Ko7Mz",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3698391246811892352",
+      "shortcode": "DNTUz56owqA",
+      "owner": "bywaviboy",
+      "media_count": 6,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3801902485535754502",
+      "shortcode": "DTDEirRCIkG",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3655618140955646799",
+      "shortcode": "DK7XVS2IptP",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3807917405016469527",
+      "shortcode": "DTYcLRkCLAX",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3818733912923342387",
+      "shortcode": "DT-3kLjiIYz",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3707082664227899959",
+      "shortcode": "DNyNArKUAo3",
+      "owner": "bywaviboy",
+      "media_count": 5,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3659192977317725133",
+      "shortcode": "DLIEKApoIPN",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3665827385726673510",
+      "shortcode": "DLfopW-IyJm",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3749144517933587297",
+      "shortcode": "DQHoxNDCNth",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3688264865675266702",
+      "shortcode": "DMvWVqkIMqO",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3742583945800748959",
+      "shortcode": "DPwVEUHiI-f",
+      "owner": "bywaviboy",
+      "media_count": 5,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3747763970153929409",
+      "shortcode": "DQCu3lvCFrB",
+      "owner": "bywaviboy",
+      "media_count": 7,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3667967329760713488",
+      "shortcode": "DLnPNpKIBsQ",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3745540984537669348",
+      "shortcode": "DP61a5DCN7k",
+      "owner": "bywaviboy",
+      "media_count": 6,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3860744286367143582",
+      "shortcode": "DWUHnktiFae",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3674573845527849977",
+      "shortcode": "DL-tXGboOv5",
+      "owner": "bywaviboy",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3891052280707291089",
+      "shortcode": "DX_y28CCBfR",
+      "owner": "electroformaint",
+      "media_count": 9,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3920911864087189143",
+      "shortcode": "DZp4JEGiBaX",
+      "owner": "electroformaint",
+      "media_count": 9,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3889691997262902313",
+      "shortcode": "DX69kNWiPQp",
+      "owner": "electroformaint",
+      "media_count": 9,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3876635891703749466",
+      "shortcode": "DXMk83giBta",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3890979262072296145",
+      "shortcode": "DX_iQYIOxLR",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3877224143385314832",
+      "shortcode": "DXOqtDlDMYQ",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3872999161188731304",
+      "shortcode": "DW_qDeSCkmo",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3880199272432174353",
+      "shortcode": "DXZPK4bDIUR",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3882433340339138481",
+      "shortcode": "DXhLI2TDC-x",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3847723752549554599",
+      "shortcode": "DVl3F3ojJmn",
+      "owner": "vinny_creative",
+      "media_count": 5,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3880863512310624358",
+      "shortcode": "DXbmM2BDLBm",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3880909063383212906",
+      "shortcode": "DXbwjswjONq",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3891755026949975695",
+      "shortcode": "DYCSpPeMa6P",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3879429218249772361",
+      "shortcode": "DXWgFHlDI1J",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    },
+    {
+      "post_id": "3899748444070305524",
+      "shortcode": "DYesIxSMV70",
+      "owner": "vinny_creative",
+      "media_count": 1,
+      "already_analyzed": true
+    }
+  ]
+}
