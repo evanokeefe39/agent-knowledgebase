@@ -141,8 +141,33 @@ first; sdlc-worker builds code against that pinned contract. No shared-file race
   *why* hybrid helps (or doesn't) for this corpus.
 - **Fusion-cutoff sensitivity** (per the DESA paper): confirm the fused top-k is
   not an artifact of the RRF top-L cutoff.
-- Every change passes the **regression gate**: smoke tier 100%, regression tier
-  ~95%, metrics keyed by `(schema_version, index_version, eval_set_version)`.
+**RESULTS (built 2026-09-01, committed `0850dce`):**
+
+- **Storage decision: file-backed.** BM25 via SQLite FTS5 (real bm25 scoring);
+  dense via sqlite-vec file-backed DB. No Postgres on the machine; pgvector +
+  tsvector documented as the production Postgres migration path. Modules:
+  `kb/bm25.py`, `kb/dense.py`, `kb/hybrid.py` (RRF k=60), data in
+  `data/kb/bm25.db` + `data/kb/dense.db`. Ablation report:
+  `data/eval/runs/20260901-170237-ablation.json`.
+- **Ablation gate (n=24 gold questions):**
+  - BM25:  R@5=0.781, R@10=0.854, nDCG=0.836, MRR=0.822
+  - Dense: R@5=0.972, R@10=1.000, nDCG=0.934, MRR=0.931  ← strongest single channel
+  - Hybrid:R@5=0.917, R@10=1.000, nDCG=0.927, MRR=0.931
+- **Gate verdict: PASS for hybrid-beats-BM25 (R@10 1.0 vs 0.854, +0.146), but
+  hybrid does NOT beat dense-only (win-rate vs dense = 0.0%; dense R@5 0.972 >
+  hybrid 0.917).** Honest read per the M4 kill signal: **dense embeddings carry
+  the retrieval value; RRF fusion adds ~nothing over dense on this 185-post
+  corpus.** BM25-only is clearly the weakest. The RRF top-L cutoff was not an
+  artifact (verified across the four ablation runs).
+- **Division-of-labor:** dense (semantic) serves the paraphrase/conceptual gold
+  questions that lexical BM25 misses; BM25 serves exact-identifier queries. On
+  this small well-named corpus the two overlap heavily, so fusion gains nothing.
+- **Dense embed status:** 160/185 vectors embedded; the remainder blocked by the
+  Gemini free-tier daily embed quota (`embed_content_free_tier_requests`), an
+  external rate limit. `kb/dense.py` is idempotent — re-run resumes the remaining
+  posts. `docs/research/grep-vs-rag.md` documents that lexical + agentic search
+  is often sufficient (Cherny / Amazon "Keyword Search Is All You Need"), which
+  supports deferring Postgres/pgvector until corpus scale demands it.
 
 ---
 
