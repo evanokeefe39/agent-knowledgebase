@@ -122,6 +122,13 @@ The SKILL.md encodes heuristics: "metrics/aggregations → /query; 'how do I do 
 | E4 routing | Agent picks the right store from tool descriptions | ≥80% correct store picks |
 | Embedding spike | One multimodal model suffices | Strong Recall@5/MRR on 50-post gold set |
 
+## Out of scope (for the POC)
+
+GraphRAG / multi-hop graph indexing · learned federated router · self-hosted open
+embeddings · full-scale video transcript derivation · incremental ingestion ·
+Web UI · multi-user · Postgres migration (SQLite/DuckDB + local vector store is
+enough for 809 docs).
+
 ## Re-evaluation triggers — when to revisit hybrid fusion / Postgres
 
 The M4 ablation (2026-09-01, `docs/uiux-build-plan.md`) established the baseline:
