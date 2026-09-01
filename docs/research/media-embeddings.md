@@ -114,6 +114,16 @@ the pragmatic single-model default for this POC.
 **Most economical (API):** Gemini Embedding 2 batch (image $0.00006, video ~$0.0126/reel); Voyage free tier covers the whole corpus.
 **Best value for this POC:** a single multimodal model (Gemini Embedding 2 primary; Voyage if visual-doc quality wins an eval). A separate text+image pipeline is *not* worth it — corpus is text-in-image heavy (listicles) and cross-modal (text query → image) retrieval is required.
 
+> **VERIFIED 2026-09-01 (External Integration Gate smoke test, `kb/dense.py` Voyage provider):**
+> `voyage-multimodal-3.5` is **NOT supported on this account's API key** — the API
+> rejected it (model unsupported) and lists supported models as `voyage-4-large`,
+> `voyage-4`, `voyage-4-lite`, `voyage-code-4`, `voyage-3`, `voyage-3-lite`,
+> `voyage-finance-2`, `voyage-large-2-ins…`. The runnable **text** embedding model is
+> **`voyage-3`** (1024-dim, verified working). If the visual/multimodal tier is
+> pursued (issue #3), confirm which multimodal Voyage model this account can call
+> before building the visual index — the research above cited `voyage-multimodal-3.5`
+> from vendor docs, but it is not provisioned here.
+
 **Whole-corpus embedding cost:** Gemini batch ≈ **$0.01–0.63** (images) + ~$10.50 (all video); Voyage ≈ $0.15–0.30 (covered by free quota). Tiny sliver of the <$100 budget. Self-hosting open models is a net loss at this scale.
 
 ## Do we need to test different models? (and throughput/reliability)
