@@ -1,0 +1,313 @@
+[
+  {
+    "question_id": "vq002",
+    "question": "Which video recommends five Claude Code plugins for getting better front-end designs?",
+    "expected_post_ids": [
+      "DcEFABnvBuH"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq003",
+    "question": "Which video's on-screen list covers 13 e-commerce landing page formats like advertorials, quizzes and build-your-own-bundle?",
+    "expected_post_ids": [
+      "DaV1qGHRyHZ"
+    ],
+    "mode": "search",
+    "domain_hint": "conversion",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq004",
+    "question": "Which video shows slides titled '5 websites every vibecoder should know' with ready-made prompts for hero, auth and pricing sections?",
+    "expected_post_ids": [
+      "DaZX4a4sPYV"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq005",
+    "question": "Which video mentions anime.js and motion.dev as websites that changed a vibe coder's life?",
+    "expected_post_ids": [
+      "DaU7F9UPje_"
+    ],
+    "mode": "search",
+    "domain_hint": "web-animation",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq006",
+    "question": "Which video teaches poster design techniques like an inverted mask with blur and masking text behind objects for depth?",
+    "expected_post_ids": [
+      "DYIYIccNfBV"
+    ],
+    "mode": "search",
+    "domain_hint": "graphic-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq007",
+    "question": "Which video contrasts a plain boring website screenshot with a polished animated one to introduce five vibe coder websites?",
+    "expected_post_ids": [
+      "DZ4Eh5UPyMb"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "vq008",
+    "question": "Which video explains the perfect text scale formula using the golden ratio 1.618 for balanced titles?",
+    "expected_post_ids": [
+      "DUELjjBDsKc"
+    ],
+    "mode": "search",
+    "domain_hint": "typography",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq009",
+    "question": "Which video shows galleries of hero sections, call-to-action sections and footer designs?",
+    "expected_post_ids": [
+      "DcerVsOPsfx"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq010",
+    "question": "Which video screen-records design inspiration sites including collected.li and godly.website?",
+    "expected_post_ids": [
+      "DZIljzfOQo4"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq011",
+    "question": "Which video lists niche designer websites starting with Watermelon UI and Variant?",
+    "expected_post_ids": [
+      "DbHYrK8uuyV"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq012",
+    "question": "Which video presents ten niche brand aesthetics such as frosted acrylic, cyanotype blueprint and inflatable chrome?",
+    "expected_post_ids": [
+      "DbfaVtWMIM9"
+    ],
+    "mode": "search",
+    "domain_hint": "branding",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq013",
+    "question": "Which video shows slides about building brand guidelines that any design agent can read, using Claude Code with Paper?",
+    "expected_post_ids": [
+      "DaJmSOcREm8"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq014",
+    "question": "Which video is about becoming a professional art director in 60 days starting from zero skills?",
+    "expected_post_ids": [
+      "DaSLzVBOREn"
+    ],
+    "mode": "search",
+    "domain_hint": "career",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq015",
+    "question": "Which video teaches three advertising principles from David Ogilvy, including that the first line of copy matters most?",
+    "expected_post_ids": [
+      "DacJeF0IIq7"
+    ],
+    "mode": "search",
+    "domain_hint": "marketing",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq016",
+    "question": "Which video shows a numbered list of 30 reasons your site looks vibecoded, to give to Claude or ChatGPT?",
+    "expected_post_ids": [
+      "DcEJDHBTyPY"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq017",
+    "question": "Which video demos the Paper Shaders library, a zero-dependency React shader package installed with npm?",
+    "expected_post_ids": [
+      "DaTDGmAueET"
+    ],
+    "mode": "search",
+    "domain_hint": "web-animation",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq018",
+    "question": "Which video has slides saying 'your layouts are boring' and names Land-book and Godly as sources to steal layouts from?",
+    "expected_post_ids": [
+      "DbO1JEoSBE7"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq019",
+    "question": "Which video recommends 21st.dev and gitdesign.md for making vibe-coded landing pages actually look good?",
+    "expected_post_ids": [
+      "DcOs3VwRK0B"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq020",
+    "question": "Which video covers three aesthetic sources: Public Domain Review, Internet Archive and Magnum Photos?",
+    "expected_post_ids": [
+      "DZnIfiCojhr"
+    ],
+    "mode": "search",
+    "domain_hint": "inspiration",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq021",
+    "question": "Which video recommends foundational books including Ogilvy on Advertising for marketers and creatives?",
+    "expected_post_ids": [
+      "DaVirTTxDLP"
+    ],
+    "mode": "search",
+    "domain_hint": "marketing",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq022",
+    "question": "Which video highlights four brands including Supreme and Pacha that build a brand feeling like a whole world?",
+    "expected_post_ids": [
+      "DaSVF8otnNj"
+    ],
+    "mode": "search",
+    "domain_hint": "branding",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "vq023",
+    "question": "Which video is about the Impeccable Claude Code plugin that fixes AI slop like purple gradients and cards inside cards?",
+    "expected_post_ids": [
+      "DbcSTKNthGN"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq024",
+    "question": "Which video shows Spline for pre-built 3D designs and a glass UI generator for frosted panels?",
+    "expected_post_ids": [
+      "DcaSsdkSxw4"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq025",
+    "question": "Which video shows how to make cinematic animated website hero backgrounds with AI video generation in about ten minutes?",
+    "expected_post_ids": [
+      "Da0GgfHuCRr"
+    ],
+    "mode": "search",
+    "domain_hint": "web-animation",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq026",
+    "question": "Which video lists shaders.com, ls.graphics and ContentCore as amazing websites for UI/UX designers?",
+    "expected_post_ids": [
+      "DZ2rnYetXam"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq027",
+    "question": "Which video is about growing a personal Instagram account to 30,000 followers as fast as possible?",
+    "expected_post_ids": [
+      "DZXe4KxRSDl"
+    ],
+    "mode": "search",
+    "domain_hint": "social-growth",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq028",
+    "question": "Which video rates Pinterest, Dribbble and Mobbin as UX research sources, bad to amazing?",
+    "expected_post_ids": [
+      "DZZ2-8AOy5_"
+    ],
+    "mode": "search",
+    "domain_hint": "ux-research",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vq029",
+    "question": "Which video recommends Fonts In Use for identifying the typefaces used in real design projects?",
+    "expected_post_ids": [
+      "DaM26LMulZF"
+    ],
+    "mode": "search",
+    "domain_hint": "typography",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq030",
+    "question": "Which video shows three tools including Swishy for motion graphics and Refero for design references from real brands?",
+    "expected_post_ids": [
+      "DaWogaDOn5j"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq031",
+    "question": "Which video shows niche inspiration galleries for social media posts, navigation bars and open graph images?",
+    "expected_post_ids": [
+      "DcMlAi4v1fb"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vq032",
+    "question": "Which videos are quick 'websites you should know' lists presented by a creator holding a small microphone?",
+    "expected_post_ids": [
+      "DcerVsOPsfx",
+      "DcMlAi4v1fb"
+    ],
+    "mode": "search",
+    "domain_hint": "web-design",
+    "difficulty": "hard"
+  }
+]
