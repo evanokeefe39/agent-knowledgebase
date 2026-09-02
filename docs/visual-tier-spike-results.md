@@ -15,8 +15,7 @@ retrieval was already settled (Gemini wins; see `data/eval/runs/20260902-061350-
 | Recall@5 | 0.944 | **0.978** | gemini |
 | Recall@10 | 1.000 | 1.000 | tie |
 | nDCG@10 | 0.940 | **0.994** | gemini |
-| MRR | 0.930 | **1.000** | gemini |
-| Index cost | ~$0.170 | **~$0.010** | gemini (~17x cheaper on images) |
+| Index cost | ~$0.114 (batch) | **~$0.010** (batch) | gemini on images |
 
 ### Video tier (30 video posts indexed, 804 frames, 31 gold questions after vq001 fix)
 
@@ -26,17 +25,20 @@ retrieval was already settled (Gemini wins; see `data/eval/runs/20260902-061350-
 | Recall@10 | 0.969 | 0.969 | tie |
 | nDCG@10 | 0.853 | **0.910** | gemini |
 | MRR | 0.814 | **0.888** | gemini |
-| Index cost | ~$0.111 | ~$0.318 | voyage (~2.9x cheaper on video) |
+| Index cost | ~$0.074 (batch) | ~$0.318 (batch) | voyage on video |
 
 ## Decision: keep gemini-embedding-2 for the visual tier
 
 Gemini Embedding 2 **wins both the image AND video tiers on every metric where
-they differ** (R@5, nDCG@10, MRR), matching Voyage at R@10. It is dramatically
-cheaper on images (~17x) and ~2.9x more expensive on video — for this corpus
-the two nearly cancel: whole-corpus index cost is ~$0.28 voyage vs ~$0.33
-gemini (see cost note), i.e. essentially cost parity. The decision therefore
-rests on accuracy, not cost. Cross-modal
-text→visual retrieval works for both models; Gemini is more accurate.
+they differ** (R@5, nDCG@10, MRR), matching Voyage at R@10. On cost, Voyage is
+actually cheaper once both models are compared at the SAME basis: at standard
+rates voyage ~$0.28 vs gemini ~$0.65 (Voyage ~2.3x cheaper); at both-batch
+rates (Gemini 50% off, Voyage 33% off) voyage ~$0.19 vs gemini ~$0.33 (Voyage
+~1.7x cheaper). Gemini's 50% batch discount does NOT close the gap on this
+corpus. The decision therefore rests on Gemini's accuracy lead, not cost —
+with the honest tradeoff that Voyage is cheaper and Gemini is more accurate.
+Cross-modal text→visual retrieval works for both models; Gemini is more
+accurate.
 
 This matches the architecture's Gemini-first decision and the text-tier finding:
 **Gemini is the better retrieval model across all three carriers on this corpus.**
@@ -53,8 +55,10 @@ on our carousel/screen-share data.
 3. **1 video (134s/25.8MB, Dblx-7rJUPG) exceeds Gemini's 120s cap** — excluded.
    A gold question targeting it (vq001) was removed from the gold set as
    unanswerable.
-4. **Video embedding cost is the only place Voyage wins** (~3x cheaper), and it's
-   where the corpus is smallest (34 short reels). Not worth switching the tier.
+4. **Cost:** Voyage wins cost at every basis (total ~1.7x cheaper at both-batch);
+   Gemini wins accuracy on both carriers. The corpus's absolute visual-tier cost
+   is tiny (~$0.19-0.33), so cost does not materially drive the decision — Gemini
+   is chosen for accuracy, with Voyage the documented cheaper alternative.
 
 ## Artifacts
 - Modules: `kb/visual_image.py`, `kb/visual_video.py`
@@ -65,16 +69,21 @@ on our carousel/screen-share data.
   `data/eval/runs/20260902-070910-visual-video-spike.json`
 - Media: `~/repos/scrape-ig-saved-list/data/uiux/<creator>/<post_id>/`
 
-## Cost note (whole-corpus projection, reconciled 2026-09-02)
+## Cost note (whole-corpus projection, fair basis, 2026-09-02)
 Pricing basis (verified vendor docs): Voyage multimodal billed PER PIXEL
-($0.60/1B, per-image clamp 50k-2M px); Gemini billed per carrier unit at the
-batch/paid-tier rate. Free tiers apply during spikes (Voyage 150B px; Gemini
-free); figures below are paid-tier batch estimates.
-- Images (163 slides, 2160x2877 → each clamped ~2M px): voyage ~$0.17 vs
-  gemini ~$0.010 (~17x cheaper on images).
-- Video (804 frames across 30 posts): voyage ~$0.11 vs gemini ~$0.32
-  (voyage ~2.9x cheaper on video).
-- Combined full visual tier: voyage ~$0.28 vs gemini ~$0.33 — essentially
-  **cost parity** (image savings ≈ video premium for Gemini). The decision to
-  keep gemini-embedding-2 therefore rests on its accuracy lead on both
-  carriers, not on cost.
+($0.60/1B, per-image clamp 50k-2M px); Gemini billed per carrier unit
+(image/video). Free tiers apply during spikes (Voyage 150B px; Gemini free);
+figures below are PAID-tier estimates on BOTH models. Voyage has a 33% Batch
+discount; Gemini has a 50% Batch discount (paid tier). Compare at the same
+basis, not batch-vs-standard:
+- Images (163 slides): standard voyage ~$0.170 / gemini ~$0.020; BATCH voyage
+  ~$0.114 / gemini ~$0.010. Gemini cheaper on images at either basis.
+- Video (804 frames): standard voyage ~$0.111 / gemini ~$0.635; BATCH voyage
+  ~$0.074 / gemini ~$0.318. Voyage cheaper on video at either basis.
+- Full visual tier, both-batch (fair): voyage ~$0.188 vs gemini ~$0.327 —
+  **Voyage ~1.7x cheaper**, not cost parity. (The earlier "parity" figure used
+  batch-Gemini vs standard-Voyage, an unfair basis.)
+- **Conclusion:** Gemini wins accuracy on both carriers; Voyage wins cost.
+  The decision to keep gemini-embedding-2 rests on its accuracy lead and the
+  corpus's modest absolute cost (~$0.33), not on a cost advantage it does not
+  actually have.
