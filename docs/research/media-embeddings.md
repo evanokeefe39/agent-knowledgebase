@@ -114,15 +114,27 @@ the pragmatic single-model default for this POC.
 **Most economical (API):** Gemini Embedding 2 batch (image $0.00006, video ~$0.0126/reel); Voyage free tier covers the whole corpus.
 **Best value for this POC:** a single multimodal model (Gemini Embedding 2 primary; Voyage if visual-doc quality wins an eval). A separate text+image pipeline is *not* worth it — corpus is text-in-image heavy (listicles) and cross-modal (text query → image) retrieval is required.
 
-> **VERIFIED 2026-09-01 (External Integration Gate smoke test, `kb/dense.py` Voyage provider):**
-> `voyage-multimodal-3.5` is **NOT supported on this account's API key** — the API
-> rejected it (model unsupported) and lists supported models as `voyage-4-large`,
-> `voyage-4`, `voyage-4-lite`, `voyage-code-4`, `voyage-3`, `voyage-3-lite`,
-> `voyage-finance-2`, `voyage-large-2-ins…`. The runnable **text** embedding model is
-> **`voyage-3`** (1024-dim, verified working). If the visual/multimodal tier is
-> pursued (issue #3), confirm which multimodal Voyage model this account can call
-> before building the visual index — the research above cited `voyage-multimodal-3.5`
-> from vendor docs, but it is not provisioned here.
+> **CORRECTED 2026-09-01 (verified against `docs.voyageai.com` + live API):**
+> `voyage-multimodal-3.5` **IS available on the Voyage AI platform and works on
+> this account** — it must be called via **`client.multimodal_embed()`**, NOT
+> `client.embed()`. The earlier "Model voyage-multimodal-3.5 is not supported"
+> error was a **wrong-method artifact**: `client.embed()` is the text-only
+> endpoint and correctly rejects multimodal models (its supported list is
+> `voyage-4*`, `voyage-3*`, `voyage-code-4`, etc.). Via
+> `client.multimodal_embed(inputs=[['...']], model='voyage-multimodal-3.5')` it
+> returns 1024-dim embeddings (verified live). Inputs are dict/list (text, PIL
+> image, or Video), not bare strings.
+>
+> **Rate limits** (`docs.voyageai.com/docs/rate-limits`): Voyage gates on usage
+> tier. Tier 1 (payment method attached) grants 2000 RPM across models —
+> `voyage-3` 8M TPM, `voyage-multimodal-3.5` 2M TPM, `voyage-4*` 3-16M TPM.
+> The **3 RPM / 10K TPM** limit observed during the index build is the
+> **pre-Tier-1 reduced rate applied until a payment method is added** to the
+> API key (the API returned: "add your payment method... reduced rate limits of
+> 3 RPM and 10K TPM"). Adding a billing method unlocks Tier 1 (2000 RPM), making
+> large batch builds practical; free tokens (e.g. 200M for voyage-3) still apply.
+> No rate-limit increase is needed for the 185-post corpus once a payment method
+> is attached.
 
 **Whole-corpus embedding cost:** Gemini batch ≈ **$0.01–0.63** (images) + ~$10.50 (all video); Voyage ≈ $0.15–0.30 (covered by free quota). Tiny sliver of the <$100 budget. Self-hosting open models is a net loss at this scale.
 
