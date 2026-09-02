@@ -23,7 +23,9 @@
         "cost": {
           "unit": "pixels",
           "amount": 185241600,
-          "usd": 0.1111
+          "usd": 0.1111,
+          "tier": "standard",
+          "notes": "per-pixel billing, $0.60/1B input px; verified basis 2026-09-02"
         }
       },
       "metrics": {
@@ -590,7 +592,9 @@
         "cost": {
           "unit": "frames",
           "amount": 804,
-          "usd": 0.3216
+          "usd": 0.3176,
+          "tier": "batch",
+          "notes": "~$0.000395/frame batch video rate; corrected 2026-09-02 from $0.0004"
         }
       },
       "metrics": {

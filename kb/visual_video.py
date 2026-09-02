@@ -71,12 +71,15 @@ VOYAGE_BATCH = 8
 GEMINI_BATCH = 5
 GEMINI_RETRIES = 5
 
-# Cost accounting (per docs/visual-tier-spike-plan.md + voyage pricing):
-# - voyage-multimodal-3.5: $0.60 per 1 BILLION input pixels
-# - gemini-embedding-2:    ~$0.0004 per video frame (batch estimate)
+# Cost accounting (verified vendor pricing, 2026-09-02; USD). Carrier-level
+# units match kb/visual_image.py: voyage is billed PER PIXEL, gemini per frame.
+# - voyage-multimodal-3.5: $0.60 per 1 BILLION input pixels (per-image clamp
+#   50k-2M px; our 640-long-side frames are all >50k px so it never binds).
+# - gemini-embedding-2:    ~$0.000395 per video frame (batch/paid-tier video
+#   rate, $12.00/1M tokens standard); this spike ran on the free tier -> $0.
 COST = {
-    "voyage-multimodal-3.5": {"kind": "pixels", "per_1b_px": 0.60},
-    "gemini-embedding-2": {"kind": "frame", "per_frame": 0.0004},
+    "voyage-multimodal-3.5": {"kind": "pixels", "per_1b_px": 0.60, "tier": "standard"},
+    "gemini-embedding-2": {"kind": "frame", "per_frame": 0.000395, "tier": "batch"},
 }
 
 
@@ -358,9 +361,9 @@ def cost_for(provider_name: str, stats: dict) -> dict:
     c = COST[provider_name]
     if c["kind"] == "pixels":
         usd = stats["pixels"] / 1e9 * c["per_1b_px"]
-        return {"unit": "pixels", "amount": stats["pixels"], "usd": round(usd, 4)}
+        return {"unit": "pixels", "amount": stats["pixels"], "usd": round(usd, 4), "tier": c["tier"]}
     usd = stats["frames"] * c["per_frame"]
-    return {"unit": "frames", "amount": stats["frames"], "usd": round(usd, 4)}
+    return {"unit": "frames", "amount": stats["frames"], "usd": round(usd, 4), "tier": c["tier"]}
 
 
 # ---------------------------------------------------------------------------
