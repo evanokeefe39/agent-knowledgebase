@@ -17,9 +17,9 @@
         "model": "voyage-multimodal-3.5",
         "images_embedded": 163,
         "api_requests": 11,
-        "tokens_estimated": 239610,
-        "estimated_usd": 1.4377,
-        "notes": "voyage: ~1470 tokens/image (page-equivalent), $6/1M doc tokens"
+        "pixels_billed": 282921768,
+        "estimated_usd": 0.1698,
+        "notes": "voyage: per-pixel billing, $0.60/1B input px, clamped 50k-2M px per image (~$0.001042/image avg here); standard tier. Corrected 2026-09-02 from the erroneous $6/1M doc-token model."
       },
       "per_question": [
         {
@@ -550,9 +550,9 @@
         "model": "gemini-embedding-2",
         "images_embedded": 163,
         "api_requests": 163,
-        "tokens_estimated": 42054,
-        "estimated_usd": 0.0042,
-        "notes": "gemini: 258 tokens/image tile estimate at $0.10/1M; this spike ran on the free tier so $0 was actually spent"
+        "images_billed": 163,
+        "estimated_usd": 0.0098,
+        "notes": "gemini: batch/paid-tier image rate ~$0.00006/image (standard ~2x); this spike ran on the free tier so $0 was actually spent. Corrected basis 2026-09-02."
       },
       "per_question": [
         {

@@ -58,16 +58,20 @@ VOYAGE_BATCH = 16
 GEMINI_BATCH = 25  # batch to protect constrained free-tier quota
 MAX_RETRIES = 6
 
-# Cost model (stated assumptions, USD):
-# - voyage-multimodal-3.5: billed per ~page token; an <=1024px slide ~ 1470 tokens
-#   at the model's official $6/1M output-equivalent token rate (doc tier).
-# - gemini-embedding-2: run on the free tier for this spike -> $0 spent; the
-#   billable equivalent is also recorded (258 tokens per 768px tile, $0.10/1M).
-VOYAGE_USD_PER_1M_TOKENS = 6.0
+# Cost model (verified vendor pricing, 2026-09-02; USD):
+# - voyage-multimodal-3.5: billed PER PIXEL, $0.60 per 1 BILLION input pixels
+#   (docs.voyageai.com/docs/pricing). Images <50k px are upscaled and charged
+#   as 50k px ($0.00003 min/image); images >2M px are downsampled and charged
+#   as 2M px ($0.0012 max/image). Per-image range: $0.00003-$0.0012.
+# - gemini-embedding-2: billed per input token (ai.google.dev pricing). For a
+#   reconcilable per-image figure we use the BATCH (paid-tier, 50% off) image
+#   rate ~$0.00006/image (this spike actually ran on the free tier -> $0).
+VOYAGE_USD_PER_1B_PIXELS = 0.60
+VOYAGE_MIN_PIXELS_PER_IMAGE = 50_000
+VOYAGE_MAX_PIXELS_PER_IMAGE = 2_000_000
 GEMINI_BATCH = 1  # embed one image per request: multi-part contents yield a single joint embedding
-VOYAGE_TOKENS_PER_IMAGE = 1470
-GEMINI_USD_PER_1M_TOKENS = 0.10
-GEMINI_TOKENS_PER_IMAGE = 258
+GEMINI_USD_PER_IMAGE_BATCH = 0.00006  # batch/paid-tier image rate; standard tier ~2x
+
 
 
 # ---------------------------------------------------------------------------
@@ -398,30 +402,52 @@ def _eval_provider(provider_name: str, gold_set: list[dict]) -> dict:
     return result
 
 
-def _cost(provider_name: str, n_images: int, n_calls: int) -> dict:
+def _clamped_pixels(w: int, h: int) -> int:
+    """Voyage-billable pixels for an image: clamped to [50k, 2M]."""
+    return min(VOYAGE_MAX_PIXELS_PER_IMAGE, max(VOYAGE_MIN_PIXELS_PER_IMAGE, w * h))
+
+
+def _slide_pixel_total(paths: list[Path]) -> int:
+    """Sum voyage-billable (clamped) pixels over the given slide files."""
+    from PIL import Image
+
+    return sum(_clamped_pixels(*Image.open(p).size) for p in paths)
+
+
+def _cost(provider_name: str, n_images: int, n_calls: int, pixels: int) -> dict:
     if provider_name == "voyage":
-        tokens = n_images * VOYAGE_TOKENS_PER_IMAGE
-        est_usd = tokens / 1e6 * VOYAGE_USD_PER_1M_TOKENS
-    else:
-        tokens = n_images * GEMINI_TOKENS_PER_IMAGE
-        est_usd = tokens / 1e6 * GEMINI_USD_PER_1M_TOKENS
+        est_usd = pixels / 1e9 * VOYAGE_USD_PER_1B_PIXELS
+        per_image = est_usd / n_images if n_images else 0.0
+        return {
+            "model": PROVIDERS[provider_name].model,
+            "images_embedded": n_images,
+            "api_requests": n_calls,
+            "pixels_billed": pixels,
+            "estimated_usd": round(est_usd, 4),
+            "notes": (
+                "voyage: per-pixel billing, $0.60/1B input px, clamped 50k-2M px "
+                f"per image (~${per_image:.6f}/image here); standard tier"
+            ),
+        }
+    est_usd = n_images * GEMINI_USD_PER_IMAGE_BATCH
     return {
         "model": PROVIDERS[provider_name].model,
         "images_embedded": n_images,
         "api_requests": n_calls,
-        "tokens_estimated": tokens,
+        "images_billed": n_images,
         "estimated_usd": round(est_usd, 4),
         "notes": (
-            "voyage: ~1470 tokens/image (page-equivalent), $6/1M doc tokens"
-            if provider_name == "voyage"
-            else "gemini: 258 tokens/image tile estimate at $0.10/1M; this spike ran on the free tier so $0 was actually spent"
+            "gemini: batch/paid-tier image rate ~$0.00006/image "
+            "(standard ~2x); this spike ran on the free tier so $0 was actually spent"
         ),
     }
+
 
 
 def run_spike() -> dict:
     """Index (if needed) both models, run the gold-set eval, write the report."""
     gold = load_gold_set() if GOLD_PATH.exists() else write_gold_set()
+    total_px = _slide_pixel_total([s["path"] for s in discover_slides()])
     report: dict = {
         "spike": "visual-image",
         "models": {},
@@ -439,7 +465,7 @@ def run_spike() -> dict:
             "slides_indexed": n_vecs,
             "db": str(provider.db_path.relative_to(REPO_ROOT)),
             "metrics": res,
-            "cost": _cost(name, n_vecs, n_calls),
+            "cost": _cost(name, n_vecs, n_calls, total_px),
             "per_question": per_q,
         }
 
