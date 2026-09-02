@@ -87,3 +87,49 @@ basis, not batch-vs-standard:
   The decision to keep gemini-embedding-2 rests on its accuracy lead and the
   corpus's modest absolute cost (~$0.33), not on a cost advantage it does not
   actually have.
+
+## Scale projection — full creator corpus (datalake) + Gemini tier economics
+
+**Source scale:** the datalake (~24.6K media) mirrors the scrape repo's full
+creator corpus: ~17,368 images + ~8,524 videos. Sampled durations: mean 37s,
+median 33s → ~23.7 frames/video (Gemini caps at 32; many shorter) → **~202K
+frames** for the full corpus (NOT 8524×32; that overcounts by ~35%).
+
+**Cost is cheap at every scale** (both-batch basis, real frame counts):
+
+| Subset | Images | Videos | Frames | Gemini | Voyage |
+|---|---|---|---|---|---|
+| Current uiux | 163 | 34 | ~806 | ~$0.33 | ~$0.19 |
+| Curated 10% | 1,737 | 852 | ~20K | ~$8 | ~$3 |
+| Curated 25% | 4,342 | 2,131 | ~50K | ~$20 | ~$8 |
+| Full corpus | 17,368 | 8,524 | ~202K | ~$81 | ~$31 |
+
+Voyage is ~2.6x cheaper at every scale; cost is never the constraint.
+
+### Gemini batch tiers — the enqueued-token cap is IN-FLIGHT, not cumulative
+
+Gemini Embedding batch enqueued-token caps (ai.google.dev rate-limits, 2026-08):
+Tier 1 = 500k, Tier 2 = 5M, Tier 3 = 10M. Critically, this cap applies to tokens
+**IN FLIGHT across active batch jobs**, NOT cumulative lifetime corpus volume.
+So **no corpus size ever "requires" or "exceeds" a tier as a blocker** — an
+18M-token full-corpus embed runs fine on Tier 1 as a rolling pipeline of ~36
+sequential jobs (~24h turnaround each). Higher tiers buy **concurrency/speed,
+not feasibility**:
+
+| Subset | Batch tokens | T1 (500k in-flight) | T2 (5M) | T3 (10M) |
+|---|---|---|---|---|
+| Current uiux | ~124K | 1 job ✓ | 1 job | 1 job |
+| Curated 10% | ~1.8M | 4 jobs | 1 job ✓ | 1 job |
+| Curated 25% | ~4.5M | 9 jobs | 1 job ✓ | 1 job |
+| Full corpus | ~18M | ~36 jobs | ~4 jobs | 2 jobs ✓ |
+
+### Tier guidance (correct framing)
+- **Tier 1** removes the free-tier quota wall that actually blocked our builds and
+  unlocks the real (batch) pricing. It embeds **any corpus** via rolling batch
+  waves — for the realistic curated KB subset (well under 500k tokens) it's a
+  single job. **This is all the KB needs.**
+- **Tier 2/3 only buy fewer, faster waves** for a *full* 25.9K-media embed
+  (T1 ≈ 36 jobs over ~5 weeks vs T2 ≈ 4 jobs over ~1 week). Not worth chasing
+  for the KB's own ~$81 cost — Tier 2 unlocks at $100 paid spend + 3 days, so
+  it only makes sense if aggregate Cloud spend crosses $100 organically.
+- **There is no corpus size at which embedding is blocked.** Always chunk.
