@@ -1,0 +1,308 @@
+[
+  {
+    "question_id": "vi001",
+    "question": "Which carousel shows how to turn one photo of a man in a white t-shirt into multiple new camera angles?",
+    "expected_post_ids": [
+      "DYNprnKDdFr"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi002",
+    "question": "Which carousel recommends a catalog of the best websites with style filters for general design inspiration?",
+    "expected_post_ids": [
+      "DY04AwpleW6"
+    ],
+    "mode": "search",
+    "domain_hint": "inspiration",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi003",
+    "question": "Which post shows color palettes with hex codes like 2B0A88 laid over vintage botanical illustrations?",
+    "expected_post_ids": [
+      "DZIFpkJleov"
+    ],
+    "mode": "search",
+    "domain_hint": "color",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi004",
+    "question": "Which carousel features the website Devouring Details by Rauno Freiberg about interface details and interaction metaphors?",
+    "expected_post_ids": [
+      "DZYEipolXZJ"
+    ],
+    "mode": "search",
+    "domain_hint": "inspiration",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi005",
+    "question": "Which carousel has a slide titled share your core beliefs as part of a 10 core pillars personal brand framework?",
+    "expected_post_ids": [
+      "DZaUAv_jODe"
+    ],
+    "mode": "search",
+    "domain_hint": "branding",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi006",
+    "question": "Which post shows a tool called asciinator that turns images into ASCII art?",
+    "expected_post_ids": [
+      "DZj9G-hEiZW"
+    ],
+    "mode": "search",
+    "domain_hint": "tools",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi007",
+    "question": "Which carousel shows a hand holding a botanical fragrance bottle under giant 'the product' typography?",
+    "expected_post_ids": [
+      "DZxnLlkDaHx"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi008",
+    "question": "Which carousel recommends a library of modern web UI patterns and interactions at interfaces.dev?",
+    "expected_post_ids": [
+      "DaK9bi0jVmN"
+    ],
+    "mode": "search",
+    "domain_hint": "tools",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi009",
+    "question": "Which poster-style slide lists 10 core skills for frontend and UI design with numbered rows?",
+    "expected_post_ids": [
+      "DaNYCILlDgO"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi010",
+    "question": "Which carousel shows a tool called Ditther that turns flat visuals into dithered, textured ones?",
+    "expected_post_ids": [
+      "DaNmxb2jYUh"
+    ],
+    "mode": "search",
+    "domain_hint": "tools",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi011",
+    "question": "Which carousel is about generating hyper-realistic AI images of a woman holding a red cosmetic product?",
+    "expected_post_ids": [
+      "DaQQ79mjeo3"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi012",
+    "question": "Which carousel introduces a designer's favorite resources from a few past carousels, on a dark opening slide?",
+    "expected_post_ids": [
+      "DaZ-xbaEuph"
+    ],
+    "mode": "search",
+    "domain_hint": "resources",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi013",
+    "question": "Which slide titled 'Why Foundations Matter' argues design systems should start with rules, scales, tokens and principles before components?",
+    "expected_post_ids": [
+      "DaiaqXrnxu2"
+    ],
+    "mode": "search",
+    "domain_hint": "design-systems",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi014",
+    "question": "Which carousel explains why pure black is a bad text color for dark theme UIs and suggests softer dark greys?",
+    "expected_post_ids": [
+      "DaqrQbYjuMa"
+    ],
+    "mode": "search",
+    "domain_hint": "color",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi015",
+    "question": "Which post has an orange slide recommending recent.design as a clean gallery of current design work for layout inspiration?",
+    "expected_post_ids": [
+      "DbYbGxekWK5"
+    ],
+    "mode": "search",
+    "domain_hint": "inspiration",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi016",
+    "question": "Which carousel has a slide asking what AI slop actually is, with a 3-step fix for Claude Code web design?",
+    "expected_post_ids": [
+      "DblU1r_HA5p"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi017",
+    "question": "Which font-pairing carousel shows a combination of a script font called Tempting with the geometric sans Switzer over a yellow field?",
+    "expected_post_ids": [
+      "Dblrpj-E_Lf"
+    ],
+    "mode": "search",
+    "domain_hint": "typography",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "vi018",
+    "question": "Which carousel's first step, 'Steal From the Pros', uses styles.refero.design and a DESIGN.md file so an AI agent copies a whole look?",
+    "expected_post_ids": [
+      "DcNMBB0FgD8"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi019",
+    "question": "Which post shows a triptych poster series built around a blue screen of death aesthetic?",
+    "expected_post_ids": [
+      "DcoxWY4lbn-"
+    ],
+    "mode": "search",
+    "domain_hint": "graphic-design",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "vi020",
+    "question": "Which carousel lists resources for designers with no development background to build and deploy a portfolio website?",
+    "expected_post_ids": [
+      "DbYbGxekWK5"
+    ],
+    "mode": "search",
+    "domain_hint": "career",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi021",
+    "question": "Which carousel demonstrates an AI product photography workflow that layers product shots, scene backgrounds, models and props?",
+    "expected_post_ids": [
+      "DZxnLlkDaHx"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "vi022",
+    "question": "Which carousel teaches AI image generation via specific composition, lighting and context instead of generic prompts?",
+    "expected_post_ids": [
+      "DaQQ79mjeo3"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi023",
+    "question": "Which carousel presents a personal branding framework with pillars like sharing your origin story and unique language?",
+    "expected_post_ids": [
+      "DZaUAv_jODe"
+    ],
+    "mode": "search",
+    "domain_hint": "branding",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi024",
+    "question": "Which carousel curates websites for color theory, cognitive bias research and AI-driven design nudges?",
+    "expected_post_ids": [
+      "DZj9G-hEiZW"
+    ],
+    "mode": "search",
+    "domain_hint": "resources",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi025",
+    "question": "Which carousel is a curated list of design and development tools for UI patterns, diagramming and product inspiration?",
+    "expected_post_ids": [
+      "DaK9bi0jVmN"
+    ],
+    "mode": "search",
+    "domain_hint": "tools",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi026",
+    "question": "Which post organizes 42 skills into six layers for AI-assisted design and frontend development?",
+    "expected_post_ids": [
+      "DaNYCILlDgO"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi027",
+    "question": "Which carousel lists 20 resources including handwritten fonts, rare free fonts and SVG tools?",
+    "expected_post_ids": [
+      "DaZ-xbaEuph"
+    ],
+    "mode": "search",
+    "domain_hint": "typography",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi028",
+    "question": "Which carousels are about AI image generation or editing for branding and product shots?",
+    "expected_post_ids": [
+      "DYNprnKDdFr",
+      "DZxnLlkDaHx",
+      "DaQQ79mjeo3"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi029",
+    "question": "Which carousels recommend websites or galleries for design inspiration?",
+    "expected_post_ids": [
+      "DY04AwpleW6",
+      "DbYbGxekWK5",
+      "DZYEipolXZJ"
+    ],
+    "mode": "search",
+    "domain_hint": "inspiration",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "vi030",
+    "question": "Which carousels describe Claude or AI-agent workflows for producing better web designs?",
+    "expected_post_ids": [
+      "DblU1r_HA5p",
+      "DcNMBB0FgD8",
+      "DaNYCILlDgO"
+    ],
+    "mode": "search",
+    "domain_hint": "ai-design",
+    "difficulty": "hard"
+  }
+]

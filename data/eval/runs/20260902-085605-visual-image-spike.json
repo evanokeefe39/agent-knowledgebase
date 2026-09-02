@@ -1,0 +1,1074 @@
+{
+  "spike": "visual-image",
+  "models": {
+    "voyage": {
+      "model": "voyage-multimodal-3.5",
+      "dims": 1024,
+      "slides_indexed": 163,
+      "db": "data\\kb\\visual-image-voyage.db",
+      "metrics": {
+        "recall@5": 0.9444444444444445,
+        "recall@10": 1.0,
+        "ndcg@10": 0.9402731621558362,
+        "mrr": 0.9297619047619048,
+        "n_questions": 30
+      },
+      "cost": {
+        "model": "voyage-multimodal-3.5",
+        "images_embedded": 163,
+        "api_requests": 11,
+        "tokens_estimated": 239610,
+        "estimated_usd": 1.4377,
+        "notes": "voyage: ~1470 tokens/image (page-equivalent), $6/1M doc tokens"
+      },
+      "per_question": [
+        {
+          "question_id": "vi001",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3894952569634410859",
+            "3923089070477910513",
+            "3905993119678981562",
+            "3931716964032834103",
+            "3934451825051363937"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi002",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3905993119678981562",
+            "3955659498007039593",
+            "3952027885716464313",
+            "3930223798486129037",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi003",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3911401122917902895",
+            "3939151069003571994",
+            "3955659498007039593",
+            "3923089070477910513",
+            "3936826285130455990"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi004",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3915899849351198281",
+            "3952027885716464313",
+            "3930223798486129037",
+            "3905993119678981562",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi005",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3916530838414352606",
+            "3934451825051363937",
+            "3936826285130455990",
+            "3930968572692366625",
+            "3930223798486129037"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi006",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3919244861023331926",
+            "3930968572692366625",
+            "3930903749103728654",
+            "3955659498007039593",
+            "3934451825051363937"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi007",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3923089070477910513",
+            "3931716964032834103",
+            "3930968572692366625",
+            "3930223798486129037",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi008",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930223798486129037",
+            "3915899849351198281",
+            "3905993119678981562",
+            "3955659498007039593",
+            "3952027885716464313"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi009",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3930903749103728654",
+            "3905993119678981562",
+            "3955659498007039593",
+            "3936826285130455990",
+            "3939151069003571994"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi010",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3930968572692366625",
+            "3934451825051363937",
+            "3930223798486129037",
+            "3930903749103728654",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi011",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3931716964032834103",
+            "3923089070477910513",
+            "3930223798486129037",
+            "3894952569634410859",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi012",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3934451825051363937",
+            "3930968572692366625",
+            "3930223798486129037",
+            "3955659498007039593",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi013",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3936826285130455990",
+            "3930903749103728654",
+            "3955659498007039593",
+            "3905993119678981562",
+            "3939151069003571994"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi014",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3939151069003571994",
+            "3934451825051363937",
+            "3955659498007039593",
+            "3930223798486129037",
+            "3936826285130455990"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi015",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3952027885716464313",
+            "3955659498007039593",
+            "3905993119678981562",
+            "3930223798486129037",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi016",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3955659498007039593",
+            "3966879694008484092",
+            "3930903749103728654",
+            "3952027885716464313",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi017",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3955759819835831007",
+            "3919244861023331926",
+            "3934451825051363937",
+            "3955659498007039593",
+            "3936826285130455990"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi018",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3966879694008484092",
+            "3955659498007039593",
+            "3930968572692366625",
+            "3930223798486129037",
+            "3952027885716464313"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi019",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3974643713981135358",
+            "3930903749103728654",
+            "3955659498007039593",
+            "3939151069003571994",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi020",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930223798486129037",
+            "3930968572692366625",
+            "3905993119678981562",
+            "3955659498007039593",
+            "3934451825051363937"
+          ],
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.3333333333333333,
+          "mrr": 0.14285714285714285,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi021",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3923089070477910513",
+            "3931716964032834103",
+            "3930223798486129037",
+            "3894952569634410859",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi022",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3931716964032834103",
+            "3894952569634410859",
+            "3966879694008484092",
+            "3955659498007039593",
+            "3923089070477910513"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi023",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3916530838414352606",
+            "3934451825051363937",
+            "3894952569634410859",
+            "3905993119678981562",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi024",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3905993119678981562",
+            "3952027885716464313",
+            "3955659498007039593",
+            "3919244861023331926",
+            "3930223798486129037"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.43067655807339306,
+          "mrr": 0.25,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi025",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930968572692366625",
+            "3930223798486129037",
+            "3955659498007039593",
+            "3905993119678981562",
+            "3934451825051363937"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.6309297535714575,
+          "mrr": 0.5,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi026",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930903749103728654",
+            "3955659498007039593",
+            "3915899849351198281",
+            "3966879694008484092",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi027",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3934451825051363937",
+            "3930968572692366625",
+            "3930223798486129037",
+            "3955659498007039593",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi028",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3931716964032834103",
+            "3894952569634410859",
+            "3923089070477910513",
+            "3930223798486129037",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi029",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3905993119678981562",
+            "3952027885716464313",
+            "3930223798486129037",
+            "3934451825051363937",
+            "3930968572692366625"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9066276098484507,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi030",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3955659498007039593",
+            "3966879694008484092",
+            "3952027885716464313",
+            "3930223798486129037",
+            "3931716964032834103"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9066276098484507,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        }
+      ]
+    },
+    "gemini": {
+      "model": "gemini-embedding-2",
+      "dims": 3072,
+      "slides_indexed": 163,
+      "db": "data\\kb\\visual-image-gemini.db",
+      "metrics": {
+        "recall@5": 0.9777777777777779,
+        "recall@10": 1.0,
+        "ndcg@10": 0.9940009734106668,
+        "mrr": 1.0,
+        "n_questions": 30
+      },
+      "cost": {
+        "model": "gemini-embedding-2",
+        "images_embedded": 163,
+        "api_requests": 163,
+        "tokens_estimated": 42054,
+        "estimated_usd": 0.0042,
+        "notes": "gemini: 258 tokens/image tile estimate at $0.10/1M; this spike ran on the free tier so $0 was actually spent"
+      },
+      "per_question": [
+        {
+          "question_id": "vi001",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3894952569634410859",
+            "3923089070477910513",
+            "3931716964032834103",
+            "3930968572692366625",
+            "3930223798486129037"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi002",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3905993119678981562",
+            "3930223798486129037",
+            "3952027885716464313",
+            "3930968572692366625",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi003",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3911401122917902895",
+            "3919244861023331926",
+            "3955659498007039593",
+            "3939151069003571994",
+            "3930903749103728654"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi004",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3915899849351198281",
+            "3905993119678981562",
+            "3930223798486129037",
+            "3952027885716464313",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi005",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3916530838414352606",
+            "3934451825051363937",
+            "3936826285130455990",
+            "3930223798486129037",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi006",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3919244861023331926",
+            "3930968572692366625",
+            "3934451825051363937",
+            "3930903749103728654",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi007",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3923089070477910513",
+            "3931716964032834103",
+            "3930223798486129037",
+            "3955759819835831007",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi008",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930223798486129037",
+            "3930968572692366625",
+            "3915899849351198281",
+            "3905993119678981562",
+            "3934451825051363937"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi009",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3930903749103728654",
+            "3955659498007039593",
+            "3936826285130455990",
+            "3966879694008484092",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi010",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3930968572692366625",
+            "3934451825051363937",
+            "3930223798486129037",
+            "3905993119678981562",
+            "3930903749103728654"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi011",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3931716964032834103",
+            "3923089070477910513",
+            "3930223798486129037",
+            "3930968572692366625",
+            "3894952569634410859"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi012",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3934451825051363937",
+            "3930223798486129037",
+            "3930968572692366625",
+            "3905993119678981562",
+            "3952027885716464313"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi013",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3936826285130455990",
+            "3966879694008484092",
+            "3930968572692366625",
+            "3905993119678981562",
+            "3930903749103728654"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi014",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3939151069003571994",
+            "3930223798486129037",
+            "3936826285130455990",
+            "3930968572692366625",
+            "3934451825051363937"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi015",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3952027885716464313",
+            "3955659498007039593",
+            "3930223798486129037",
+            "3966879694008484092",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi016",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3955659498007039593",
+            "3966879694008484092",
+            "3952027885716464313",
+            "3930223798486129037",
+            "3930903749103728654"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi017",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3955759819835831007",
+            "3905993119678981562",
+            "3930223798486129037",
+            "3955659498007039593",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi018",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3966879694008484092",
+            "3930223798486129037",
+            "3955659498007039593",
+            "3930968572692366625",
+            "3952027885716464313"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi019",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3974643713981135358",
+            "3930903749103728654",
+            "3916530838414352606",
+            "3955759819835831007",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi020",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3952027885716464313",
+            "3930223798486129037",
+            "3930968572692366625",
+            "3905993119678981562",
+            "3934451825051363937"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi021",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3923089070477910513",
+            "3931716964032834103",
+            "3894952569634410859",
+            "3930968572692366625",
+            "3930223798486129037"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi022",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3931716964032834103",
+            "3930223798486129037",
+            "3930968572692366625",
+            "3894952569634410859",
+            "3966879694008484092"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi023",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3916530838414352606",
+            "3930223798486129037",
+            "3934451825051363937",
+            "3936826285130455990",
+            "3966879694008484092"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi024",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3919244861023331926",
+            "3905993119678981562",
+            "3930223798486129037",
+            "3930968572692366625",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi025",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930223798486129037",
+            "3930968572692366625",
+            "3905993119678981562",
+            "3934451825051363937",
+            "3952027885716464313"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi026",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930903749103728654",
+            "3966879694008484092",
+            "3930223798486129037",
+            "3955659498007039593",
+            "3915899849351198281"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi027",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3934451825051363937",
+            "3930223798486129037",
+            "3930968572692366625",
+            "3905993119678981562",
+            "3952027885716464313"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi028",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3894952569634410859",
+            "3931716964032834103",
+            "3923089070477910513",
+            "3930223798486129037",
+            "3930968572692366625"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi029",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3905993119678981562",
+            "3952027885716464313",
+            "3930223798486129037",
+            "3930968572692366625",
+            "3934451825051363937"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9066276098484507,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "vi030",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3955659498007039593",
+            "3966879694008484092",
+            "3930223798486129037",
+            "3952027885716464313",
+            "3930968572692366625"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9134015924715543,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        }
+      ]
+    }
+  },
+  "generated_at": "2026-09-02T06:55:13.853391+00:00",
+  "winner": "gemini",
+  "verdict": "gemini wins the image spike (R@5 0.978 vs 0.944, nDCG@10 0.994 vs 0.940, MRR 1.000 vs 0.930)"
+}
