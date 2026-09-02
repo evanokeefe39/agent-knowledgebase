@@ -104,17 +104,26 @@ class GeminiProvider:
 
 
 class VoyageProvider:
-    """voyage-3, 1024 dims; opt-in via KB_EMBED_PROVIDER=voyage or --provider voyage."""
+    """voyage text model (default voyage-3; override via VOYAGE_MODEL env), 1024 dims;
+    opt-in via KB_EMBED_PROVIDER=voyage or --provider voyage."""
 
     name = "voyage"
-    model = "voyage-3"
+    default_model = "voyage-3"
     dims = 1024
     batch_size = BATCH_SIZE  # voyageai accepts up to 128 texts/request; same pacing
-    db_path = REPO_ROOT / "data" / "kb" / "dense-voyage.db"
 
     def __init__(self) -> None:
         import voyageai
 
+        # Resolve the model at instance time so VOYAGE_MODEL can be set per-run.
+        self.model = os.environ.get("VOYAGE_MODEL", self.default_model).strip()
+        # Keep the legacy voyage-3 DB name (data/kb/dense-voyage.db); other models
+        # get data/kb/dense-<model>.db so their vectors never mix.
+        self.db_path = (
+            REPO_ROOT / "data" / "kb" / "dense-voyage.db"
+            if self.model == "voyage-3"
+            else REPO_ROOT / "data" / "kb" / f"dense-{self.model}.db"
+        )
         self._client = voyageai.Client(api_key=_api_key("VOYAGE_API_KEY"))
 
     def embed(self, texts: list[str], input_type: str = "document") -> list[list[float]]:
