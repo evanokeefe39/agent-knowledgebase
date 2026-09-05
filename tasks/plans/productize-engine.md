@@ -28,7 +28,7 @@
 - [ ] No hardcoded absolute scrape root; source location from config (scrape repo = one declared source adapter)
 - [ ] Deterministic + idempotent by content_hash; add/remove source touches no other source or engine code
 - [ ] Media-to-text derivation is an adapter, never core logic (core never fires a vision/LLM call)
-- [ ] GATE: raw-first vs enriched spike run and read (see `tasks/plans/raw-vs-enriched-spike.md`) — outcome decides whether the ">=1 retrievable text unit" contract is enrichment-shaped; do NOT lock Mapper/Chunker before this
+- [x] GATE DONE: raw-vs-enriched spike run + read (2026-09-05; report `data/eval/runs/20260905-075117-raw-vs-enriched-spike.json`). READING 2 (meaningful degradation, Δ −0.0312): envelope contract stays RAW-text-shaped; enrichment = optional per-corpus accuracy adapter that additively improves DENSE recall (0.9722 vs 0.9410); Mapper/Chunker must accept enrichment-shaped `search`-role text when a corpus declares it, never assume it. Hybrid masks the gap (raw-hybrid R@5 0.917 = enriched-hybrid) — enrichment matters for the default dense channel. Cheapest raw win: map `caption` into the envelope (currently dropped).
 
 ## Step 4 — Generic chunker + index backends + unified retriever
 

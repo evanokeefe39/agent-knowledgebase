@@ -206,7 +206,36 @@ contract must be enrichment-shaped; running after risks redesigning Mapper/Chunk
 - **Reading it:** raw ≈ enriched Recall@5 → ingest can be "any text-bearing file,"
   enrichment optional. Meaningful degradation → raw works but is weak alone;
   enrichment is an optional per-corpus adapter, never a hardcoded assumption.
-- Cost: near-zero — reuses harness + existing gold; only the (B) embedding run is new.
+
+### 10.1 OUTCOME — executed 2026-09-05 (Reading 2)
+
+Executed via dlc-worker on the merged 185-corpus (`data/kb/kb-posts-all.json`),
+reproducing the M4 dense baseline first as a validity gate (A R@5 0.9722 vs 0.972,
+Δ0.0002). Variant B cost <$0.01 (150 texts, 48,457 tokens). Report committed:
+`data/eval/runs/20260905-075117-raw-vs-enriched-spike.json` (+ A/B ablation JSONs);
+scratch preserved (gitignored) at `scratch/spike_raw_enriched/`.
+
+**Result:** dense-only A (enriched) R@5 **0.9722** vs B (raw-only) **0.9410**,
+delta **−0.0312**, outside the 0.02 tolerance → **Reading 2**. Recall@10 both 1.0;
+nDCG@10 0.9306 vs 0.9248; MRR tied 0.9306. Miss pattern: **0 full
+A-correct/B-missed** questions; degradation is 3 partial recall losses
+(q013/q017/q018) from ranking-margin shifts on shorter raw texts — NOT
+enrichment-only vocabulary.
+
+**Design recommendations folded in (§6.1, §11 step 3):**
+1. **Ingest minimum contract stays raw-text-shaped.** The envelope requires "≥1
+   retrievable text unit"; it does NOT require enrichment. Enrichment is an
+   optional per-corpus **accuracy adapter** that additively improves dense recall
+   (0.9722 vs 0.9410). Mapper/Chunker must accept enrichment-shaped text when a
+   corpus declares `search`-role enrichment fields, but never assume it.
+2. **Enrichment value is channel-dependent.** Degradation is concentrated in the
+   PURE DENSE channel. Hybrid (BM25+RRF+raw-dense) holds R@5 at 0.917 — equal to
+   enriched-hybrid. Because `retrieval.default` is dense (fusion held), enrichment
+   matters for the default serving channel; the fusion-vs-dense and enrichment
+   decisions are coupled, and raw-only is viable only once hybrid is adopted.
+3. **Cheapest raw-recall win:** captions do not survive into KbPost v1 (raw =
+   transcript + tags only). Mapping `caption` into the envelope is the natural
+   first move for any raw-first corpus that underperforms.
 
 ## 11. Sequencing (each step keeps the quality gate green)
 

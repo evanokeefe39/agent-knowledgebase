@@ -140,7 +140,32 @@ empty-raw-text record counts as an envelope gap, never silently dropped.
 
 **Negative space:** no new engine code; no registry changes; no second corpus.
 
-**Open questions:** none blocking — run as declared.
+**Outcome (executed 2026-09-05, dlc-worker):** Reading 2 — meaningful degradation.
+A (enriched) dense R@5 **0.9722** vs B (raw-only) **0.9410**, delta **−0.0312**
+outside the 0.02 gate; variant A reproduced M4 (R@5 0.9722/0.972, R@10 1.0) as a
+validity gate first. 0 full A-correct/B-missed questions — degradation is 3 partial
+recall losses (q013/q017/q018) from ranking-margin shifts, not enrichment-only
+vocabulary. Report committed:
+`data/eval/runs/20260905-075117-raw-vs-enriched-spike.json`; scratch preserved
+(gitignored) at `scratch/spike_raw_enriched/`.
+
+**Applied to Build-3 / Data-1:** (1) the "≥1 retrievable text unit" envelope
+contract stays **raw-text-shaped** — it does not require enrichment; enrichment is
+an optional per-corpus **accuracy adapter** that additively improves DENSE recall,
+and Mapper/Chunker must accept enrichment-shaped `search`-role text only when a
+corpus declares it. (2) Enrichment value is channel-dependent — the dense-only gap
+is masked by hybrid (raw-hybrid R@5 0.917 = enriched-hybrid), so enrichment matters
+for the default dense serving channel; the fusion-vs-dense and enrichment decisions
+are coupled. (3) Captions do not survive into KbPost v1 (raw = transcript + tags);
+mapping `caption` into the envelope is the cheapest raw-recall win.
+
+**DoD:**
+- [x] `tasks/plans/raw-vs-enriched-spike.md` exists as a runnable plan (exact
+      commands/modules against `kb/dense.py`, `kb/hybrid.py`, `kb/query.py`,
+      `kb/eval.py`)
+- [x] Both (A) and (B) runs complete and produce metric reports
+- [x] Report states the reading (Reading 2 — enrichment-optional-adapter)
+- [ ] Report is committed and cited by Build-3   (committed `7ba0a23`; cite when Build-3 lands)
 
 ---
 
