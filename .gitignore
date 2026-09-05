@@ -26,6 +26,10 @@ htmlcov/
 .pi/
 scratch/
 
+# Derived eval caches (regenerable; never commit)
+data/eval/runs/parity-embed-cache/
+data/eval/runs/parity-gate/
+
 # Editors / OS
 .vscode/
 .idea/

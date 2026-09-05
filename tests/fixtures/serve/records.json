@@ -1,0 +1,82 @@
+{
+  "records": [
+    {
+      "id": "r1",
+      "content_hash": "h1",
+      "provenance": {"source": "src-a", "media_ref": "m/1", "timestamp": "2026-01-01T00:00:00Z"},
+      "fields": {
+        "rec_id": "r1",
+        "owner": "alice",
+        "tools_apps": ["figma", "sketch"],
+        "value_score": 9,
+        "published_at": "2026-03-01",
+        "summary": "onboarding flow redesign with design tokens and dark mode"
+      }
+    },
+    {
+      "id": "r2",
+      "content_hash": "h2",
+      "provenance": {"source": "src-a", "media_ref": "m/2", "timestamp": "2026-01-02T00:00:00Z"},
+      "fields": {
+        "rec_id": "r2",
+        "owner": "bob",
+        "tools_apps": ["figma"],
+        "value_score": 7,
+        "published_at": "2026-03-02",
+        "summary": "onboarding checklist patterns for new users"
+      }
+    },
+    {
+      "id": "r3",
+      "content_hash": "h3",
+      "provenance": {"source": "src-b", "media_ref": "", "timestamp": null},
+      "fields": {
+        "rec_id": "r3",
+        "owner": "alice",
+        "tools_apps": ["sketch"],
+        "value_score": 5,
+        "published_at": "2026-03-03",
+        "summary": "design system audit checklist"
+      }
+    },
+    {
+      "id": "r4",
+      "content_hash": "h4",
+      "provenance": {"source": "src-b", "media_ref": "m/4", "timestamp": "2026-01-04T00:00:00Z"},
+      "fields": {
+        "rec_id": "r4",
+        "owner": "carol",
+        "tools_apps": [],
+        "value_score": 3,
+        "published_at": "2026-03-04",
+        "summary": "accessibility contrast quick wins"
+      }
+    },
+    {
+      "id": "r5",
+      "content_hash": "h5",
+      "provenance": {"source": "src-a", "media_ref": "m/5", "timestamp": "2026-01-05T00:00:00Z"},
+      "fields": {
+        "rec_id": "r5",
+        "owner": "bob",
+        "tools_apps": ["principle", "framer"],
+        "value_score": 8,
+        "published_at": "2026-03-05",
+        "summary": "prototyping microinteractions in framer"
+      }
+    },
+    {
+      "id": "r6",
+      "content_hash": "h6",
+      "provenance": {"source": "src-c", "media_ref": "m/6", "timestamp": "2026-01-06T00:00:00Z", "extractor": "fake-model", "confidence": 0.9},
+      "fields": {
+        "rec_id": "r6",
+        "owner": "dave",
+        "tools_apps": ["figma", "zeplin"],
+        "value_score": 6,
+        "published_at": "2026-03-06",
+        "summary": "handoff specs from figma to zeplin"
+      }
+    }
+  ]
+}

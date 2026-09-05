@@ -1,0 +1,32 @@
+# Minimal hermetic serve-test corpus: declared fields + roles exercised by
+# tests/test_serve.py. No sources block (records come from the JSON fixture).
+schema:
+  schema_version: "1"
+  id_field: rec_id
+  fields:
+    rec_id:      { type: string }
+    owner:       { type: string, role: [filter, facet, sort] }
+    tools_apps:  { type: "list[string]", role: [filter, facet] }
+    value_score: { type: int, role: [metric] }
+    published_at: { type: date, role: [sort] }
+    summary:     { type: text, role: [search] }
+    hidden:      { type: text }
+
+index:
+  schema_version: "7"
+  chunker:
+    mode: by_field
+    fields: [summary]
+  retrieval:
+    default: dense
+    strategies:
+      bm25: { backend: fts5 }
+      dense: { provider: fake }
+      hybrid: { fusion: rrf }
+    max_top_k: 5
+
+serve:
+  defaults: { top_k: 2, mode: dense }
+  abstention:
+    min_coverage: 0.6
+    margin_ratio: 0.15

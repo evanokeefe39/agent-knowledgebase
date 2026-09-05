@@ -1,0 +1,5 @@
+engine:
+  artifacts_dir: artifacts
+  corpora_dir: corpora
+  default_corpus: serve-test
+  embedding: {provider: fake}
