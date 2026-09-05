@@ -1,0 +1,192 @@
+{
+  "corpus": "uiux",
+  "coverage_gap_reasons": [],
+  "outputs_changed": {
+    "corpus.json": true,
+    "manifest.json": true
+  },
+  "ported_envelope_gaps": [
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DSP2S3VkzMn')",
+      "id": "DSP2S3VkzMn",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DVOA_WhE0OZ')",
+      "id": "DVOA_WhE0OZ",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DQo6-LngW4y')",
+      "id": "DQo6-LngW4y",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DQudCIBjCwI')",
+      "id": "DQudCIBjCwI",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DRj87lEjInQ')",
+      "id": "DRj87lEjInQ",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DSKlnzJDFI0')",
+      "id": "DSKlnzJDFI0",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DR2LCThDMN6')",
+      "id": "DR2LCThDMN6",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DRqEgdGACb3')",
+      "id": "DRqEgdGACb3",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DRm6FVgjAAW')",
+      "id": "DRm6FVgjAAW",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DQ6lw9lDT3p')",
+      "id": "DQ6lw9lDT3p",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DTkrB8IiFeU')",
+      "id": "DTkrB8IiFeU",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DR2pc1MilKY')",
+      "id": "DR2pc1MilKY",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DUIubwjDtj3')",
+      "id": "DUIubwjDtj3",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DSnHcWDFEgR')",
+      "id": "DSnHcWDFEgR",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DSw2HW9EsLD')",
+      "id": "DSw2HW9EsLD",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DMY_D1BtSs1')",
+      "id": "DMY_D1BtSs1",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DVNA15fjevS')",
+      "id": "DVNA15fjevS",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DQm57tXjoeQ')",
+      "id": "DQm57tXjoeQ",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DTgeehmDVdo')",
+      "id": "DTgeehmDVdo",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DRu2VfuEveC')",
+      "id": "DRu2VfuEveC",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DO-7phDDPB6')",
+      "id": "DO-7phDDPB6",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DL8BwDnxvpK')",
+      "id": "DL8BwDnxvpK",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DLMxL45IkZY')",
+      "id": "DLMxL45IkZY",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DRnEpPeEnqB')",
+      "id": "DRnEpPeEnqB",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DOo1WjGj0wk')",
+      "id": "DOo1WjGj0wk",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DNi3GHGpCTy')",
+      "id": "DNi3GHGpCTy",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DNz9oUP0KQO')",
+      "id": "DNz9oUP0KQO",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DPrUiSxiHSA')",
+      "id": "DPrUiSxiHSA",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DRmZJ-LDI4w')",
+      "id": "DRmZJ-LDI4w",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DR1m3pEEYEZ')",
+      "id": "DR1m3pEEYEZ",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DSblpZejcBG')",
+      "id": "DSblpZejcBG",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DQ4Nz1giCmf')",
+      "id": "DQ4Nz1giCmf",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DZ45jkKiM4D')",
+      "id": "DZ45jkKiM4D",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DaSX80Osgw0')",
+      "id": "DaSX80Osgw0",
+      "reason": "no_retrievable_text"
+    },
+    {
+      "detail": "source 'uiux-scrape': no non-empty search-role field and no media_ref (id candidate: 'DNPm7LTy_4i')",
+      "id": "DNPm7LTy_4i",
+      "reason": "no_retrievable_text"
+    }
+  ],
+  "ported_from_legacy": 35,
+  "reference_records": 86,
+  "reingested_from_raw": 51,
+  "schema_version": "1",
+  "snapshot_id": "uiux-2026-09-01",
+  "source_gaps": [],
+  "unchanged_since_last_run": 0
+}

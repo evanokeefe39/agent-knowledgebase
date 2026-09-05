@@ -1,0 +1,48 @@
+# Self-contained corpus fixture for Build-5 materializer tests. Mirrors the
+# uiux declared fields (owner, tools_apps, domains, value_score,
+# is_educational, extraction_status) but never depends on the live
+# corpora/uiux.yaml state. sources: [] — the materializer consumes records,
+# it does not ingest.
+schema:
+  schema_version: "1"
+  id_field: post_id
+  refresh_hash_fields: []
+  fields:
+    post_id:          { type: string }
+    owner:            { type: string, role: [filter, facet, sort] }
+    content_type:     { type: string, role: [filter, facet] }
+    domains:          { type: "list[string]", role: [filter, facet] }
+    is_educational:   { type: bool,  role: [filter] }
+    value_score:      { type: int,   role: [metric] }
+    extraction_status: { type: string, role: [filter, facet] }
+    tools_apps:       { type: "list[string]", role: [filter, facet] }
+    summary:          { type: text,  role: [search] }
+sources: []
+
+materialize:
+  freshness: 24h
+  views:
+    - name: top_creators
+      group_by: [owner]
+      metrics:
+        - post_count: count
+        - avg_value_score: mean(value_score)
+        - educational_share: mean(is_educational)
+      filters: { extraction_status: { op: eq, value: ok } }
+    - name: tools
+      group_by: [tools_apps]
+      metrics: [ { post_count: count } ]
+    - name: by_domain
+      group_by: [domains]
+      metrics: [ { post_count: count }, { avg_value_score: mean(value_score) } ]
+    - name: by_owner_and_type
+      group_by: [owner, content_type]
+      metrics: [ { post_count: count } ]
+    - name: seeded_owners
+      group_by: [owner]
+      metrics: [ { post_count: count } ]
+      filters: { owner: { op: in, value: [alice, ghost_owner] } }
+    - name: high_value_owners
+      group_by: [owner]
+      metrics: [ { post_count: count } ]
+      filters: { value_score: { op: gte, value: 8 } }

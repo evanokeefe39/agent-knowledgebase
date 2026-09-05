@@ -1,0 +1,5 @@
+engine:
+  artifacts_dir: artifacts
+  corpora_dir: corpora
+  default_corpus: materialize-corpus
+  user_data_dir: user_data

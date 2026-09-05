@@ -46,6 +46,46 @@ def _read_json(path: Path) -> dict[str, Any]:
         raise AdapterError(f"{path} must contain a JSON object")
     return payload
 
+def normalize_analysis(payload: dict[str, Any]) -> dict[str, Any]:
+    """Normalize an ``analysis.json`` payload to the flat shape the corpus
+    mapping declares (``analysis.summary`` etc.).
+
+    Schema-v2 scrape files nest the enrichment under a top-level
+    ``analysis`` object; the flat shape is the declared raw-item contract,
+    so the adapter unwraps it, carrying any top-level sibling keys
+    (``analysed_at``, ``schema_version``, ...) that the inner object does
+    not already define. Flat payloads (v1) pass through unchanged.
+    """
+    inner = payload.get("analysis")
+    if not isinstance(inner, dict):
+        return payload
+    normalized = dict(inner)
+    for key, value in payload.items():
+        if key != "analysis" and key not in normalized:
+            normalized[key] = value
+    return normalized
+
+
+def flatten_concepts(concepts: Any) -> Any:
+    """Flatten ``{term, explanation}`` concept objects to searchable text
+    entries (``"term: explanation"``), the representation the previous
+    engine indexed. String entries and other values pass through.
+    """
+    if not isinstance(concepts, list):
+        return concepts
+    flat: list[Any] = []
+    for entry in concepts:
+        if (
+            isinstance(entry, dict)
+            and isinstance(entry.get("term"), str)
+            and isinstance(entry.get("explanation"), str)
+        ):
+            flat.append(f"{entry['term']}: {entry['explanation']}")
+        else:
+            flat.append(entry)
+    return flat
+
+
 
 class IgSavedAdapter:
     """Reads ``<location>/<dataset>/<post_dir>/`` trees into raw items."""
@@ -71,7 +111,7 @@ class IgSavedAdapter:
                 analysis_path = post_dir / "analysis.json"
                 analysis: dict[str, Any] = {}
                 if analysis_path.is_file():
-                    analysis = _read_json(analysis_path)
+                    analysis = normalize_analysis(_read_json(analysis_path))
                 media = sorted(
                     p.name
                     for p in post_dir.iterdir()
@@ -82,13 +122,19 @@ class IgSavedAdapter:
                     if media
                     else ""
                 )
-                yield {
+                item = {
                     "metadata": _read_json(metadata_path),
                     "analysis": analysis,
                     "media": media,
                     "dataset_post_dir": ref,
                     "extraction_status": "ok" if analysis else "pending",
                 }
+                if "concepts" in analysis:
+                    item["analysis"] = {
+                        **analysis,
+                        "concepts": flatten_concepts(analysis["concepts"]),
+                    }
+                yield item
 
 
 ADAPTERS: dict[str, Callable[[SourceSpec], Any]] = {
