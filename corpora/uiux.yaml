@@ -1,0 +1,211 @@
+# =============================================================================
+# Corpus declaration: uiux
+# Status: DRAFT for review (2026-09-05). This is the exemplar per-corpus data
+# contract, restructured from docs/config-schema.yaml per the expert-panel
+# consensus. Engine code references NO field name here; the declared types +
+# roles are the machine contract.
+#
+# Locked type vocabulary (registration-extensible; add only when a corpus needs
+# it): text | string | list[text] | list[string] | int | float | bool |
+# datetime (ISO-8601) | date | url. object / list[object] are permitted ONLY
+# with role passthrough (stored verbatim, never per-field validated/indexed).
+# No geo/currency until a corpus actually requires one.
+#
+# Locked role vocabulary:
+#   search      -> chunker source for retrieval text (weight applies: lexical /
+#                  BM25 field boost ONLY in v1; dense is per-chunk, unweighted)
+#   filter      -> exact/term match
+#   facet       -> filter + aggregatable/groupable; list-valued fields unnest
+#                  per value
+#   metric      -> int/float only; range filter + aggregation + sort
+#   sort        -> sortable (datetime/date/string)
+#   passthrough -> object types: stored verbatim, never validated/indexed
+#   (no role)   -> stored + returned on hits, no filter/search/agg capability
+# A type x role compatibility matrix is enforced at config load; invalid combos
+# fail fast.
+# =============================================================================
+
+schema:
+  schema_version: "1"
+  id_field: post_id                 # mapping MUST populate a schema field of this
+                                    # name (mapping targets = schema fields | envelope slots)
+  # Fields whose content drives the ingest/refresh hash. When omitted/empty,
+  # the hash covers ALL mapped fields (a change in any field re-indexes).
+  # Cost is already protected because the embed cache is keyed by
+  # (text_hash, model, dims) - narrowing the hash is NOT an optimization.
+  refresh_hash_fields: []           # empty => all mapped fields
+
+  fields:
+    post_id:          { type: string }
+    shortcode:        { type: string }
+    url:              { type: url }
+    owner:            { type: string, role: [filter, facet, sort] }
+    content_type:     { type: string, role: [filter, facet] }
+    domains:          { type: list[string], role: [filter, facet] }
+    is_educational:   { type: bool,  role: [filter] }
+    value_score:      { type: int,   role: [metric] }        # range filter + agg + sort
+    gated_content:    { type: bool,  role: [filter] }
+    gated_trigger:    { type: text }                          # stored + returned, not indexed
+    summary:          { type: text,  role: [search], weight: 1.0 }
+    transcript:       { type: text,  role: [search] }
+    workflow_steps:   { type: list[text], role: [search] }
+    tips:             { type: list[text], role: [search] }
+    concepts:         { type: list[string], role: [search] }
+    tools_apps:       { type: list[string], role: [filter, facet] }
+    resources:        { type: list[object], role: [passthrough] }
+    tags:             { type: list[string] }
+    media_files:      { type: list[string] }
+    extraction_status:{ type: string, role: [filter, facet] }
+    is_promo:         { type: bool,  role: [filter] }
+
+# ---- Sources: multiple raw sources of related shape normalize onto this
+# ---- schema. One source = one adapter (the sole OCP extension point for novel
+# ---- formats). Mapping targets are schema field names | envelope slots.
+sources:
+  - name: uiux-scrape
+    adapter: ig_saved                 # registered adapter id
+    location: ${SCRAPE_REPO}/data/uiux
+    snapshot: uiux-2026-09-01         # pinned; re-extraction = new snapshot
+    mapping:
+      # Registered transforms are pure primitives ONLY (no IO/network/clock):
+      #   identity | coerce_str | coerce_int | coerce_bool | list | template |
+      #   path_join.
+      # `template` is a format string over the mapped source value ({value}).
+      # `path_join` joins source path parts (e.g. dataset + post dir) into one
+      # string. Anything not expressible as a primitive lives in the per-source
+      # adapter and NEVER accretes into the transform registry.
+      post_id:      { from: metadata.id, transform: coerce_str }
+      shortcode:    { from: metadata.shortCode, transform: coerce_str }
+      url:          { from: shortcode, transform: template, pattern: "https://www.instagram.com/p/{value}/" }
+      owner:        { from: metadata.ownerUsername, transform: coerce_str }
+      summary:      { from: analysis.summary, transform: coerce_str }
+      transcript:   { from: analysis.transcript, transform: coerce_str }
+      workflow_steps:{ from: analysis.workflow_steps, transform: list }
+      tips:         { from: analysis.tips, transform: list }
+      concepts:     { from: analysis.concepts, transform: list }
+      tools_apps:   { from: analysis.tools_apps, transform: list }
+      value_score:  { from: analysis.value_score, transform: coerce_int }
+      content_type: { from: analysis.content_type, transform: coerce_str }
+      domains:      { from: analysis.domains, transform: list }
+      is_educational:{ from: analysis.is_educational, transform: coerce_bool }
+      gated_content:{ from: analysis.gated_content, transform: coerce_bool }
+      gated_trigger:{ from: analysis.gated_trigger, transform: coerce_str }
+      tags:         { from: metadata.hashtags, transform: list }
+      media_files:  { from: media, transform: list }
+      extraction_status: { from: analysis, transform: presence_to_status }
+      is_promo:     { from: analysis.is_promo, transform: coerce_bool }
+    provenance:
+      source: scrape-ig-saved-list
+      media_ref: dataset_post_dir       # adapter-provided pointer into byte cache
+      timestamp_field: analysis.analysed_at
+      extractor_field: analysis.extractor_model   # version recorded from data
+      confidence_field: analysis.confidence
+    dedupe:
+      key: [post_id]
+      order: source_declaration         # deterministic: declaration order in this file
+      policy: keep_first                # keep_first | newest | highest_confidence | version_append
+    missing:
+      # Envelope-required failures (id, hash-able content, provenance, >=1
+      # searchable text unit) may ONLY be `gap` (surface as abstention /
+      # coverage) or `abort` (fail the pipeline). They are NEVER discarded.
+      # Absence of an optional attribute = null + coverage stat, never a failure.
+      envelope_failure: gap             # gap | abort
+
+    # A second source of a different raw shape but the SAME logical corpus is
+    # declared here with its own adapter + mapping + dedupe, mapping onto the
+    # same schema fields.
+    # - name: uiux-manual-additions
+    #   adapter: csv
+    #   location: user_data/sources/uiux-manual.csv
+    #   mapping: { ... columns -> the same schema fields ... }
+
+# ---- Index ------------------------------------------------------------------
+index:
+  schema_version: "1"           # bump when index semantics change (chunker/strategies)
+  chunker:
+    mode: by_field              # by_field | by_size
+    # Fields chunked into searchable text. Default: all role=search fields;
+    # explicit list overrides. Chunks carry provenance (record_id, field).
+    fields: [summary, transcript, workflow_steps, tips, concepts]
+  tokenization:
+    language: en
+    stopwords: default          # engine-internal default; advanced override only
+  retrieval:
+    default: dense              # bm25 | dense | hybrid. dense is default because
+                                # RRF fusion is HELD until a trigger fires (M4:
+                                # dense R@5 0.972 vs hybrid 0.917; hybrid win-rate
+                                # 0.0%). Flipping to hybrid is the one-line change
+                                # the re-evaluation trigger authorizes.
+    strategies:
+      bm25:  { backend: fts5 }
+      dense: { provider: gemini, model: gemini-embedding-2, dims: 768 }  # inherits global embedding defaults
+      hybrid:{ fusion: rrf, k: 60 }
+    rerank:
+      enabled: false            # seam declared so enabling later is config, not a
+                                # contract change. When enabled:
+      # strategy: <registered id>  # stub shape; NOT a live feature this pass
+      # top_n: 20                #   rerank candidates before final top_k
+    max_top_k: 100              # result cap; caller may not exceed this
+
+# ---- Materialize: declarative aggregate views -------------------------------
+materialize:
+  freshness: 24h                # a view refuses to serve past this age
+  views:
+    - name: top_creators
+      group_by: [owner]
+      metrics:
+        - post_count: count
+        - avg_value_score: mean(value_score)
+        - educational_share: mean(is_educational)   # mean(bool) = share (documented convention)
+      filters: { extraction_status: { op: eq, value: ok } }
+    - name: tools
+      group_by: [tools_apps]    # unnest list facet, count posts
+      metrics: [ { post_count: count } ]
+    - name: by_domain
+      group_by: [domains]
+      metrics: [ { post_count: count }, { avg_value_score: mean(value_score) } ]
+
+# ---- Verify: gold set + committed baseline + CI gate -------------------------
+verify:
+  # Reports keyed by (schema_version, index_version, eval_set_version,
+  # embedder_version) so a regression is attributable to exactly what changed.
+  eval_set_version: v1
+  embedder_version: { provider: gemini, model: gemini-embedding-2, dims: 768 }
+  gold_set: user_data/gold/uiux-v1.json             # versioned, committed input
+  baseline: user_data/baselines/uiux-baseline.json  # COMMITTED (never under artifacts/)
+  metrics: [recall@5, recall@10, ndcg@10, mrr, abstention]   # abstention report-only in v1
+  gate:
+    enabled: true
+    regression_threshold: 0.02    # fail if a metric drops below baseline by more than this (absolute)
+    pr_subset:
+      size: 8                     # deterministic subset per-PR; MUST be stable/stratified
+      seed: 1                     # fixed seed -> not noisy across runs
+      stratify_by: [difficulty, mode]   # covers question categories so the gate is regression-sensitive
+    full_eval_on: [merge, nightly]      # authoritative baseline refresh
+
+# ---- Serve: query defaults + abstention --------------------------------------
+serve:
+  defaults: { top_k: 20, mode: dense }   # mode validated against index.retrieval.strategies
+  # Abstention keys on DERIVED signals (coverage ratio, relative margin), never
+  # on a raw retriever score: BM25/dense/RRF scores are incomparable scales
+  # (unbounded vs [-1,1] vs rank-sum) and drift per query/strategy/index.
+  abstention:
+    min_coverage: 0.6             # fraction of question content-tokens the top hit covers
+    margin_ratio: 0.15            # relative gap required between top-1 and top-2 hit
+  expose_facets: [owner, content_type, domains, tools_apps, gated_content]
+  # QueryParams envelope (see plan §6.5): {query, corpus?, mode, top_k, cursor?,
+  # filters: {field: {op, value}}, sort?: [{field, order}]}. ops in
+  # {eq, in, gte, lte, between} with shorthand scalar=eq, list=in. Unknown field
+  # OR op -> clear error, never silent. Sort restricted to declared filter/facet/
+  # metric/sort fields plus _score.
+
+# =============================================================================
+# NOTES
+#   * schema_version, index_version, eval_set_version, embedder_version are the
+#     four corners of the version tuple; every verify report and gate run is
+#     keyed by all four.
+#   * The canonical-corpus MANIFEST (record ids + content_hash + snapshot_id)
+#     is pinned under user_data/canonical/uiux/; ci/quality_gate.py rebuilds from
+#     it and validates fresh ingest against it (new/removed/changed ids => fail
+#     or explicitly bless as a new snapshot).
+# =============================================================================

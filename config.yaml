@@ -1,0 +1,69 @@
+# =============================================================================
+# Agent Knowledge Base — config.yaml (engine / runtime)
+# Status: DRAFT for review (2026-09-05, productization plan). No engine consumes
+# this yet; it is the agreed target shape from the expert panel review.
+#
+# This file holds ENGINE / RUNTIME concerns only. Per-corpus data contracts
+# (schema, sources, mapping, index, materialize, verify, serve) live in one
+# committed file per corpus under corpora/ (e.g. corpora/uiux.yaml). This split
+# mirrors the dbt convention (profiles.yml = runtime vs dbt_project.yml =
+# project) and keeps "add a corpus" a pure file addition (OCP at the config
+# layer): one broken corpus cannot fail the loader for every corpus, and corpus
+# edits don't collide on a shared root.
+#
+# Engine discovers corpora by listing corpora/<name>.yaml; `corpora/` is NOT a
+# registry file, just a directory convention.
+#
+# Conventions used across this config + corpus files:
+#   * ${VAR} -> environment-variable expansion; relative paths resolve against
+#     the file's own directory (config.yaml -> repo root; corpora/<name>.yaml
+#     -> corpus-relative, resolved by the loader against the repo root).
+#   * A corpus declaration is a data contract: it MUST declare schema_version
+#     and every report is keyed by the version tuple
+#     (schema_version, index_version, eval_set_version, embedder_version).
+# =============================================================================
+
+engine:
+  # Where generated artifacts go (canonical corpus payloads? no - see below),
+  # index DBs, materialized views, eval reports). Derived, rebuildable,
+  # gitignored.
+  artifacts_dir: artifacts
+  # Root for user-supplied input: gold sets + committed baselines + the pinned
+  # canonical-corpus manifest. Versioned (git), NOT derived.
+  user_data_dir: user_data
+  # Where per-corpus declaration files live (corpora/<name>.yaml).
+  corpora_dir: corpora
+  # Corpus used when a caller omits corpus scope. Resolved at the CLI/config
+  # boundary ONLY - the engine never silently falls back; an omitted corpus
+  # scope on a query errors unless this default is applied by the caller.
+  default_corpus: uiux
+  log_level: info
+
+# ---- Embedding (global defaults; a corpus may override under corpus.index
+# ---- retrieval.strategies.dense). Keyed by (text_hash, model, dims) so
+# ---- identical inputs are never re-billed.
+embedding:
+  provider: gemini            # gemini | voyage
+  model: gemini-embedding-2
+  dims: 768                   # MRL truncation
+  batch_documents: 25         # protects constrained free-tier quota
+  max_retries: 6
+  idempotent: true
+
+# ---- Global gate defaults. The quality gate runs per corpus (each corpus has
+# ---- its own baseline + gold set). CI enumerates corpora/<name>.yaml and runs
+# ---- the gate for each declared corpus.
+verify:
+  # CI cadence (resolved): small deterministic per-PR subset + full eval on
+  # merge/nightly. Per-PR cost is bounded; merge protects the authoritative
+  # baseline.
+  ci_cadence: subset_per_pr_then_full_on_merge
+  # Regression threshold fallback; a corpus may override in its own verify block.
+  regression_threshold: 0.02
+
+# =============================================================================
+# OPEN ITEMS (none blocking; see docs/productization-plan.md for resolutions)
+#   1. corpora/uiux.yaml is the exemplar; corpora/creator-growth.yaml is created
+#      when the second corpus is declared (post-ingest-spike).
+#   2. The raw-vs-enriched spike runs BEFORE locking the ingest seam.
+# =============================================================================
