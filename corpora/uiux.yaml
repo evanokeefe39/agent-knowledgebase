@@ -41,21 +41,24 @@ schema:
     url:              { type: url }
     owner:            { type: string, role: [filter, facet, sort] }
     content_type:     { type: string, role: [filter, facet] }
-    domains:          { type: list[string], role: [filter, facet] }
+    domains:          { type: "list[string]", role: [filter, facet] }
     is_educational:   { type: bool,  role: [filter] }
     value_score:      { type: int,   role: [metric] }        # range filter + agg + sort
     gated_content:    { type: bool,  role: [filter] }
     gated_trigger:    { type: text }                          # stored + returned, not indexed
     summary:          { type: text,  role: [search], weight: 1.0 }
     transcript:       { type: text,  role: [search] }
-    workflow_steps:   { type: list[text], role: [search] }
-    tips:             { type: list[text], role: [search] }
-    concepts:         { type: list[string], role: [search] }
-    tools_apps:       { type: list[string], role: [filter, facet] }
-    resources:        { type: list[object], role: [passthrough] }
-    tags:             { type: list[string] }
-    media_files:      { type: list[string] }
-    extraction_status:{ type: string, role: [filter, facet] }
+    workflow_steps:   { type: "list[text]", role: [search] }
+    tips:             { type: "list[text]", role: [search] }
+    caption:          { type: text,  role: [search] }         # raw post caption (spike §10.1 rec 3)
+    concepts:         { type: "list[string]", role: [search] }
+    tools_apps:       { type: "list[string]", role: [filter, facet] }
+    resources:        { type: "list[object]", role: [passthrough] }
+    # resources is adapter-provided verbatim (nested media/resource objects);
+    # no mapping entry and no transform — passthrough storage only.
+    tags:             { type: "list[string]" }
+    media_files:      { type: "list[string]" }
+    extraction_status: { type: string, role: [filter, facet] }
     is_promo:         { type: bool,  role: [filter] }
 
 # ---- Sources: multiple raw sources of related shape normalize onto this
@@ -80,19 +83,23 @@ sources:
       owner:        { from: metadata.ownerUsername, transform: coerce_str }
       summary:      { from: analysis.summary, transform: coerce_str }
       transcript:   { from: analysis.transcript, transform: coerce_str }
-      workflow_steps:{ from: analysis.workflow_steps, transform: list }
+      workflow_steps: { from: analysis.workflow_steps, transform: list }
       tips:         { from: analysis.tips, transform: list }
       concepts:     { from: analysis.concepts, transform: list }
       tools_apps:   { from: analysis.tools_apps, transform: list }
       value_score:  { from: analysis.value_score, transform: coerce_int }
       content_type: { from: analysis.content_type, transform: coerce_str }
       domains:      { from: analysis.domains, transform: list }
-      is_educational:{ from: analysis.is_educational, transform: coerce_bool }
-      gated_content:{ from: analysis.gated_content, transform: coerce_bool }
-      gated_trigger:{ from: analysis.gated_trigger, transform: coerce_str }
+      is_educational: { from: analysis.is_educational, transform: coerce_bool }
+      gated_content:  { from: analysis.gated_content, transform: coerce_bool }
+      gated_trigger:  { from: analysis.gated_trigger, transform: coerce_str }
       tags:         { from: metadata.hashtags, transform: list }
+      caption:    { from: metadata.caption, transform: coerce_str }
       media_files:  { from: media, transform: list }
-      extraction_status: { from: analysis, transform: presence_to_status }
+      # extraction_status is NOT mapped here: it is presence->enum derived from
+      # the `analysis` object, which is not expressible as a pure parametric
+      # primitive. The ig_saved adapter stamps it per plan §12 (bespoke logic
+      # lives in the adapter; the transform registry accretes nothing).
       is_promo:     { from: analysis.is_promo, transform: coerce_bool }
     provenance:
       source: scrape-ig-saved-list
@@ -121,12 +128,12 @@ sources:
 
 # ---- Index ------------------------------------------------------------------
 index:
-  schema_version: "1"           # bump when index semantics change (chunker/strategies)
+  schema_version: "2"           # bumped from 1: caption added to chunker fields
   chunker:
     mode: by_field              # by_field | by_size
     # Fields chunked into searchable text. Default: all role=search fields;
     # explicit list overrides. Chunks carry provenance (record_id, field).
-    fields: [summary, transcript, workflow_steps, tips, concepts]
+    fields: [summary, transcript, workflow_steps, tips, concepts, caption]
   tokenization:
     language: en
     stopwords: default          # engine-internal default; advanced override only
@@ -139,7 +146,7 @@ index:
     strategies:
       bm25:  { backend: fts5 }
       dense: { provider: gemini, model: gemini-embedding-2, dims: 768 }  # inherits global embedding defaults
-      hybrid:{ fusion: rrf, k: 60 }
+      hybrid: { fusion: rrf, k: 60 }
     rerank:
       enabled: false            # seam declared so enabling later is config, not a
                                 # contract change. When enabled:

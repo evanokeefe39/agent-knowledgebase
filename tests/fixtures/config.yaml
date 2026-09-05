@@ -1,0 +1,15 @@
+# Fixture: engine config shaped like the repo-root config.yaml.
+# `test_dir` resolves via ${VAR} expansion; all paths relative to this file.
+engine:
+  artifacts_dir: artifacts
+  user_data_dir: user_data
+  corpora_dir: corpora
+  default_corpus: alpha
+
+embedding:
+  provider: gemini
+  model: gemini-embedding-2
+  dims: 768
+
+verify:
+  regression_threshold: 0.02
