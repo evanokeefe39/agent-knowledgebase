@@ -1,0 +1,691 @@
+{
+  "run": "parity",
+  "corpus": "uiux",
+  "generated_at": "2026-09-05T11:11:57.150821+00:00",
+  "engine": "src/kb_engine (Build-4 chunker by_field + DenseRetriever, embedder seam override)",
+  "embedder": {
+    "provider": "gemini",
+    "model": "gemini-embedding-001",
+    "dims": 3072
+  },
+  "embed_cost": {
+    "chunks_embedded": 278,
+    "cache_hits": 0,
+    "estimate": {
+      "provider": "gemini",
+      "model": "gemini-embedding-001",
+      "dims": 3072,
+      "texts": 249,
+      "estimated_tokens": 28862,
+      "cache_keyed_by": "(text_hash, model, dims)",
+      "already_cached": 0,
+      "billable_embeddings": 249
+    }
+  },
+  "id_normalization": "record id -> fields.shortcode (51/86 numeric media-pk ids in canonical corpus; gold expects shortcodes)",
+  "four_corner": {
+    "schema_version": "1",
+    "index_version": "1",
+    "eval_set_version": "v1",
+    "embedder_version": {
+      "provider": "gemini",
+      "model": "gemini-embedding-001",
+      "dims": 3072
+    }
+  },
+  "records": 86,
+  "chunks": 249,
+  "questions": 29,
+  "metrics": {
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "ndcg@10": 0.0,
+    "mrr": 0.0
+  },
+  "baseline_metrics": {
+    "recall@5": 0.9722222222222222,
+    "recall@10": 1.0,
+    "ndcg@10": 0.9306082922090443,
+    "mrr": 0.9305555555555555
+  },
+  "gate": {
+    "decision": "fail",
+    "tuple": {
+      "schema_version": "1",
+      "index_version": "1",
+      "eval_set_version": "v1",
+      "embedder_version": {
+        "provider": "gemini",
+        "model": "gemini-embedding-001",
+        "dims": 3072
+      }
+    },
+    "per_metric": {
+      "recall@5": {
+        "baseline": 0.9722222222222222,
+        "current": 0.0,
+        "delta": -0.9722222222222222
+      },
+      "recall@10": {
+        "baseline": 1.0,
+        "current": 0.0,
+        "delta": -1.0
+      },
+      "ndcg@10": {
+        "baseline": 0.9306082922090443,
+        "current": 0.0,
+        "delta": -0.9306082922090443
+      },
+      "mrr": {
+        "baseline": 0.9305555555555555,
+        "current": 0.0,
+        "delta": -0.9305555555555555
+      }
+    },
+    "baseline_path": "C:\\Users\\evano\\repos\\agent-knowledgebase\\user_data\\baselines\\uiux-baseline.json",
+    "reason": "regression: recall@5: 0.0000 vs baseline 0.9722 (delta -0.9722 beyond -0.02); recall@10: 0.0000 vs baseline 1.0000 (delta -1.0000 beyond -0.02); ndcg@10: 0.0000 vs baseline 0.9306 (delta -0.9306 beyond -0.02); mrr: 0.0000 vs baseline 0.9306 (delta -0.9306 beyond -0.02)"
+  },
+  "per_question": [
+    {
+      "question_id": "q001",
+      "mode": "search",
+      "expected": [
+        "Dblrpj-E_Lf"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='Dblrpj-E_Lf', score=0.8727148374056264, chunk_id='Dblrpj-E_Lf::summary::0')",
+        "RankedHit(record_id='DZIFpkJleov', score=0.6725132239123129, chunk_id='DZIFpkJleov::summary::0')",
+        "RankedHit(record_id='DaM26LMulZF', score=0.6527497184052755, chunk_id='DaM26LMulZF::tips::2')",
+        "RankedHit(record_id='DUELjjBDsKc', score=0.6439800608709458, chunk_id='DUELjjBDsKc::tips::2')",
+        "RankedHit(record_id='DaZ-xbaEuph', score=0.6409418261141725, chunk_id='DaZ-xbaEuph::transcript::1')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q002",
+      "mode": "search",
+      "expected": [
+        "Dblrpj-E_Lf",
+        "DaZ-xbaEuph",
+        "DaM26LMulZF"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaM26LMulZF', score=0.7435766446829123, chunk_id='DaM26LMulZF::summary::0')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.6863872037658462, chunk_id='DcMlAi4v1fb::tips::2')",
+        "RankedHit(record_id='DaZ-xbaEuph', score=0.6809643467842048, chunk_id='DaZ-xbaEuph::transcript::1')",
+        "RankedHit(record_id='DbO1JEoSBE7', score=0.6777761064253744, chunk_id='DbO1JEoSBE7::summary::0')",
+        "RankedHit(record_id='DZIljzfOQo4', score=0.6759972282567976, chunk_id='DZIljzfOQo4::tips::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q003",
+      "mode": "search",
+      "expected": [
+        "DYNprnKDdFr"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DYNprnKDdFr', score=0.7737199933931461, chunk_id='DYNprnKDdFr::caption::5')",
+        "RankedHit(record_id='DZxnLlkDaHx', score=0.6321055187181955, chunk_id='DZxnLlkDaHx::concepts::4')",
+        "RankedHit(record_id='DaQQ79mjeo3', score=0.6266471930918, chunk_id='DaQQ79mjeo3::caption::5')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q004",
+      "mode": "search",
+      "expected": [
+        "DaNYCILlDgO"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaNYCILlDgO', score=0.7906734167378345, chunk_id='DaNYCILlDgO::summary::0')",
+        "RankedHit(record_id='Dblx-7rJUPG', score=0.7016102376466925, chunk_id='Dblx-7rJUPG::workflow_steps::2')",
+        "RankedHit(record_id='DbYbGxekWK5', score=0.6897050238830587, chunk_id='DbYbGxekWK5::tips::3')",
+        "RankedHit(record_id='DaZX4a4sPYV', score=0.6851352110760343, chunk_id='DaZX4a4sPYV::summary::0')",
+        "RankedHit(record_id='DcNMBB0FgD8', score=0.6814072636607026, chunk_id='DcNMBB0FgD8::tips::3')",
+        "RankedHit(record_id='DZYEipolXZJ', score=0.6809395431153366, chunk_id='DZYEipolXZJ::tips::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q005",
+      "mode": "search",
+      "expected": [
+        "DaNYCILlDgO",
+        "DblU1r_HA5p",
+        "DcEFABnvBuH",
+        "DcNMBB0FgD8"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaNYCILlDgO', score=0.7848921698566625, chunk_id='DaNYCILlDgO::caption::4')",
+        "RankedHit(record_id='DblU1r_HA5p', score=0.7777342119768229, chunk_id='DblU1r_HA5p::summary::0')",
+        "RankedHit(record_id='DcEFABnvBuH', score=0.7649454809880651, chunk_id='DcEFABnvBuH::caption::4')",
+        "RankedHit(record_id='DcNMBB0FgD8', score=0.7561431745598729, chunk_id='DcNMBB0FgD8::summary::0')",
+        "RankedHit(record_id='Dblx-7rJUPG', score=0.7490303528028605, chunk_id='Dblx-7rJUPG::summary::0')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q006",
+      "mode": "search",
+      "expected": [
+        "DbO1JEoSBE7",
+        "DY04AwpleW6",
+        "DcMlAi4v1fb"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DZIljzfOQo4', score=0.800056819927432, chunk_id='DZIljzfOQo4::summary::0')",
+        "RankedHit(record_id='DY04AwpleW6', score=0.7642487853035544, chunk_id='DY04AwpleW6::summary::0')",
+        "RankedHit(record_id='DbO1JEoSBE7', score=0.7488993670778809, chunk_id='DbO1JEoSBE7::caption::3')",
+        "RankedHit(record_id='DcerVsOPsfx', score=0.7459703053598897, chunk_id='DcerVsOPsfx::summary::0')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.7351954923734314, chunk_id='DcMlAi4v1fb::summary::0')",
+        "RankedHit(record_id='DcOs3VwRK0B', score=0.7274598718889329, chunk_id='DcOs3VwRK0B::tips::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q007",
+      "mode": "search",
+      "expected": [
+        "DaV1qGHRyHZ"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaV1qGHRyHZ', score=0.8444146292895022, chunk_id='DaV1qGHRyHZ::summary::0')",
+        "RankedHit(record_id='DcOs3VwRK0B', score=0.6709094145408007, chunk_id='DcOs3VwRK0B::summary::0')",
+        "RankedHit(record_id='DbO1JEoSBE7', score=0.6275382531380804, chunk_id='DbO1JEoSBE7::caption::3')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q008",
+      "mode": "search",
+      "expected": [
+        "DcEFABnvBuH",
+        "DbcSTKNthGN"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DcEFABnvBuH', score=0.831858821214358, chunk_id='DcEFABnvBuH::summary::0')",
+        "RankedHit(record_id='Dblx-7rJUPG', score=0.7428011894397452, chunk_id='Dblx-7rJUPG::transcript::1')",
+        "RankedHit(record_id='DblU1r_HA5p', score=0.7303442693845913, chunk_id='DblU1r_HA5p::summary::0')",
+        "RankedHit(record_id='DaNYCILlDgO', score=0.7011573664952844, chunk_id='DaNYCILlDgO::caption::4')",
+        "RankedHit(record_id='DcOs3VwRK0B', score=0.6894788882814573, chunk_id='DcOs3VwRK0B::caption::3')",
+        "RankedHit(record_id='DcNMBB0FgD8', score=0.6878085935100724, chunk_id='DcNMBB0FgD8::summary::0')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q009",
+      "mode": "search",
+      "expected": [
+        "DbcSTKNthGN"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DcEFABnvBuH', score=0.801078891758214, chunk_id='DcEFABnvBuH::summary::0')",
+        "RankedHit(record_id='DaNYCILlDgO', score=0.7572951293197805, chunk_id='DaNYCILlDgO::caption::4')",
+        "RankedHit(record_id='DbcSTKNthGN', score=0.7565945867698142, chunk_id='DbcSTKNthGN::summary::0')",
+        "RankedHit(record_id='Dblx-7rJUPG', score=0.7447032867988703, chunk_id='Dblx-7rJUPG::transcript::1')",
+        "RankedHit(record_id='DblU1r_HA5p', score=0.7438895156596016, chunk_id='DblU1r_HA5p::summary::0')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q010",
+      "mode": "search",
+      "expected": [
+        "DcEJDHBTyPY"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DcEJDHBTyPY', score=0.8090123239142081, chunk_id='DcEJDHBTyPY::summary::0')",
+        "RankedHit(record_id='DbO1JEoSBE7', score=0.6797422599432088, chunk_id='DbO1JEoSBE7::summary::0')",
+        "RankedHit(record_id='DaK9bi0jVmN', score=0.6791100850801475, chunk_id='DaK9bi0jVmN::summary::0')",
+        "RankedHit(record_id='DaqrQbYjuMa', score=0.675333534299753, chunk_id='DaqrQbYjuMa::caption::4')",
+        "RankedHit(record_id='DZYEipolXZJ', score=0.6744877643508415, chunk_id='DZYEipolXZJ::summary::0')",
+        "RankedHit(record_id='DZIljzfOQo4', score=0.6729462536562126, chunk_id='DZIljzfOQo4::tips::2')",
+        "RankedHit(record_id='DaM26LMulZF', score=0.6698131944678127, chunk_id='DaM26LMulZF::summary::0')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q011",
+      "mode": "search",
+      "expected": [
+        "DZIFpkJleov",
+        "DZj9G-hEiZW"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DZIFpkJleov', score=0.775378821542986, chunk_id='DZIFpkJleov::summary::0')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.6623702619573336, chunk_id='DcMlAi4v1fb::tips::2')",
+        "RankedHit(record_id='DUELjjBDsKc', score=0.6523288655729892, chunk_id='DUELjjBDsKc::tips::2')",
+        "RankedHit(record_id='DcoxWY4lbn-', score=0.6518757333046327, chunk_id='DcoxWY4lbn-::tips::3')",
+        "RankedHit(record_id='Dblrpj-E_Lf', score=0.6376669740499877, chunk_id='Dblrpj-E_Lf::caption::4')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q012",
+      "mode": "search",
+      "expected": [
+        "DaqrQbYjuMa"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaqrQbYjuMa', score=0.8349156802617022, chunk_id='DaqrQbYjuMa::summary::0')",
+        "RankedHit(record_id='DYIYIccNfBV', score=0.6102964011225951, chunk_id='DYIYIccNfBV::summary::0')",
+        "RankedHit(record_id='DUELjjBDsKc', score=0.6075773254224298, chunk_id='DUELjjBDsKc::summary::0')",
+        "RankedHit(record_id='DcoxWY4lbn-', score=0.5997532942088254, chunk_id='DcoxWY4lbn-::tips::3')",
+        "RankedHit(record_id='DZj9G-hEiZW', score=0.5983335095831354, chunk_id='DZj9G-hEiZW::summary::0')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q013",
+      "mode": "search",
+      "expected": [
+        "DZxnLlkDaHx",
+        "DYNprnKDdFr"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DZxnLlkDaHx', score=0.8362292180133614, chunk_id='DZxnLlkDaHx::concepts::4')",
+        "RankedHit(record_id='DYNprnKDdFr', score=0.7787834946899101, chunk_id='DYNprnKDdFr::tips::3')",
+        "RankedHit(record_id='DaQQ79mjeo3', score=0.7254779651673476, chunk_id='DaQQ79mjeo3::tips::3')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q014",
+      "mode": "search",
+      "expected": [
+        "DaQQ79mjeo3"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaQQ79mjeo3', score=0.845021299375397, chunk_id='DaQQ79mjeo3::summary::0')",
+        "RankedHit(record_id='DblU1r_HA5p', score=0.714689101172948, chunk_id='DblU1r_HA5p::tips::3')",
+        "RankedHit(record_id='DYNprnKDdFr', score=0.7142708392749644, chunk_id='DYNprnKDdFr::summary::0')",
+        "RankedHit(record_id='DZnIfiCojhr', score=0.6944587454767176, chunk_id='DZnIfiCojhr::tips::3')",
+        "RankedHit(record_id='DcNMBB0FgD8', score=0.6943817798527961, chunk_id='DcNMBB0FgD8::tips::3')",
+        "RankedHit(record_id='DZxnLlkDaHx', score=0.6918745411533193, chunk_id='DZxnLlkDaHx::caption::5')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q015",
+      "mode": "search",
+      "expected": [
+        "DZXe4KxRSDl",
+        "DZaUAv_jODe"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DZXe4KxRSDl', score=0.7510034344645766, chunk_id='DZXe4KxRSDl::summary::0')",
+        "RankedHit(record_id='DZaUAv_jODe', score=0.7144384151394145, chunk_id='DZaUAv_jODe::tips::2')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.6567398474391426, chunk_id='DcMlAi4v1fb::tips::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q016",
+      "mode": "search",
+      "expected": [
+        "DaK9bi0jVmN",
+        "DaNmxb2jYUh"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaNmxb2jYUh', score=0.671603463648509, chunk_id='DaNmxb2jYUh::caption::4')",
+        "RankedHit(record_id='DY04AwpleW6', score=0.6529201765849275, chunk_id='DY04AwpleW6::caption::3')",
+        "RankedHit(record_id='DaK9bi0jVmN', score=0.6393585096431202, chunk_id='DaK9bi0jVmN::transcript::1')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.6356788297355651, chunk_id='DcMlAi4v1fb::tips::2')",
+        "RankedHit(record_id='DaNYCILlDgO', score=0.6053708745292663, chunk_id='DaNYCILlDgO::caption::4')",
+        "RankedHit(record_id='DZIljzfOQo4', score=0.5973225634772232, chunk_id='DZIljzfOQo4::caption::3')",
+        "RankedHit(record_id='DaZ-xbaEuph', score=0.5941091530658997, chunk_id='DaZ-xbaEuph::transcript::1')",
+        "RankedHit(record_id='DZZ2-8AOy5_', score=0.5940507291904601, chunk_id='DZZ2-8AOy5_::caption::4')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q017",
+      "mode": "search",
+      "expected": [
+        "DYNprnKDdFr",
+        "DZxnLlkDaHx",
+        "DaQQ79mjeo3"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DZxnLlkDaHx', score=0.7251911013079163, chunk_id='DZxnLlkDaHx::transcript::1')",
+        "RankedHit(record_id='DYNprnKDdFr', score=0.7234152092052479, chunk_id='DYNprnKDdFr::transcript::1')",
+        "RankedHit(record_id='DaQQ79mjeo3', score=0.6934751248428099, chunk_id='DaQQ79mjeo3::caption::5')",
+        "RankedHit(record_id='DZZ2-8AOy5_', score=0.6108553265432272, chunk_id='DZZ2-8AOy5_::caption::4')",
+        "RankedHit(record_id='DYIYIccNfBV', score=0.6016984004643591, chunk_id='DYIYIccNfBV::tips::3')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.5980389940324807, chunk_id='DcMlAi4v1fb::tips::2')",
+        "RankedHit(record_id='DY04AwpleW6', score=0.5957833003766606, chunk_id='DY04AwpleW6::caption::3')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q018",
+      "mode": "search",
+      "expected": [
+        "DbO1JEoSBE7",
+        "DY04AwpleW6",
+        "DZIljzfOQo4",
+        "DcerVsOPsfx"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.767593565890549, chunk_id='DcMlAi4v1fb::summary::0')",
+        "RankedHit(record_id='DbO1JEoSBE7', score=0.7629139194329255, chunk_id='DbO1JEoSBE7::summary::0')",
+        "RankedHit(record_id='DZIljzfOQo4', score=0.7476982158205853, chunk_id='DZIljzfOQo4::summary::0')",
+        "RankedHit(record_id='DcerVsOPsfx', score=0.745784070112018, chunk_id='DcerVsOPsfx::summary::0')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q019",
+      "mode": "search",
+      "expected": [
+        "DZZ2-8AOy5_"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DZZ2-8AOy5_', score=0.8933054116291604, chunk_id='DZZ2-8AOy5_::summary::0')",
+        "RankedHit(record_id='DY04AwpleW6', score=0.755654817173599, chunk_id='DY04AwpleW6::tips::2')",
+        "RankedHit(record_id='DbO1JEoSBE7', score=0.7362918118505817, chunk_id='DbO1JEoSBE7::tips::2')",
+        "RankedHit(record_id='DaM26LMulZF', score=0.7081760654594812, chunk_id='DaM26LMulZF::summary::0')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.6803809631267232, chunk_id='DcMlAi4v1fb::caption::3')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q020",
+      "mode": "search",
+      "expected": [
+        "DUELjjBDsKc"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DUELjjBDsKc', score=0.8104547026475243, chunk_id='DUELjjBDsKc::concepts::3')",
+        "RankedHit(record_id='DaiaqXrnxu2', score=0.6369845821135173, chunk_id='DaiaqXrnxu2::concepts::4')",
+        "RankedHit(record_id='DYIYIccNfBV', score=0.6344102448122966, chunk_id='DYIYIccNfBV::summary::0')",
+        "RankedHit(record_id='Dblrpj-E_Lf', score=0.632012693038077, chunk_id='Dblrpj-E_Lf::caption::4')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q021",
+      "mode": "search",
+      "expected": [
+        "DYIYIccNfBV",
+        "DcoxWY4lbn-"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DYIYIccNfBV', score=0.7673007526438693, chunk_id='DYIYIccNfBV::summary::0')",
+        "RankedHit(record_id='DcoxWY4lbn-', score=0.707665878820904, chunk_id='DcoxWY4lbn-::summary::0')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.6561671214274587, chunk_id='DcMlAi4v1fb::tips::2')",
+        "RankedHit(record_id='DaSLzVBOREn', score=0.6483276751965811, chunk_id='DaSLzVBOREn::workflow_steps::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": true
+    },
+    {
+      "question_id": "q022",
+      "mode": "answer",
+      "expected": [
+        "DbYbGxekWK5"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DbYbGxekWK5', score=0.8559227036981981, chunk_id='DbYbGxekWK5::summary::0')",
+        "RankedHit(record_id='DZ4Eh5UPyMb', score=0.6721827918968287, chunk_id='DZ4Eh5UPyMb::tips::2')",
+        "RankedHit(record_id='DZj9G-hEiZW', score=0.6684607598935617, chunk_id='DZj9G-hEiZW::caption::3')",
+        "RankedHit(record_id='DcNMBB0FgD8', score=0.6483981249037023, chunk_id='DcNMBB0FgD8::caption::5')",
+        "RankedHit(record_id='DbHYrK8uuyV', score=0.6384468072865991, chunk_id='DbHYrK8uuyV::tips::2')",
+        "RankedHit(record_id='DZ2rnYetXam', score=0.6348542852896307, chunk_id='DZ2rnYetXam::caption::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    },
+    {
+      "question_id": "q023",
+      "mode": "answer",
+      "expected": [
+        "DaiaqXrnxu2"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DaiaqXrnxu2', score=0.8060664967035204, chunk_id='DaiaqXrnxu2::summary::0')",
+        "RankedHit(record_id='DcEFABnvBuH', score=0.7052853141073522, chunk_id='DcEFABnvBuH::concepts::3')",
+        "RankedHit(record_id='Dblx-7rJUPG', score=0.694254650336084, chunk_id='Dblx-7rJUPG::tips::3')",
+        "RankedHit(record_id='DaK9bi0jVmN', score=0.68181945617265, chunk_id='DaK9bi0jVmN::concepts::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    },
+    {
+      "question_id": "q024",
+      "mode": "answer",
+      "expected": [
+        "DacJeF0IIq7"
+      ],
+      "ranked_ids": [
+        "RankedHit(record_id='DacJeF0IIq7', score=0.7597214679819415, chunk_id='DacJeF0IIq7::summary::0')",
+        "RankedHit(record_id='DaVirTTxDLP', score=0.6549095560953349, chunk_id='DaVirTTxDLP::tips::2')",
+        "RankedHit(record_id='DaSLzVBOREn', score=0.601171744232628, chunk_id='DaSLzVBOREn::tips::3')",
+        "RankedHit(record_id='DbfaVtWMIM9', score=0.5946312889208055, chunk_id='DbfaVtWMIM9::transcript::1')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    },
+    {
+      "question_id": "q025",
+      "mode": "abstain",
+      "expected": [],
+      "ranked_ids": [
+        "RankedHit(record_id='DaV1qGHRyHZ', score=0.5805045545387257, chunk_id='DaV1qGHRyHZ::caption::4')",
+        "RankedHit(record_id='DaWogaDOn5j', score=0.5473356864019946, chunk_id='DaWogaDOn5j::caption::3')",
+        "RankedHit(record_id='DZXe4KxRSDl', score=0.5470991822802153, chunk_id='DZXe4KxRSDl::tips::2')",
+        "RankedHit(record_id='DY04AwpleW6', score=0.5440426929333372, chunk_id='DY04AwpleW6::caption::3')",
+        "RankedHit(record_id='DUELjjBDsKc', score=0.5379782726374635, chunk_id='DUELjjBDsKc::caption::4')",
+        "RankedHit(record_id='DZZ2-8AOy5_', score=0.5379768462224257, chunk_id='DZZ2-8AOy5_::transcript::1')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    },
+    {
+      "question_id": "q026",
+      "mode": "abstain",
+      "expected": [],
+      "ranked_ids": [
+        "RankedHit(record_id='DZj9G-hEiZW', score=0.6198230424861241, chunk_id='DZj9G-hEiZW::caption::3')",
+        "RankedHit(record_id='DbHYrK8uuyV', score=0.6105557790664826, chunk_id='DbHYrK8uuyV::caption::3')",
+        "RankedHit(record_id='DY04AwpleW6', score=0.592452126798654, chunk_id='DY04AwpleW6::caption::3')",
+        "RankedHit(record_id='DUELjjBDsKc', score=0.58602444624243, chunk_id='DUELjjBDsKc::caption::4')",
+        "RankedHit(record_id='DZ2rnYetXam', score=0.5790079069047505, chunk_id='DZ2rnYetXam::transcript::1')",
+        "RankedHit(record_id='DaNYCILlDgO', score=0.5768071480672414, chunk_id='DaNYCILlDgO::transcript::1')",
+        "RankedHit(record_id='DaM26LMulZF', score=0.5742116961462116, chunk_id='DaM26LMulZF::caption::4')",
+        "RankedHit(record_id='DZIljzfOQo4', score=0.571860306049536, chunk_id='DZIljzfOQo4::transcript::1')",
+        "RankedHit(record_id='DaWogaDOn5j', score=0.5709327018699835, chunk_id='DaWogaDOn5j::caption::3')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    },
+    {
+      "question_id": "q027",
+      "mode": "abstain",
+      "expected": [],
+      "ranked_ids": [
+        "RankedHit(record_id='DZXe4KxRSDl', score=0.5723349457916956, chunk_id='DZXe4KxRSDl::transcript::1')",
+        "RankedHit(record_id='DaqrQbYjuMa', score=0.5597937481416931, chunk_id='DaqrQbYjuMa::caption::4')",
+        "RankedHit(record_id='DaSVF8otnNj', score=0.5455047880850066, chunk_id='DaSVF8otnNj::caption::4')",
+        "RankedHit(record_id='DaNmxb2jYUh', score=0.5304143965560514, chunk_id='DaNmxb2jYUh::caption::4')",
+        "RankedHit(record_id='DcEJDHBTyPY', score=0.5278961805493916, chunk_id='DcEJDHBTyPY::transcript::1')",
+        "RankedHit(record_id='DcOs3VwRK0B', score=0.5276461235040402, chunk_id='DcOs3VwRK0B::transcript::1')",
+        "RankedHit(record_id='DZIFpkJleov', score=0.52605636623384, chunk_id='DZIFpkJleov::transcript::1')",
+        "RankedHit(record_id='DaWogaDOn5j', score=0.5256544792482504, chunk_id='DaWogaDOn5j::caption::3')",
+        "RankedHit(record_id='DZnIfiCojhr', score=0.524777901759738, chunk_id='DZnIfiCojhr::caption::4')",
+        "RankedHit(record_id='DaM26LMulZF', score=0.5244845005886193, chunk_id='DaM26LMulZF::transcript::1')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    },
+    {
+      "question_id": "q028",
+      "mode": "abstain",
+      "expected": [],
+      "ranked_ids": [
+        "RankedHit(record_id='DaZ-xbaEuph', score=0.5974954121510312, chunk_id='DaZ-xbaEuph::caption::2')",
+        "RankedHit(record_id='DaWogaDOn5j', score=0.5911896289702429, chunk_id='DaWogaDOn5j::caption::3')",
+        "RankedHit(record_id='DcMlAi4v1fb', score=0.5812176880252188, chunk_id='DcMlAi4v1fb::tips::2')",
+        "RankedHit(record_id='DaM26LMulZF', score=0.5805836715480032, chunk_id='DaM26LMulZF::caption::4')",
+        "RankedHit(record_id='DbfaVtWMIM9', score=0.5714414938577225, chunk_id='DbfaVtWMIM9::caption::4')",
+        "RankedHit(record_id='DaV1qGHRyHZ', score=0.568508230124544, chunk_id='DaV1qGHRyHZ::caption::4')",
+        "RankedHit(record_id='DZXe4KxRSDl', score=0.5678471323700169, chunk_id='DZXe4KxRSDl::transcript::1')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    },
+    {
+      "question_id": "q029",
+      "mode": "abstain",
+      "expected": [],
+      "ranked_ids": [
+        "RankedHit(record_id='DaJmSOcREm8', score=0.6260363190825776, chunk_id='DaJmSOcREm8::summary::0')",
+        "RankedHit(record_id='DbHYrK8uuyV', score=0.6172673427918991, chunk_id='DbHYrK8uuyV::tips::2')",
+        "RankedHit(record_id='DaK9bi0jVmN', score=0.613438030525697, chunk_id='DaK9bi0jVmN::caption::3')",
+        "RankedHit(record_id='DaWogaDOn5j', score=0.6091624147750488, chunk_id='DaWogaDOn5j::tips::2')",
+        "RankedHit(record_id='DaNmxb2jYUh', score=0.6036568330246764, chunk_id='DaNmxb2jYUh::transcript::1')",
+        "RankedHit(record_id='DbcSTKNthGN', score=0.6029296720233864, chunk_id='DbcSTKNthGN::tips::3')",
+        "RankedHit(record_id='DbO1JEoSBE7', score=0.601400088649678, chunk_id='DbO1JEoSBE7::tips::2')"
+      ],
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "mrr": 0.0,
+      "abstained": false,
+      "scored": false
+    }
+  ]
+}

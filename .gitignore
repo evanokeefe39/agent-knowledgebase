@@ -24,6 +24,11 @@ htmlcov/
 
 # Agent scratch
 .pi/
+scratch/
+
+# Derived eval caches (regenerable; never commit)
+data/eval/runs/parity-embed-cache/
+data/eval/runs/parity-gate/
 
 # Editors / OS
 .vscode/
@@ -34,3 +39,7 @@ Thumbs.db
 
 # Node (if a CLI/web client is added)
 node_modules/
+
+# Productization (plan §7): derived outputs + large raw source exports.
+artifacts/
+user_data/sources/

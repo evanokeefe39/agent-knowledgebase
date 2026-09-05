@@ -1,0 +1,18 @@
+{
+  "schema_version": "1",
+  "index_version": "1",
+  "eval_set_version": "v1",
+  "embedder_version": {
+    "provider": "gemini",
+    "model": "gemini-embedding-001",
+    "dims": 3072
+  },
+  "corpus": "uiux",
+  "metrics": {
+    "recall@5": 0.9722222222222222,
+    "recall@10": 1.0,
+    "ndcg@10": 0.9306082922090443,
+    "mrr": 0.9305555555555555
+  },
+  "generated_at": "2026-09-05T10:39:49Z"
+}

@@ -1,0 +1,11 @@
+embedding:
+  dims: 768
+  model: gemini-embedding-2
+  provider: gemini
+engine:
+  artifacts_dir: artifacts
+  corpora_dir: C:\Users\evano\repos\agent-knowledgebase\tests\fixtures\corpora
+  default_corpus: alpha
+  user_data_dir: user_data
+verify:
+  regression_threshold: 0.02

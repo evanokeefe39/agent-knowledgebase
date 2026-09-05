@@ -1,0 +1,41 @@
+# Fixture: valid corpus, simplified shape of the corpora/uiux.yaml exemplar.
+schema:
+  schema_version: "1"
+  id_field: post_id
+  refresh_hash_fields: []
+  fields:
+    post_id:        { type: string }
+    url:            { type: url }
+    owner:          { type: string, role: [filter, facet, sort] }
+    value_score:    { type: int, role: [metric] }
+    is_educational: { type: bool, role: [filter] }
+    summary:        { type: text, role: [search], weight: 1.0 }
+    tips:           { type: "list[text]", role: [search] }
+    domains:        { type: "list[string]", role: [filter, facet] }
+    published_at:   { type: datetime, example: "2026-01-15T10:00:00" }
+    resources:      { type: "list[object]", role: [passthrough] }
+    tags:           { type: "list[string]" }
+
+sources:
+  - name: alpha-scrape
+    adapter: ig_saved
+    location: ${TEST_SOURCE_ROOT}/data/alpha
+    snapshot: alpha-2026-09-01
+    mapping:
+      post_id:   { from: metadata.id, transform: coerce_str }
+      owner:     { from: metadata.ownerUsername, transform: coerce_str }
+      summary:   { from: analysis.summary, transform: coerce_str }
+      value_score: { from: analysis.value_score, transform: coerce_int }
+      tags:      { from: metadata.hashtags, transform: list }
+    provenance:
+      source: scrape-ig-saved-list
+      media_ref: dataset_post_dir
+      timestamp_field: analysis.analysed_at
+      extractor_field: analysis.extractor_model
+      confidence_field: analysis.confidence
+    dedupe:
+      key: [post_id]
+      order: source_declaration
+      policy: keep_first
+    missing:
+      envelope_failure: gap

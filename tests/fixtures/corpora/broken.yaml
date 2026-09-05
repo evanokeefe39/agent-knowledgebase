@@ -1,0 +1,9 @@
+# Fixture: deliberately BROKEN corpus (unknown type + unknown role on one
+# field). Used by the multi-corpus-isolation test: its failure must not
+# prevent alpha.yaml from loading.
+schema:
+  schema_version: "1"
+  id_field: post_id
+  fields:
+    post_id: { type: string }
+    rating:  { type: stars, role: [metric] }
