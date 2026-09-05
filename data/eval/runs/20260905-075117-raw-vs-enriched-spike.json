@@ -1,0 +1,1311 @@
+{
+  "report": "raw-vs-enriched-spike",
+  "plan": "tasks/plans/raw-vs-enriched-spike.md",
+  "generated_at": "2026-09-05T07:51:17.705703+00:00",
+  "four_corner_version_tuple": {
+    "schema_version": "1",
+    "eval_set_version": "v1",
+    "variants": {
+      "A_enriched": {
+        "index_version": "1",
+        "index_version_note": "current kb.dense.index_text composition (summary+workflow_steps+tips+concepts+transcript+tools_apps+tags+resources)",
+        "embedder_version": {
+          "provider": "gemini",
+          "model": "gemini-embedding-001",
+          "dims": 3072
+        },
+        "vector_db": "data/kb/dense.db (cached, 160 vectors; no re-embed)"
+      },
+      "B_raw": {
+        "index_version": "raw-1",
+        "index_version_note": "raw-only: caption(absent in KbPost v1 -> nothing) + transcript + hashtags/tags; \\n-join + strip",
+        "embedder_version": {
+          "provider": "gemini",
+          "model": "gemini-embedding-001",
+          "dims": 3072
+        },
+        "vector_db": "scratch/spike_raw_enriched/dense-raw-gemini.db"
+      }
+    },
+    "note": "same embedder for both variants by design: isolates the index-text variable"
+  },
+  "corpus": {
+    "path": "data/kb/kb-posts-all.json",
+    "records": 185,
+    "uiux": 86,
+    "creator_growth": 99,
+    "uiux_slice_identical_to_data_uiux_kb_posts_json": true,
+    "reproduces_m4": true,
+    "validity_evidence": {
+      "documented_m4": {
+        "recall@5": 0.972,
+        "recall@10": 1.0
+      },
+      "measured_dense_merged_185": {
+        "recall@5": 0.9722222222222222,
+        "recall@10": 1.0,
+        "ndcg@10": 0.9306082922090443,
+        "mrr": 0.9305555555555555
+      },
+      "measured_dense_uiux86_slice": {
+        "recall@5": 0.9722222222222222,
+        "recall@10": 1.0,
+        "ndcg@10": 0.9306082922090443,
+        "mrr": 0.9305555555555555
+      },
+      "dense_slice_invariant": true,
+      "abs_delta_r5": 0.00022222222222223476,
+      "abs_delta_r10": 0.0,
+      "tolerance": 0.02,
+      "within_tolerance": true,
+      "corpus_used": "data/kb/kb-posts-all.json (185 records; merged canonical corpus)",
+      "corpus_note": "uiux/kb-posts.json is record-identical to the merged corpus's uiux slice, so dense metrics are slice-invariant (verified above); the merged corpus reproduces M4 and is the documented M4 configuration (BM25 FTS index is built over all 185 records).",
+      "bm25_merged_185_reference": {
+        "recall@5": 0.78125,
+        "recall@10": 0.8541666666666666,
+        "ndcg@10": 0.8363202722383004,
+        "mrr": 0.8223379629629629
+      },
+      "m4_documented_reference": {
+        "dense_r5": 0.972,
+        "dense_r10": 1.0,
+        "hybrid_r5": 0.917,
+        "bm25_r5": 0.781,
+        "source": "docs/productization-plan.md section 4 + committed 20260901-170237-ablation.json"
+      },
+      "hybrid_A_r5": 0.9166666666666666
+    }
+  },
+  "gold_set": {
+    "path": "data/eval/gold-set-v1.json",
+    "eval_set_version": "v1",
+    "questions_total": 29,
+    "questions_scored": 24
+  },
+  "results": {
+    "A_dense_enriched": {
+      "recall@5": 0.9722222222222222,
+      "recall@10": 1.0,
+      "ndcg@10": 0.9306082922090443,
+      "mrr": 0.9305555555555555,
+      "n_questions": 24,
+      "per_question": [
+        {
+          "question_id": "q001",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3955759819835831007",
+            "3930758067053549125",
+            "3911401122917902895",
+            "3934451825051363937",
+            "3919244861023331926"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q002",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930758067053549125",
+            "3934451825051363937",
+            "3966708136986761179",
+            "3911541464558537272",
+            "3949327643161661755"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9325210919548239,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q003",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3894952569634410859",
+            "3760546516084250164",
+            "3668605474936435507",
+            "3849070193297976052",
+            "3704903391376510643"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q004",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930903749103728654",
+            "3955787676676080582",
+            "3964315563965815687",
+            "3952027885716464313",
+            "3915899849351198281"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q005",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3955659498007039593",
+            "3964315563965815687",
+            "3930903749103728654",
+            "3878356917588397318",
+            "3966879694008484092"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9828920819566879,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q006",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3949327643161661755",
+            "3911541464558537272",
+            "3905993119678981562",
+            "3971802527979980785",
+            "3967305638736080129"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.86034433104172,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q007",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3933285838825660889",
+            "3967305638736080129",
+            "3776128729852431314",
+            "3949327643161661755",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q008",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3964315563965815687",
+            "3955787676676080582",
+            "3955659498007039593",
+            "3953115054399164813",
+            "3966879694008484092"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.8772153153380493,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q009",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3964315563965815687",
+            "3955659498007039593",
+            "3953115054399164813",
+            "3955787676676080582",
+            "3966879694008484092"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.5,
+          "mrr": 0.3333333333333333,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q010",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3964333368108065752",
+            "3915899849351198281",
+            "3949327643161661755",
+            "3939151069003571994",
+            "3930223798486129037"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q011",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3911401122917902895",
+            "3974643713981135358",
+            "3820229205209039516",
+            "3919244861023331926",
+            "3966708136986761179"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.8772153153380493,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q012",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3939151069003571994",
+            "3915899849351198281",
+            "3974643713981135358",
+            "3919244861023331926",
+            "3964333368108065752"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q013",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3923089070477910513",
+            "3760546516084250164",
+            "3704903391376510643",
+            "3655618140955646799",
+            "3894952569634410859"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.8503449055347546,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q014",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3931716964032834103",
+            "3698391246811892352",
+            "3668559517997603647",
+            "3894952569634410859",
+            "3807917405016469527"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q015",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3910448340864306868",
+            "3915734202271998181",
+            "3916530838414352606",
+            "3786750960425891870",
+            "3952049061066210805"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.6934264036172708,
+          "mrr": 0.5,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q016",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930223798486129037",
+            "3930968572692366625",
+            "3966708136986761179",
+            "DSblpZejcBG",
+            "DSnHcWDFEgR"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q017",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3894952569634410859",
+            "3923089070477910513",
+            "3931716964032834103",
+            "3973146661991949303",
+            "3807917405016469527"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q018",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3966708136986761179",
+            "3971802527979980785",
+            "3949327643161661755",
+            "3911541464558537272",
+            "3905993119678981562"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.7606395682357036,
+          "mrr": 0.5,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q019",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3916403170522902143",
+            "3949327643161661755",
+            "3905993119678981562",
+            "3930758067053549125",
+            "3966708136986761179"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q020",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3820229205209039516",
+            "3936826285130455990",
+            "3955759819835831007",
+            "3893468011271942229",
+            "3915899849351198281"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q021",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3893468011271942229",
+            "3974643713981135358",
+            "3966708136986761179",
+            "3932257330421895463",
+            "3920139351876581483"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q022",
+          "mode": "answer",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3952027885716464313",
+            "3947232118223596693",
+            "3924906996725130011",
+            "3889124160664422136",
+            "3949327643161661755"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q023",
+          "mode": "answer",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3936826285130455990",
+            "3820229205209039516",
+            "3930903749103728654",
+            "3915899849351198281",
+            "3929840528082094524"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q024",
+          "mode": "answer",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3935061824661129915",
+            "3933202358829593295",
+            "3973143633847299755",
+            "3920882615745572320",
+            "3950583146671833484"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        }
+      ]
+    },
+    "B_dense_raw": {
+      "recall@5": 0.9409722222222222,
+      "recall@10": 1.0,
+      "ndcg@10": 0.9247915124508065,
+      "mrr": 0.9305555555555555,
+      "n_questions": 24,
+      "per_question": [
+        {
+          "question_id": "q001",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3955759819835831007",
+            "3930758067053549125",
+            "3934451825051363937",
+            "3919244861023331926",
+            "3820229205209039516"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q002",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930758067053549125",
+            "3934451825051363937",
+            "3966708136986761179",
+            "3919244861023331926",
+            "3955759819835831007"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9469024295259745,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q003",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3894952569634410859",
+            "3760546516084250164",
+            "3668605474936435507",
+            "3923089070477910513",
+            "3665827385726673510"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q004",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930903749103728654",
+            "3891052280707291089",
+            "3745540984537669348",
+            "3876635891703749466",
+            "3880909063383212906"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q005",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3930903749103728654",
+            "3964315563965815687",
+            "3955659498007039593",
+            "3955787676676080582",
+            "3966879694008484092"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9828920819566879,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q006",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3949327643161661755",
+            "3930758067053549125",
+            "3915899849351198281",
+            "3905993119678981562",
+            "3971802527979980785"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.812653045383133,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q007",
+          "mode": "search",
+          "difficulty": "easy",
+          "retrieved_top5": [
+            "3933285838825660889",
+            "3967305638736080129",
+            "3776128729852431314",
+            "3949327643161661755",
+            "3920911864087189143"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q008",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3964315563965815687",
+            "3955787676676080582",
+            "3953115054399164813",
+            "3967305638736080129",
+            "3955659498007039593"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9197207891481876,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q009",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3964315563965815687",
+            "3955787676676080582",
+            "3953115054399164813",
+            "3955659498007039593",
+            "3966879694008484092"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.5,
+          "mrr": 0.3333333333333333,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q010",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3964333368108065752",
+            "3939151069003571994",
+            "3949327643161661755",
+            "3905993119678981562",
+            "3915899849351198281"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q011",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3911401122917902895",
+            "3919244861023331926",
+            "3939151069003571994",
+            "3820229205209039516",
+            "3966708136986761179"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q012",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3939151069003571994",
+            "3964333368108065752",
+            "3974643713981135358",
+            "3919244861023331926",
+            "3915899849351198281"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q013",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3923089070477910513",
+            "3665827385726673510",
+            "3659192977317725133",
+            "3655618140955646799",
+            "3760546516084250164"
+          ],
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "ndcg@10": 0.8065735963827293,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q014",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3931716964032834103",
+            "3698391246811892352",
+            "3807917405016469527",
+            "3665827385726673510",
+            "3668559517997603647"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q015",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3910448340864306868",
+            "3915734202271998181",
+            "3786750960425891870",
+            "3952049061066210805",
+            "3916530838414352606"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 0.6240505200038379,
+          "mrr": 0.5,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q016",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3930223798486129037",
+            "3930968572692366625",
+            "3966708136986761179",
+            "3879429218249772361",
+            "3880909063383212906"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q017",
+          "mode": "search",
+          "difficulty": "hard",
+          "retrieved_top5": [
+            "3894952569634410859",
+            "3923089070477910513",
+            "3688264865675266702",
+            "3698391246811892352",
+            "3807917405016469527"
+          ],
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "ndcg@10": 0.9066276098484507,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q018",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3966708136986761179",
+            "3971802527979980785",
+            "3930758067053549125",
+            "3905993119678981562",
+            "3949327643161661755"
+          ],
+          "recall@5": 0.75,
+          "recall@10": 1.0,
+          "ndcg@10": 0.6955762265703532,
+          "mrr": 0.5,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q019",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3916403170522902143",
+            "3880199272432174353",
+            "3880909063383212906",
+            "3930758067053549125",
+            "3949327643161661755"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q020",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3820229205209039516",
+            "3936826285130455990",
+            "3955759819835831007",
+            "3930758067053549125",
+            "3974643713981135358"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q021",
+          "mode": "search",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3974643713981135358",
+            "3893468011271942229",
+            "3876635891703749466",
+            "3880199272432174353",
+            "3966708136986761179"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q022",
+          "mode": "answer",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3952027885716464313",
+            "3876635891703749466",
+            "3899748444070305524",
+            "3877224143385314832",
+            "3872999161188731304"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q023",
+          "mode": "answer",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3936826285130455990",
+            "3929840528082094524",
+            "3820229205209039516",
+            "3930903749103728654",
+            "3876635891703749466"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        },
+        {
+          "question_id": "q024",
+          "mode": "answer",
+          "difficulty": "medium",
+          "retrieved_top5": [
+            "3935061824661129915",
+            "3933202358829593295",
+            "3973143633847299755",
+            "3920882615745572320",
+            "3950583146671833484"
+          ],
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "ndcg@10": 1.0,
+          "mrr": 1.0,
+          "invalid_gold_ids": []
+        }
+      ]
+    },
+    "bm25_reference_once": {
+      "recall@5": 0.78125,
+      "recall@10": 0.8541666666666666,
+      "ndcg@10": 0.8363202722383004,
+      "mrr": 0.8223379629629629,
+      "note": "identical channel for both variants (lexical uses the same FTS index over the 185-record corpus); reported once"
+    },
+    "hybrid_A_reference": {
+      "recall@5": 0.9166666666666666,
+      "note": "RRF(BM25, dense-A); see validity-phase ablation artifact"
+    },
+    "hybrid_B_reference": {
+      "recall@5": 0.9166666666666666,
+      "recall@10": 0.9756944444444443,
+      "note": "RRF(BM25, dense-B) from the B ablation run"
+    }
+  },
+  "headline": {
+    "A_dense_recall@5": 0.9722222222222222,
+    "B_dense_recall@5": 0.9409722222222222,
+    "delta_B_minus_A": -0.03125,
+    "tolerance": 0.02
+  },
+  "lexical_miss_pattern": {
+    "definition": "questions where dense-A has a gold hit in top-5 (recall@5 > 0) but dense-B has none (recall@5 == 0)",
+    "A_correct_B_missed_qids": [],
+    "B_hit_A_missed_qids": [],
+    "n_misses": 0,
+    "misses_concentrated_in_enrichment_only_vocabulary": false,
+    "detail": [],
+    "degraded_questions_partial_recall_loss": [
+      {
+        "question_id": "q013",
+        "question": "Find posts about AI-generated product photography workflows.",
+        "gold_ids": [
+          "DZxnLlkDaHx",
+          "DYNprnKDdFr"
+        ],
+        "A_recall@5": 1.0,
+        "B_recall@5": 0.5,
+        "recall_drop": -0.5,
+        "A_top5": [
+          "3923089070477910513",
+          "3760546516084250164",
+          "3704903391376510643",
+          "3655618140955646799",
+          "3894952569634410859"
+        ],
+        "B_top5": [
+          "3923089070477910513",
+          "3665827385726673510",
+          "3659192977317725133",
+          "3655618140955646799",
+          "3760546516084250164"
+        ],
+        "per_gold": [
+          {
+            "post_id": "3923089070477910513",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "mobileeditingclub",
+            "transcript_chars": 635,
+            "tags": [
+              "ai",
+              "product-photography",
+              "generative-ai",
+              "workflow",
+              "creative-process"
+            ],
+            "question_tokens_in_raw_of_this_gold": [
+              "product",
+              "photography"
+            ],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": [
+              "generated"
+            ]
+          },
+          {
+            "post_id": "3894952569634410859",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "mobileeditingclub",
+            "transcript_chars": 1375,
+            "tags": [
+              "ai-branding",
+              "generative-ai",
+              "product-photography",
+              "brand-consistency",
+              "ai-workflow"
+            ],
+            "question_tokens_in_raw_of_this_gold": [
+              "product",
+              "photography"
+            ],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": []
+          }
+        ],
+        "enrichment_only_tokens_across_gold": [
+          "generated"
+        ]
+      },
+      {
+        "question_id": "q017",
+        "question": "What posts did mobileeditingclub publish?",
+        "gold_ids": [
+          "DYNprnKDdFr",
+          "DZxnLlkDaHx",
+          "DaQQ79mjeo3"
+        ],
+        "A_recall@5": 1.0,
+        "B_recall@5": 0.6666666666666666,
+        "recall_drop": -0.33333333333333337,
+        "A_top5": [
+          "3894952569634410859",
+          "3923089070477910513",
+          "3931716964032834103",
+          "3973146661991949303",
+          "3807917405016469527"
+        ],
+        "B_top5": [
+          "3894952569634410859",
+          "3923089070477910513",
+          "3688264865675266702",
+          "3698391246811892352",
+          "3807917405016469527"
+        ],
+        "per_gold": [
+          {
+            "post_id": "3894952569634410859",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "mobileeditingclub",
+            "transcript_chars": 1375,
+            "tags": [
+              "ai-branding",
+              "generative-ai",
+              "product-photography",
+              "brand-consistency",
+              "ai-workflow"
+            ],
+            "question_tokens_in_raw_of_this_gold": [],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": []
+          },
+          {
+            "post_id": "3923089070477910513",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "mobileeditingclub",
+            "transcript_chars": 635,
+            "tags": [
+              "ai",
+              "product-photography",
+              "generative-ai",
+              "workflow",
+              "creative-process"
+            ],
+            "question_tokens_in_raw_of_this_gold": [],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": []
+          },
+          {
+            "post_id": "3931716964032834103",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "mobileeditingclub",
+            "transcript_chars": 1651,
+            "tags": [
+              "ai-generation",
+              "prompt-engineering",
+              "photography",
+              "branding",
+              "creative-strategy"
+            ],
+            "question_tokens_in_raw_of_this_gold": [],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": []
+          }
+        ],
+        "enrichment_only_tokens_across_gold": []
+      },
+      {
+        "question_id": "q018",
+        "question": "Which posts are good sources for general web design inspiration websites?",
+        "gold_ids": [
+          "DbO1JEoSBE7",
+          "DY04AwpleW6",
+          "DZIljzfOQo4",
+          "DcerVsOPsfx"
+        ],
+        "A_recall@5": 1.0,
+        "B_recall@5": 0.75,
+        "recall_drop": -0.25,
+        "A_top5": [
+          "3966708136986761179",
+          "3971802527979980785",
+          "3949327643161661755",
+          "3911541464558537272",
+          "3905993119678981562"
+        ],
+        "B_top5": [
+          "3966708136986761179",
+          "3971802527979980785",
+          "3930758067053549125",
+          "3905993119678981562",
+          "3949327643161661755"
+        ],
+        "per_gold": [
+          {
+            "post_id": "3949327643161661755",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "james.vlvt",
+            "transcript_chars": 903,
+            "tags": [
+              "webdesign",
+              "ui",
+              "ux",
+              "inspiration",
+              "resources",
+              "designsystems"
+            ],
+            "question_tokens_in_raw_of_this_gold": [
+              "sources",
+              "web",
+              "design",
+              "inspiration"
+            ],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": [
+              "websites"
+            ]
+          },
+          {
+            "post_id": "3905993119678981562",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "sshirg",
+            "transcript_chars": 1116,
+            "tags": [
+              "ui_design",
+              "web_design",
+              "design_resources",
+              "inspiration",
+              "ui_ux",
+              "frontend"
+            ],
+            "question_tokens_in_raw_of_this_gold": [
+              "sources",
+              "general",
+              "web",
+              "design",
+              "inspiration",
+              "websites"
+            ],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": []
+          },
+          {
+            "post_id": "3911541464558537272",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "ninalyre",
+            "transcript_chars": 457,
+            "tags": [
+              "design inspiration",
+              "ui design",
+              "ux design",
+              "web design",
+              "creative resources",
+              "design tools"
+            ],
+            "question_tokens_in_raw_of_this_gold": [
+              "sources",
+              "web",
+              "design",
+              "inspiration"
+            ],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": [
+              "websites"
+            ]
+          },
+          {
+            "post_id": "3971802527979980785",
+            "domain": "uiux",
+            "extraction_status": "ok",
+            "owner": "mightbemaxi",
+            "transcript_chars": 567,
+            "tags": [
+              "webdesign",
+              "uiux",
+              "inspiration",
+              "designresources",
+              "frontend",
+              "webdevelopment"
+            ],
+            "question_tokens_in_raw_of_this_gold": [
+              "sources",
+              "web",
+              "design",
+              "inspiration",
+              "websites"
+            ],
+            "question_tokens_ONLY_in_enrichment_of_this_gold": []
+          }
+        ],
+        "enrichment_only_tokens_across_gold": [
+          "websites"
+        ]
+      }
+    ],
+    "n_degraded_questions": 3,
+    "degraded_qids": [
+      "q013",
+      "q017",
+      "q018"
+    ],
+    "concentration_verdict": "NOT dominated by enrichment-only vocabulary. No full top-5 misses exist; degradation is 3 questions with partial multi-gold recall loss (q013 -0.50, q017 -0.33, q018 -0.25). Enrichment-only tokens appear for only 3 gold records across the 3 questions ('generated' x1 for q013; 'websites' x2 for q018); q017 (owner entity lookup: 'mobileeditingclub') has ZERO lexical overlap with its gold records in EITHER variant - dense-A bridged it semantically and dense-B's shorter raw texts shifted the ranking margins. Pattern: ranking-margin sensitivity on shorter texts, not missing enrichment vocabulary."
+  },
+  "decision": {
+    "threshold": "raw ~= enriched iff B Recall@5 >= A Recall@5 - 0.02 (config.yaml verify.regression_threshold)",
+    "reading": 2,
+    "reading_text": "Reading 2: meaningful degradation -> raw works but is weak alone; enrichment becomes an optional per-corpus adapter, never a hardcoded engine assumption; the Mapper/Chunker must accept enrichment-shaped text when a corpus declares it, but the envelope contract itself stays raw-text-shaped.",
+    "rationale": "Variant B raw-only dense Recall@5 = 0.9410 vs variant A enriched 0.9722 (delta -0.0312, tolerance 0.02). Recall@10: B 1.0000 vs A 1.0000; nDCG@10: B 0.9248 vs A 0.9306; MRR: B 0.9306 vs A 0.9306. Lexical-miss pattern: 0 question(s) correct on A but missed on B; 0 reverse case(s). No A-correct/B-missed questions: raw text carries sufficient vocabulary for every question A answers. Miss-pattern detail: degradation is partial recall loss on 3 questions (q013 1.00->0.50, q017 1.00->0.67, q018 1.00->0.75), not full top-5 misses; enrichment-only question tokens occur for only 3 gold records across those questions, and q017's key token (owner handle) appears in NEITHER variant's index text - so the delta is shorter-text ranking-margin sensitivity rather than enrichment-supplied vocabulary. Hybrid (BM25+dense-B RRF) holds R@5 at 0.917 (equal to hybrid-A) and passes its gate (R@10 0.976 vs BM25 0.854), supporting reading 2: raw-only dense is degraded but usable, enrichment is a per-corpus accuracy adapter."
+  },
+  "embed_cost": {
+    "variant": "B (variant A served from cached data/kb/dense.db; 0 new texts)",
+    "texts_new": 150,
+    "vectors": 150,
+    "tokens": 48457,
+    "tokens_method": "chars/4 estimate; Gemini embeddings API returns no token counts",
+    "chars": 193830,
+    "provider": "gemini",
+    "model": "gemini-embedding-001",
+    "dims": 3072,
+    "batches_of_40": 4,
+    "pacing_sleep_s": 5,
+    "queries_embedded_during_eval": {
+      "validity_phase_A": 72,
+      "b_phase": 72,
+      "note": "24 gold questions x (dense + hybrid channels), plus one 24-question A re-run in phase b for per-question alignment"
+    },
+    "usd_estimate": "<0.01 (gemini-embedding-001 text embedding; free-tier batch pacing)",
+    "build_log": "scratch/spike_raw_enriched/b_build_log.json"
+  },
+  "artifacts": {
+    "script": "scratch/spike_raw_enriched/spike_run.py",
+    "variant_B_db": "scratch/spike_raw_enriched/dense-raw-gemini.db",
+    "variant_B_build_log": "scratch/spike_raw_enriched/b_build_log.json",
+    "variant_B_ablation_run": "data\\eval\\runs\\20260905-095100-ablation.json",
+    "variant_A_ablation_run": "data\\eval\\runs\\20260905-094837-ablation.json"
+  },
+  "build_info": {
+    "texts_new_this_run": 150,
+    "texts_new_total": 150,
+    "chars_total": 193830,
+    "empty_skipped": [
+      "DSP2S3VkzMn",
+      "DVOA_WhE0OZ",
+      "DQo6-LngW4y",
+      "DQudCIBjCwI",
+      "DRj87lEjInQ",
+      "DSKlnzJDFI0",
+      "DR2LCThDMN6",
+      "DRqEgdGACb3",
+      "DRm6FVgjAAW",
+      "DQ6lw9lDT3p",
+      "DTkrB8IiFeU",
+      "DR2pc1MilKY",
+      "DUIubwjDtj3",
+      "DSnHcWDFEgR",
+      "DSw2HW9EsLD",
+      "DMY_D1BtSs1",
+      "DVNA15fjevS",
+      "DQm57tXjoeQ",
+      "DTgeehmDVdo",
+      "DRu2VfuEveC",
+      "DO-7phDDPB6",
+      "DL8BwDnxvpK",
+      "DLMxL45IkZY",
+      "DRnEpPeEnqB",
+      "DOo1WjGj0wk",
+      "DNi3GHGpCTy",
+      "DNz9oUP0KQO",
+      "DPrUiSxiHSA",
+      "DRmZJ-LDI4w",
+      "DR1m3pEEYEZ",
+      "DSblpZejcBG",
+      "DQ4Nz1giCmf",
+      "DZ45jkKiM4D",
+      "DaSX80Osgw0",
+      "DNPm7LTy_4i"
+    ],
+    "db_vectors": 150,
+    "planned_vectors": 150
+  }
+}
