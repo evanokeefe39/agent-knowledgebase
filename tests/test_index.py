@@ -136,8 +136,12 @@ class TestChunker:
         corpus = config.corpus("uiux")
         assert corpus is not None
         chunker = Chunker.from_corpus(corpus)
-        # corpora/uiux.yaml declares 6 role=search fields
-        assert set(chunker.fields) == set(SEARCH_FIELDS)
+        # corpora/uiux.yaml declares role=search fields (tools_apps/tags/resources_text
+        # restored for M4 parity) - the REAL contract, not the fixture set.
+        assert set(chunker.fields) == {
+            "summary", "transcript", "workflow_steps", "tips", "concepts",
+            "caption", "tools_apps", "tags", "resources_text",
+        }
         assert "owner" in chunker.metadata_fields
 
     def test_invalid_mode_fails_fast(self) -> None:

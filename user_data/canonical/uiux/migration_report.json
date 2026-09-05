@@ -2,8 +2,8 @@
   "corpus": "uiux",
   "coverage_gap_reasons": [],
   "outputs_changed": {
-    "corpus.json": true,
-    "manifest.json": true
+    "corpus.json": false,
+    "manifest.json": false
   },
   "ported_envelope_gaps": [
     {
@@ -184,9 +184,9 @@
   ],
   "ported_from_legacy": 35,
   "reference_records": 86,
-  "reingested_from_raw": 51,
+  "reingested_from_raw": 0,
   "schema_version": "1",
   "snapshot_id": "uiux-2026-09-01",
   "source_gaps": [],
-  "unchanged_since_last_run": 0
+  "unchanged_since_last_run": 51
 }

@@ -116,6 +116,22 @@ def build_retriever(
     return dense
 
 
+def build_id_map(records: list[CanonicalRecord]) -> dict[str, str]:
+    """Gold-id -> canonical-record-id map for evaluation.
+
+    Canonical record ids may be numeric media pks while gold sets reference
+    shortcodes (the declared ``shortcode`` schema field). Maps every record's
+    declared ``shortcode`` to its canonical id; the record's own id maps to
+    itself so raw-id gold ids still resolve."""
+    id_map: dict[str, str] = {}
+    for rec in records:
+        shortcode = rec.fields.get("shortcode")
+        if isinstance(shortcode, str) and shortcode.strip():
+            id_map[shortcode] = rec.id
+        id_map.setdefault(rec.id, rec.id)
+    return id_map
+
+
 def run_quality_gate(
     *,
     corpus_name: str,
@@ -158,7 +174,9 @@ def run_quality_gate(
 
     # (b) evaluate.
     gold = load_gold_set(gold_set)
-    run = evaluate(gold, retriever, corpus=corpus_name)
+    run = evaluate(
+        gold, retriever, corpus=corpus_name, id_map=build_id_map(records)
+    )
 
     # (c) gate vs the committed baseline.
     baseline = load_baseline(baseline_path)

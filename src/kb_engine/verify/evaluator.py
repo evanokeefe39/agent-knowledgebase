@@ -179,8 +179,7 @@ def evaluate(
     abstinents = 0
     abstained_count = 0
     for q in gold:
-        hits = [str(h) for h in retriever.search(q.question, top_k)]
-        ranked = [_hit_id(h) for h in hits]
+        ranked = [_hit_id(h) for h in retriever.search(q.question, top_k)]
         expected = [
             id_map.get(e, e) if id_map is not None else e for e in q.expected
         ]

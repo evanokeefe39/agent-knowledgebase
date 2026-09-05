@@ -52,11 +52,13 @@ schema:
     tips:             { type: "list[text]", role: [search] }
     caption:          { type: text,  role: [search] }         # raw post caption (spike §10.1 rec 3)
     concepts:         { type: "list[string]", role: [search] }
-    tools_apps:       { type: "list[string]", role: [filter, facet] }
+    tools_apps:       { type: "list[string]", role: [search, filter, facet] }   # tool names are retrieval-relevant AND filterable
     resources:        { type: "list[object]", role: [passthrough] }
     # resources is adapter-provided verbatim (nested media/resource objects);
-    # no mapping entry and no transform — passthrough storage only.
-    tags:             { type: "list[string]" }
+    # no mapping entry and no transform — passthrough storage only. Its
+    # flattened search representation is `resources_text` below.
+    resources_text:   { type: text, role: [search] }   # adapter-provided "name — purpose" lines
+    tags:             { type: "list[string]", role: [search] }   # legacy indexed tags; kept stored
     media_files:      { type: "list[string]" }
     extraction_status: { type: string, role: [filter, facet] }
     is_promo:         { type: bool,  role: [filter] }
@@ -123,17 +125,19 @@ sources:
     # same schema fields.
     # - name: uiux-manual-additions
     #   adapter: csv
-    #   location: user_data/sources/uiux-manual.csv
     #   mapping: { ... columns -> the same schema fields ... }
 
 # ---- Index ------------------------------------------------------------------
 index:
-  schema_version: "2"           # bumped from 1: caption added to chunker fields
+  schema_version: "3"           # bumped from 2: tools_apps/tags joined the
+                                # chunker fields and resources_text was added
+                                # (legacy-index composition alignment)
   chunker:
     mode: by_field              # by_field | by_size
     # Fields chunked into searchable text. Default: all role=search fields;
     # explicit list overrides. Chunks carry provenance (record_id, field).
-    fields: [summary, transcript, workflow_steps, tips, concepts, caption]
+    fields: [summary, transcript, workflow_steps, tips, concepts, caption,
+             tools_apps, tags, resources_text]
   tokenization:
     language: en
     stopwords: default          # engine-internal default; advanced override only

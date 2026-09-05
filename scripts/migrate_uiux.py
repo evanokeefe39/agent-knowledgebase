@@ -46,7 +46,7 @@ from typing import Any
 from kb_engine.config import Config, load
 from kb_engine.core.records import CanonicalRecord
 from kb_engine.core.provenance import Provenance
-from kb_engine.ingest.adapters import flatten_concepts
+from kb_engine.ingest.adapters import flatten_concepts, flatten_resources
 from kb_engine.ingest.pipeline import IngestPipeline
 from kb_engine.ingest.mappers import (
     EnvelopeFailure,
@@ -63,8 +63,8 @@ DECLARED_FIELDS = (
     "post_id", "shortcode", "url", "owner", "content_type", "domains",
     "is_educational", "value_score", "gated_content", "gated_trigger",
     "summary", "transcript", "workflow_steps", "tips", "caption", "concepts",
-    "tools_apps", "resources", "tags", "media_files", "extraction_status",
-    "is_promo",
+    "tools_apps", "resources", "resources_text", "tags", "media_files",
+    "extraction_status", "is_promo",
 )
 
 
@@ -106,13 +106,18 @@ def _synthetic_raw(record: dict[str, Any]) -> dict[str, Any]:
     # a present-but-null value would hit fail-fast transforms (coerce_*).
     metadata = {k: v for k, v in metadata.items() if v is not None}
     analysis = {k: v for k, v in analysis.items() if v is not None}
-    return {
+    raw: dict[str, Any] = {
         "metadata": metadata,
         "analysis": analysis,
         "media": record.get("media_files") or [],
         "dataset_post_dir": record.get("provenance", {}).get("media_ref") or "",
         "extraction_status": record.get("extraction_status") or "pending",
     }
+    resources = record.get("resources")
+    if isinstance(resources, list):
+        raw["resources"] = resources
+        raw["resources_text"] = flatten_resources(resources)
+    return raw
 
 
 def _fields_from_legacy(record: dict[str, Any]) -> dict[str, Any]:
@@ -121,6 +126,8 @@ def _fields_from_legacy(record: dict[str, Any]) -> dict[str, Any]:
         value = record.get(name)
         if name == "concepts":
             value = flatten_concepts(value)
+        elif name == "resources_text":
+            value = flatten_resources(record.get("resources"))
         fields[name] = value
     return fields
 

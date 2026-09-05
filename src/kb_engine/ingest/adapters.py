@@ -12,8 +12,12 @@ and yields raw items shaped exactly like the ``corpora/uiux.yaml`` mapping
 ``from`` paths::
 
     {"metadata": {...}, "analysis": {...}, "media": [...],
+     "resources": [...], "resources_text": "name — purpose\n...",
      "dataset_post_dir": "<snapshot>/<dataset>/<post_dir>",
      "extraction_status": "ok" | "pending"}
+
+``resources`` / ``resources_text`` are adapter-stamped (declared passthrough +
+search fields with no mapping entry) only when ``analysis.resources`` exists.
 
 ``dataset_post_dir`` is the ``media_ref`` pointer (only stamped when media
 bytes exist); ``extraction_status`` is presence-derived (analysis.json
@@ -86,6 +90,25 @@ def flatten_concepts(concepts: Any) -> Any:
     return flat
 
 
+def flatten_resources(resources: Any) -> str | None:
+    """Flatten ``{name, purpose, ...}`` resource objects to one searchable
+    text blob (``"name — purpose"`` per line), the representation the
+    previous engine indexed. Non-dict entries contribute nothing; returns
+    ``None`` when nothing flattens (absence, not empty string).
+    """
+    if not isinstance(resources, list):
+        return None
+    lines: list[str] = []
+    for entry in resources:
+        if not isinstance(entry, dict):
+            continue
+        name = entry.get("name") or ""
+        purpose = entry.get("purpose") or ""
+        if name or purpose:
+            lines.append(f"{name} — {purpose}".strip(" —"))
+    return "\n".join(lines) if lines else None
+
+
 
 class IgSavedAdapter:
     """Reads ``<location>/<dataset>/<post_dir>/`` trees into raw items."""
@@ -134,6 +157,14 @@ class IgSavedAdapter:
                         **analysis,
                         "concepts": flatten_concepts(analysis["concepts"]),
                     }
+                # `resources` is a passthrough field with no mapping entry:
+                # the adapter stamps the verbatim objects plus the flattened
+                # search text (declared field `resources_text`) the mapper
+                # resolves as adapter-provided top-level keys.
+                resources = analysis.get("resources")
+                if isinstance(resources, list):
+                    item["resources"] = resources
+                    item["resources_text"] = flatten_resources(resources)
                 yield item
 
 
