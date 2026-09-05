@@ -1,0 +1,5 @@
+[
+  {"question_id": "q1", "question": "find a", "mode": "search", "difficulty": "easy", "expected": ["a", "b"]},
+  {"question_id": "q2", "question": "nothing should match", "mode": "abstain", "difficulty": "medium", "expected": []},
+  {"question_id": "q3", "question": "opinion question", "mode": "answer", "difficulty": "hard", "expected": []}
+]
