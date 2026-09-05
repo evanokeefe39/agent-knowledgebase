@@ -1,0 +1,62 @@
+[
+  {
+    "id": "post-001",
+    "content_hash": "hash-001",
+    "provenance": {"source": "scrape-ig-saved-list", "media_ref": "dataset/post-001", "timestamp": "2026-08-01T10:00:00Z", "extractor": "gemini-2.0", "confidence": 0.9},
+    "fields": {
+      "summary": "Designing accessible color palettes with WCAG contrast ratios",
+      "transcript": "Contrast ratios decide whether text is readable. Aim for 4.5 to 1 for body text and 3 to 1 for large text.",
+      "workflow_steps": ["Pick a base hue", "Check contrast ratios", "Export tokens"],
+      "tips": ["Never rely on color alone to convey meaning"],
+      "concepts": ["accessibility", "color theory"],
+      "caption": "A quick thread on accessible palettes",
+      "owner": "ada",
+      "content_type": "carousel"
+    }
+  },
+  {
+    "id": "post-002",
+    "content_hash": "hash-002",
+    "provenance": {"source": "scrape-ig-saved-list", "media_ref": "dataset/post-002", "timestamp": "2026-08-02T10:00:00Z", "extractor": "gemini-2.0", "confidence": 0.8},
+    "fields": {
+      "summary": "Figma auto layout tips for responsive components",
+      "transcript": "Auto layout keeps components responsive without manual resizing. Use min and max widths.",
+      "workflow_steps": ["Enable auto layout", "Set min width", "Nest frames"],
+      "tips": ["Name your layout frames clearly"],
+      "concepts": ["figma", "components"],
+      "caption": "Auto layout in five minutes",
+      "owner": "grace",
+      "content_type": "reel"
+    }
+  },
+  {
+    "id": "post-003",
+    "content_hash": "hash-003",
+    "provenance": {"source": "scrape-ig-saved-list", "media_ref": "dataset/post-003", "timestamp": null, "extractor": null, "confidence": null},
+    "fields": {
+      "summary": "User interview question scripts that avoid leading prompts",
+      "transcript": "Leading prompts contaminate interview data. Ask open questions and wait.",
+      "workflow_steps": ["Write neutral prompts", "Pilot the script", "Record consent"],
+      "tips": ["Silence is a question too"],
+      "concepts": ["research", "interviews"],
+      "caption": "Interview scripts without the leading questions",
+      "owner": "ada",
+      "content_type": "carousel"
+    }
+  },
+  {
+    "id": "post-004",
+    "content_hash": "hash-004",
+    "provenance": {"source": "scrape-ig-saved-list", "media_ref": "", "timestamp": null, "extractor": null, "confidence": null},
+    "fields": {
+      "summary": "Heuristic evaluation checklist for onboarding flows",
+      "transcript": "Walk the onboarding flow with Nielsen heuristics and note each violation.",
+      "workflow_steps": ["List heuristics", "Walk the flow", "Score severity"],
+      "tips": ["Log severity per violation"],
+      "concepts": ["heuristics", "onboarding"],
+      "caption": null,
+      "owner": "linus",
+      "content_type": "post"
+    }
+  }
+]
