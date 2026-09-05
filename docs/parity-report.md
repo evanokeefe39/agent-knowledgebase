@@ -2,27 +2,32 @@
 
 **Owner:** dlc-worker (wave D). **Date:** 2026-09-05. **Branch:** `feat/productize-kb`.
 
-**Verdict: GATE FAIL — dense parity does NOT hold. Cutover NOT READY.**
-The gap is attributable to index-text composition (Build-4 chunker `by_field`
-mode vs the legacy single-blob `kb/dense.py index_text`), not to the embedder
-or the evaluation. Numbers are real (gemini-embedding-001, 3072 dims) and
-reproducible from the committed canonical corpus + gold set.
+**Verdict: GATE PASS — dense parity holds at DOCUMENT granularity. CUTOVER READY.**
+The document-level dense path (`src/kb_engine/index/document.py`
+`DocumentDenseRetriever` + `document_text`, one vector per record mirroring
+legacy `kb/dense.py index_text`) reproduces the M4 baseline within the ±0.02
+gate on all four metrics. The earlier by_field chunk-level failures
+(R@5 0.9246 / 0.9365) were a granularity mismatch, not an embedder/eval defect.
+Numbers are real (gemini-embedding-001, 3072 dims) and reproducible from the
+committed canonical corpus + gold set.
 
 ## Measured vs M4 baseline
 
-Run: `data/eval/runs/parity-20260905T111400Z.json` (86 records → 249 chunks, 21 scored
-search questions; 8 abstain/answer questions report-only).
+**Final run:** `data/eval/runs/parity-20260905T124500Z.json` — DOCUMENT-level
+dense (`DocumentDenseRetriever`, one vector per record, legacy `index_text`
+field set `summary, workflow_steps, tips, concepts, transcript, tools_apps,
+tags, resources` in legacy order), 86 records → 51 indexable (35 are
+`extraction_status: pending` with empty content — nothing to index, matching
+legacy behavior), 21 scored search questions; 8 abstain/answer report-only.
 
 | Metric   | M4 baseline | Engine (this run) | Delta    | Gate (±0.02) |
 |----------|-------------|-------------------|----------|--------------|
-| recall@5 | 0.9722      | **0.9246**        | −0.0476  | FAIL         |
-| recall@10| 1.0000      | **0.9246**        | −0.0754  | FAIL         |
-| ndcg@10  | 0.9306      | **0.8891**        | −0.0415  | FAIL         |
-| mrr      | 0.9306      | **0.9206**        | −0.0099  | PASS (within)|
+| recall@5 | 0.9722      | **0.9683**        | −0.0040  | PASS (within)|
+| recall@10| 1.0000      | **0.9841**        | −0.0159  | PASS (within)|
+| ndcg@10  | 0.9306      | **0.9257**        | −0.0050  | PASS (within)|
+| mrr      | 0.9306      | **0.9405**        | +0.0099  | PASS (within)|
 
-R@5 == R@10 means every miss is a **total miss** (expected post not in top 10),
-not a ranking-margin shuffle: 4 search questions (q002, q008, q011, q018) each
-lose exactly one expected post entirely.
+Gate decision: **pass** (no metric beyond −0.02).
 
 ## Four-corner tuple used (matches baseline — gate compared, did not abort)
 
@@ -33,57 +38,65 @@ index_version    = "1"     (PARITY override: corpora/uiux.yaml declares index.sc
 eval_set_version = "v1"
 embedder_version = { provider: gemini, model: gemini-embedding-001, dims: 3072 }
 ```
-
 ## Reproduce
 
 ```bash
-# embeddings cached in data/eval/runs/parity-embed-cache/embed_cache.sqlite3 —
-# re-runs re-bill ZERO (verified: cache hits=249 misses=0 on second run)
-uv run --with google-genai python scratch/parity_run.py
+# embeddings cached in data/eval/runs/parity-embed-cache/embed_cache.sqlite3,
+# keyed (text_hash, model, dims) — re-runs re-bill ZERO
+uv run --with google-genai python scratch/parity_run_doc.py
 ```
 
-The script imports `src/kb_engine` read-only (Build-4 `Chunker.from_corpus` +
-`DenseRetriever`, Build-6 `evaluate` + `run_gate`), injects the M4 embedder at
-the embedder seam (config-declared gemini-embedding-2/768 NOT edited), and
-gates vs `user_data/baselines/uiux-baseline.json`. The CI equivalent is
-`uv run --with google-genai python ci/quality_gate.py --corpus uiux --embedder gemini --embedder-model gemini-embedding-001 --dims 3072 --retriever dense --index-version 1` — but it currently scores 0.0 (see defect D1 below).
+The script imports `src/kb_engine` read-only (`DocumentDenseRetriever` +
+`document_text`, `evaluate` + `run_gate`), injects the M4 embedder at the
+embedder seam (config-declared 768-dim model NOT edited), and gates vs
+`user_data/baselines/uiux-baseline.json`.
 
-## Diagnosis (honest, per the no-forced-numbers contract)
+Field-set note (why this is the correct parity composition): the
+corpus-declared `role=search` fields are `[summary, transcript,
+workflow_steps, tips, caption, concepts, tools_apps, resources_text, tags]`.
+Legacy `kb/dense.py index_text` embedded `[summary, workflow_steps, tips,
+concepts, transcript, tools_apps, tags, resources]` — no `caption`, no
+`resources_text`, different order. A first document-level run over the
+declared fields (`parity-20260905T124129Z.json`) measured R@5 0.9444 — FAIL
+(−0.0278). The passing run passes the legacy field set through
+`DocumentDenseRetriever`'s `fields` parameter explicitly. Any cutover wiring
+of the document-dense channel MUST use the legacy field set (or re-baseline
+deliberately with a version bump if the declared set is preferred).
 
-The embedder is NOT the cause — same model/dims as M4, and cache is keyed on
-exact text. The cause is **index-text composition**:
+## Diagnosis (of the earlier by_field FAIL — resolved)
 
-1. **Chunk granularity.** Legacy `index_text` embedded ONE concatenation per
-   record (summary + workflow_steps + tips + concepts(term: expl) + transcript
-   + tools_apps + tags + resources). The engine's declared `by_field` chunker
-   emits 249 per-field chunks over `[summary, transcript, workflow_steps, tips,
-   concepts, caption]` and takes the best chunk per record. A record whose
+The embedder was never the cause — same model/dims as M4, cache keyed on exact
+text. The cause was **index-text composition**, in two parts:
+
+1. **Chunk granularity (primary).** Legacy `index_text` embedded ONE
+   concatenation per record; the engine's declared `by_field` chunker emitted
+   249 per-field chunks and took the best chunk per record. A record whose
    summary/tips don't share the query's vocabulary loses its best chunk even
-   when the transcript (or metadata) would have matched in the legacy blob.
-2. **Missing fields.** The legacy blob includes `tools_apps`, `tags`, and
-   `resources`; the declared chunker fields omit all three. All 4 missed posts
-   carry `tools_apps`; the evidence suggests per-field chunking is the larger
-   factor, but the field omission compounds it.
-3. **What parity is NOT sensitive to:** id normalization was corrected before
-   scoring (defect D1), and the miss pattern is consistent — 4/21 questions
-   each drop exactly one of 2–4 expected posts.
+   when the transcript would have matched in the legacy blob.
+2. **Field set / order (secondary, confirmed by the final run).** With
+   document-level granularity over the corpus-DECLARED search fields
+   (`caption` included, `resources`/`tools_apps`/`tags` differently ordered),
+   R@5 still missed the gate (0.9444, −0.0278). Passing the exact legacy
+   `index_text` field set through `DocumentDenseRetriever`'s `fields` seam
+   closed it (0.9683, −0.0040).
 
-### Recommendation: align the chunker, do NOT re-baseline
+### Recommendation: CUTOVER READY
 
-The engine's composition is **not** close enough to accept as-is (recall@10
-lost 0.0754, entirely from total misses — a serving-quality risk, not noise).
-Before cutover:
+The document-level dense path reproduces M4 within the gate on all four
+metrics. Conditions carried into cutover:
 
-- Preferred: give the dense channel a one-text-per-record composition
-  (concatenated search fields, mirroring the legacy blob — e.g. a `by_record`
-  chunker mode or `by_size` with `max_chars` above the corpus maximum), OR
-- Add `tools_apps`, `tags`, `resources` to `index.chunker.fields` and re-measure;
-  if recall is still below the gate, re-baseline ONLY after the composition
-  change is deliberate, versioned (`index_version` bump), and recorded.
+- Wire the serving dense channel over `DocumentDenseRetriever` with the
+  legacy field set (`summary, workflow_steps, tips, concepts, transcript,
+  tools_apps, tags, resources`, legacy order) — NOT the corpus-declared
+  search-field list (see Reproduce note); or, if the declared list is
+  preferred, re-baseline deliberately with an `index_version` bump.
+- Records whose `document_text` is empty (35/86, all
+  `extraction_status: pending`) are skipped by the index — keep that behavior
+  and their `extraction_status` visible to the re-extraction pipeline.
+- Defects D1/D2 below are fixed in engine code (VerifyFix); the CI quality
+  gate should be re-enabled against this document-dense path.
 
-Cutover of `kb/` must stay blocked until a passing gate run exists.
-
-## Engine defects found during PARITY (not fixed — outside my ownership)
+## Engine defects found during PARITY (since fixed by VerifyFix)
 
 - **D1 — id normalization gap (blocks the CI gate).** 51/86 canonical records
   carry numeric Instagram media-pk `id`s while the gold set expects shortcodes
@@ -98,7 +111,7 @@ Cutover of `kb/` must stay blocked until a passing gate run exists.
   tests pass only because their fakes return plain strings. Fix: extract the
   id BEFORE stringification (`_hit_id(h)` on the original object).
 
-## Clean-cutover legacy file list (DELETE ONLY after a passing gate run)
+## Clean-cutover legacy file list (CUTOVER READY — passing gate run: `data/eval/runs/parity-20260905T124500Z.json`)
 
 `kb/__init__.py`, `kb/bm25.py`, `kb/build_voyage_freetier.py`,
 `kb/consolidate.py`, `kb/dense.py`, `kb/eval.py`, `kb/gold.py`,
@@ -108,9 +121,11 @@ Cutover of `kb/` must stay blocked until a passing gate run exists.
 
 ## Cost disclosure
 
-One authorized real dense-embed of the canonical corpus: 249 chunk texts,
-~28,862 estimated tokens (gemini-embedding-001, 3072 dims), cached persistently
-at `data/eval/runs/parity-embed-cache/` so all re-runs (including the final
-post-fix parity re-run) re-bill zero. An earlier uncached attempt embedded the
-same 249 texts once more (identical content) before the id-normalization
-diagnosis — total ≈ 2× the corpus embedding, still on the order of $0.01.
+Real dense-embeds (gemini-embedding-001, 3072 dims), all cached persistently
+at `data/eval/runs/parity-embed-cache/` keyed `(text_hash, model, dims)` so
+re-runs re-bill zero:
+
+- Earlier by_field runs: 249 chunk texts ×2 ≈ $0.01 (documented above).
+- Document-level, declared-field texts: 51 texts ~32k tokens (billed once, cached).
+- Final document-level, legacy-field texts: 50 new texts, ~26,881 tokens
+  (1 cache hit) ≈ $0.005. Total spend across all runs ≈ $0.02.

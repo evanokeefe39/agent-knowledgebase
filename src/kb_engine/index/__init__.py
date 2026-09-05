@@ -23,6 +23,10 @@ from kb_engine.index.embedder import (
     GeminiEmbedder,
     VoyageEmbedder,
 )
+from kb_engine.index.document import (
+    DocumentDenseRetriever,
+    document_text,
+)
 from kb_engine.index.retriever import (
     BM25Retriever,
     DenseRetriever,
@@ -38,7 +42,9 @@ __all__ = [
     "BM25Retriever",
     "Chunk",
     "Chunker",
+    "document_text",
     "DenseRetriever",
+    "DocumentDenseRetriever",
     "Embedder",
     "EmbeddingError",
     "FakeEmbedder",
